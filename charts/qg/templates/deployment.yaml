@@ -67,15 +67,12 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/Backup
         - name: device-settings
           mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
-          subPath: device_settings.ini
         - name: settings
           mountPath: /home/fvt/QualityGrader/Api/settings.ini
-          subPath: settings.ini
         - name: logfiles
           mountPath: /home/fvt/QualityGrader/Api/Logfiles
         - name: device-info
           mountPath: /etc/device_info.json
-          subPath: device_info.json
      
       {{- else }}  # For all other machine types
 
