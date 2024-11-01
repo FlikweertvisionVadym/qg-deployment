@@ -1,5 +1,5 @@
 clients:
-  - name: test-linux
+  - name: test-linux1
     subnet: 10.23.254.0/24
     machines:
       - ip: 10.23.254.109
