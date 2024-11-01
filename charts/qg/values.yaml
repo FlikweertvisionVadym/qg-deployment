@@ -17,3 +17,5 @@ clients:
         type: QG
         softwareVersion: "orin_1.6.1"
         jetsonType: "orin"
+      - ip: 10.23.121.50
+        type: PanelPC
