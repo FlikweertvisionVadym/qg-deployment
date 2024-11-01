@@ -2,14 +2,19 @@
 
 {{- range .machines }}
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
-  name: {{ .ip }}-daemonset  # Unique name for each daemonset
+  name: {{ .ip }}-deployment  # Unique name for each deployment
   namespace: default
 spec:
+  replicas: 1  # Ensures only one instance per machine
+  strategy:
+    type: RollingUpdate  # Enable rolling updates
+    rollingUpdate:
+      maxUnavailable: 1  # Control the number of pods that can be unavailable during an update
   selector:
     matchLabels:
-      app: {{ .type }}-{{ .ip }}  # Label to match pods with node selection
+      app: {{ .type }}-{{ .ip }}  # Ensure the label matches the selector
       machine-type: {{ .type }}
   template:
     metadata:
@@ -26,7 +31,7 @@ spec:
                     operator: In
                     values:
                       - {{ .ip }}  # Use each machine's IP
-
+      
       {{- if eq .type "PanelPC" }}
       {{- else }}  # For all other machine types
       tolerations:
