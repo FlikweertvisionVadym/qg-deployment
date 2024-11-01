@@ -30,12 +30,62 @@ spec:
                     operator: In
                     values:
                       - {{ .ip }}  # Use each machine's IP
+      
+      
+      {{- if eq .type "PanelPC" }}
+      tolerations: {}
+      {{- else }}  # For all other machine types
       tolerations:
       - key: nvidia.com/gpu
         operator: Exists
         effect: NoSchedule
+      {{- end }}
+
+        
       hostNetwork: true  # Equivalent to --net=host
       containers:
+      
+      
+      {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
+      - name: panel-pc-gui
+        image: docker.io/flikweertvision/panelpc-gui
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NUXT_API_URL
+          value: "http://10.23.121.50:5000"
+        - name: VITE_NUXT_API_URL
+          value: "http://10.23.121.50:5000"
+        volumeMounts:
+        - name: env-file
+          mountPath: /home/fvt/QualityGrader/Server/.env
+          subPath: .env
+      - name: panelpc-interface
+        image: docker.io/flikweertvision/panelpc-interface
+        hostNetwork: true
+        volumeMounts:
+        - name: json-files
+          mountPath: /home/fvt/QualityGrader/Api/json_files
+        - name: images
+          mountPath: /home/fvt/QualityGrader/Api/images
+        - name: backup
+          mountPath: /home/fvt/QualityGrader/Api/Backup
+        - name: device-settings
+          mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
+          subPath: device_settings.ini
+        - name: settings
+          mountPath: /home/fvt/QualityGrader/Api/settings.ini
+          subPath: settings.ini
+        - name: logfiles
+          mountPath: /home/fvt/QualityGrader/Api/Logfiles
+        - name: device-info
+          mountPath: /etc/device_info.json
+          subPath: device_info.json
+     
+      
+      {{- else }}  # For all other machine types
+
+      
       - name: quality-grader
         image: docker.io/larsflikweert/quality_grader_testing:{{ .softwareVersion }}  # Use the correct image version
         securityContext:
@@ -43,25 +93,26 @@ spec:
         resources:
           limits:
             nvidia.com/gpu: 1
-#        volumeMounts:
- #       - name: classifier
-  #        mountPath: /home/nvidia/QualityGrader/classifier
-   #     - name: detector
-    #      mountPath: /home/nvidia/QualityGrader/detector
-     #   - name: json-files
-      #    mountPath: /home/nvidia/QualityGrader/json_files
-       # - name: data
-#          mountPath: /home/nvidia/QualityGrader/Data
- #       - name: g-device-settings
-  #        mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
-   #     - name: qg-device-settings
-    #      mountPath: /home/nvidia/QualityGrader/QG_device_settings.ini
-     #   - name: vs-device-settings
-      #    mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
-       # - name: settings
-#          mountPath: /home/nvidia/QualityGrader/settings.ini
- #       - name: ssd
-  #        mountPath: /home/nvidia/SSD
+        volumeMounts:
+        - name: classifier
+          mountPath: /home/nvidia/QualityGrader/classifier
+        - name: detector
+          mountPath: /home/nvidia/QualityGrader/detector
+        - name: json-files
+          mountPath: /home/nvidia/QualityGrader/json_files
+        - name: data
+          mountPath: /home/nvidia/QualityGrader/Data
+        - name: g-device-settings
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+        - name: qg-device-settings
+          mountPath: /home/nvidia/QualityGrader/QG_device_settings.ini
+        - name: vs-device-settings
+          mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
+        - name: settings
+          mountPath: /home/nvidia/QualityGrader/settings.ini
+        - name: ssd
+          mountPath: /home/nvidia/SSD
+      {{- end }}
 {{- end }}  # End of machines range
 {{- end }}  # End of clients range
 
