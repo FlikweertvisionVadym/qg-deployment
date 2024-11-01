@@ -31,7 +31,6 @@ spec:
                     values:
                       - {{ .ip }}  # Use each machine's IP
       
-      
       {{- if eq .type "PanelPC" }}
       {{- else }}  # For all other machine types
       tolerations:
@@ -39,11 +38,9 @@ spec:
         operator: Exists
         effect: NoSchedule
       {{- end }}
-
         
       hostNetwork: true  # Equivalent to --net=host
       containers:
-      
       
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
       - name: panel-pc-gui
@@ -81,10 +78,8 @@ spec:
           mountPath: /etc/device_info.json
           subPath: device_info.json
      
-      
       {{- else }}  # For all other machine types
 
-      
       - name: quality-grader
         image: docker.io/larsflikweert/quality_grader_testing:{{ .softwareVersion }}  # Use the correct image version
         securityContext:
@@ -112,6 +107,52 @@ spec:
         - name: ssd
           mountPath: /home/nvidia/SSD
       {{- end }}
+
+      volumes:
+        - name: env-file
+          hostPath:
+            path: /home/fvt/QualityGrader/Server/.env
+        - name: json-files
+          hostPath:
+            path: /home/fvt/QualityGrader/Api/json_files
+        - name: images
+          hostPath:
+            path: /home/fvt/QualityGrader/Api/images
+        - name: backup
+          hostPath:
+            path: /home/fvt/QualityGrader/Api/Backup
+        - name: device-settings
+          hostPath:
+            path: /home/fvt/QualityGrader/Api/device_settings.ini
+        - name: settings
+          hostPath:
+            path: /home/fvt/QualityGrader/Api/settings.ini
+        - name: logfiles
+          hostPath:
+            path: /home/fvt/QualityGrader/Api/Logfiles
+        - name: device-info
+          hostPath:
+            path: /etc/device_info.json
+        - name: classifier
+          hostPath:
+            path: /home/nvidia/QualityGrader/classifier
+        - name: detector
+          hostPath:
+            path: /home/nvidia/QualityGrader/detector
+        - name: data
+          hostPath:
+            path: /home/nvidia/QualityGrader/Data
+        - name: g-device-settings
+          hostPath:
+            path: /home/nvidia/QualityGrader/G_device_settings.ini
+        - name: qg-device-settings
+          hostPath:
+            path: /home/nvidia/QualityGrader/QG_device_settings.ini
+        - name: vs-device-settings
+          hostPath:
+            path: /home/nvidia/QualityGrader/VS_device_settings.ini
+        - name: ssd
+          hostPath:
+            path: /home/nvidia/SSD
 {{- end }}  # End of machines range
 {{- end }}  # End of clients range
-
