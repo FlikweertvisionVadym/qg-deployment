@@ -112,51 +112,77 @@ spec:
       {{- end }}
 
       volumes:
+      {{- if eq .type "PanelPC" }}
         - name: env-file
           hostPath:
             path: /home/fvt/QualityGrader/Server/.env
+            type: File
         - name: json-files
           hostPath:
             path: /home/fvt/QualityGrader/Api/json_files
+            type: Directory
         - name: images
           hostPath:
             path: /home/fvt/QualityGrader/Api/images
+            type: Directory
         - name: backup
           hostPath:
             path: /home/fvt/QualityGrader/Api/Backup
+            type: Directory
         - name: device-settings
           hostPath:
             path: /home/fvt/QualityGrader/Api/device_settings.ini
+            type: File
         - name: settings
           hostPath:
             path: /home/fvt/QualityGrader/Api/settings.ini
+            type: File
         - name: logfiles
           hostPath:
             path: /home/fvt/QualityGrader/Api/Logfiles
+            type: Directory
         - name: device-info
           hostPath:
             path: /etc/device_info.json
+            type: File
+      {{- else }}
         - name: classifier
           hostPath:
             path: /home/nvidia/QualityGrader/classifier
+            type: Directory
         - name: detector
           hostPath:
             path: /home/nvidia/QualityGrader/detector
+            type: Directory
         - name: data
           hostPath:
             path: /home/nvidia/QualityGrader/Data
+            type: Directory
         - name: g-device-settings
           hostPath:
             path: /home/nvidia/QualityGrader/G_device_settings.ini
+            type: File
         - name: qg-device-settings
           hostPath:
             path: /home/nvidia/QualityGrader/QG_device_settings.ini
+            type: File
         - name: vs-device-settings
           hostPath:
             path: /home/nvidia/QualityGrader/VS_device_settings.ini
+            type: File
+        - name: settings
+          hostPath:
+            path: /home/nvidia/QualityGrader/settings.ini
+            type: File
         - name: ssd
           hostPath:
             path: /home/nvidia/SSD
+            type: Directory
+        - name: images
+          hostPath:
+            path: /home/nvidia/QualityGrader/images
+            type: Directory
+      {{- end }}
 ---
 {{- end }}  # End of machines range
 {{- end }}  # End of clients range
