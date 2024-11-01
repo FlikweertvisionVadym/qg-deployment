@@ -33,7 +33,6 @@ spec:
       
       
       {{- if eq .type "PanelPC" }}
-      tolerations: {}
       {{- else }}  # For all other machine types
       tolerations:
       - key: nvidia.com/gpu
