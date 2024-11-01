@@ -1,0 +1,67 @@
+{{- range .Values.clients }}
+{{- range .machines }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .ip }}-deployment  # Unique name for each deployment
+  namespace: default
+spec:
+  replicas: 1  # Ensures only one instance per machine
+  strategy:
+    type: RollingUpdate  # Enable rolling updates
+    rollingUpdate:
+      maxUnavailable: 1  # Control the number of pods that can be unavailable during an update
+  selector:
+    matchLabels:
+      app: {{ .type }}-{{ .ip }}  # Ensure the label matches the selector
+      machine-type: {{ .type }}
+  template:
+    metadata:
+      labels:
+        app: {{ .type }}-{{ .ip }}  # Unique labels for the pod
+        machine-type: {{ .type }}  # Use the machine type for labeling
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine_ip
+                    operator: In
+                    values:
+                      - {{ .ip }}  # Use each machine's IP
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      hostNetwork: true  # Equivalent to --net=host
+      containers:
+      - name: quality-grader
+        image: docker.io/larsflikweert/quality_grader_testing:{{ $.jetsonType }}_{{ $.softwareVersion }}_ssh  # Use the correct image version
+        securityContext:
+          privileged: true  # Equivalent to --privileged
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+#        volumeMounts:
+ #       - name: classifier
+  #        mountPath: /home/nvidia/QualityGrader/classifier
+   #     - name: detector
+    #      mountPath: /home/nvidia/QualityGrader/detector
+     #   - name: json-files
+      #    mountPath: /home/nvidia/QualityGrader/json_files
+       # - name: data
+#          mountPath: /home/nvidia/QualityGrader/Data
+ #       - name: g-device-settings
+  #        mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+   #     - name: qg-device-settings
+    #      mountPath: /home/nvidia/QualityGrader/QG_device_settings.ini
+     #   - name: vs-device-settings
+      #    mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
+       # - name: settings
+#          mountPath: /home/nvidia/QualityGrader/settings.ini
+ #       - name: ssd
+  #        mountPath: /home/nvidia/SSD
+{{- end }}  # End of machines range
+{{- end }}  # End of clients range
+
