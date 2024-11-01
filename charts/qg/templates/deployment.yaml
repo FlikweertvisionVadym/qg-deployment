@@ -155,5 +155,6 @@ spec:
         - name: ssd
           hostPath:
             path: /home/nvidia/SSD
+---
 {{- end }}  # End of machines range
 {{- end }}  # End of clients range
