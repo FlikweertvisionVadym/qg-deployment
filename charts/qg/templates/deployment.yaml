@@ -55,10 +55,6 @@ spec:
           value: "http://10.23.121.50:5000"
         - name: VITE_NUXT_API_URL
           value: "http://10.23.121.50:5000"
-        volumeMounts:
-        - name: env-file
-          mountPath: /home/fvt/QualityGrader/Server/.env
-          subPath: .env
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:1.6.1-api
         hostNetwork: true
@@ -113,10 +109,6 @@ spec:
 
       volumes:
       {{- if eq .type "PanelPC" }}
-        - name: env-file
-          hostPath:
-            path: /home/fvt/QualityGrader/Server/.env
-            type: File
         - name: json-files
           hostPath:
             path: /home/fvt/QualityGrader/Api/json_files
