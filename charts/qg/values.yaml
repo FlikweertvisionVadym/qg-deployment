@@ -4,6 +4,6 @@ clients:
     machines:
       - ip: 10.23.254.109
         type: QG  # Machine type for this IP
-        softwareVersion: "orin_1.6.1"
-        jetsonType: "orin"
+        softwareVersion: "xavier_1.6.1"
+        jetsonType: "xavier"
   
