@@ -3,6 +3,16 @@ entries:
   machine-software-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-01T14:50:36.814257739Z"
+    description: A Helm chart for Kubernetes
+    digest: 18a8d1fb33a675382cdc7bc1502a3d134f77331c460aeeb7464f7ae100cf9731
+    name: machine-software-chart
+    type: application
+    urls:
+    - https://github.com/FlikweertvisionVadym/qg-deployment/releases/download/machine-software-chart-0.1.17/machine-software-chart-0.1.17.tgz
+    version: 0.1.17
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-01T14:42:36.154272073Z"
     description: A Helm chart for Kubernetes
     digest: 14e5a73c005f4457260cf8f9bedaec5d78d173f9c61bfd4e20917753620dffe5
@@ -161,4 +171,4 @@ entries:
     urls:
     - https://github.com/FlikweertvisionVadym/qg-deployment/releases/download/machine-software-chart-0.1.1/machine-software-chart-0.1.1.tgz
     version: 0.1.1
-generated: "2024-11-01T14:42:36.154405914Z"
+generated: "2024-11-01T14:50:36.814428947Z"
