@@ -154,6 +154,10 @@ spec:
           hostPath:
             path: /home/nvidia/QualityGrader/detector
             type: Directory
+        - name: json-files
+          hostPath:
+            path: /home/nvidia/QualityGrader/json_files
+            type: Directory
         - name: data
           hostPath:
             path: /home/nvidia/QualityGrader/Data
