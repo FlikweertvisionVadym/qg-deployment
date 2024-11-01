@@ -103,9 +103,9 @@ spec:
         - name: ssd
           mountPath: /home/nvidia/SSD
       {{- end }}
-
-      volumes:
+      
       {{- if eq .type "PanelPC" }}
+      volumes:
         - name: json-files
           hostPath:
             path: /home/fvt/QualityGrader/Api/json_files
@@ -135,6 +135,7 @@ spec:
             path: /etc/device_info.json
             type: File
       {{- else }}
+      volumes:
         - name: classifier
           hostPath:
             path: /home/nvidia/QualityGrader/classifier
