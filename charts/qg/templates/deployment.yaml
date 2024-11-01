@@ -47,7 +47,7 @@ spec:
       
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
       - name: panel-pc-gui
-        image: docker.io/flikweertvision/panelpc-gui
+        image: docker.io/flikweertvision/panelpc-gui:1.0.3
         ports:
         - containerPort: 3000
         env:
@@ -60,7 +60,7 @@ spec:
           mountPath: /home/fvt/QualityGrader/Server/.env
           subPath: .env
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-interface
+        image: docker.io/flikweertvision/panelpc-api:1.6.1-api
         hostNetwork: true
         volumeMounts:
         - name: json-files
