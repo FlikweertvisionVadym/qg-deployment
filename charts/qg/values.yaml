@@ -4,18 +4,18 @@ clients:
     machines:
       - ip: 10.23.254.109
         type: QG  # Machine type for this IP
-        softwareVersion: "orin_1.6.1"
+        softwareVersion: "orin_1.6.1_ssh"
         jetsonType: "orin"
   - name: flikweertintern
     subnet: 10.23.121.0/24
     machines:
       - ip: 10.23.121.11
         type: QG
-        softwareVersion: "orin_1.6.1"
+        softwareVersion: "orin_1.6.1_ssh"
         jetsonType: "orin"
       - ip: 10.23.121.12
         type: QG
-        softwareVersion: "orin_1.6.1"
+        softwareVersion: "orin_1.6.1_ssh"
         jetsonType: "orin"
       - ip: 10.23.121.50
         type: PanelPC
