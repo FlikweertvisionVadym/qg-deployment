@@ -37,7 +37,7 @@ spec:
       hostNetwork: true  # Equivalent to --net=host
       containers:
       - name: quality-grader
-        image: docker.io/larsflikweert/quality_grader_testing:{{ $.jetsonType }}_{{ $.softwareVersion }}_ssh  # Use the correct image version
+        image: docker.io/larsflikweert/quality_grader_testing:{{ .softwareVersion }}  # Use the correct image version
         securityContext:
           privileged: true  # Equivalent to --privileged
         resources:
