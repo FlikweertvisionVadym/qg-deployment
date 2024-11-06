@@ -71,10 +71,8 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/Backup
         - name: device-settings
           mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
-          readOnly: true
         - name: settings
           mountPath: /home/fvt/QualityGrader/Api/settings.ini
-          readOnly: true
         - name: logfiles
           mountPath: /home/fvt/QualityGrader/Api/Logfiles
         - name: device-info
@@ -95,26 +93,20 @@ spec:
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
-          readOnly: true
         - name: detector
           mountPath: /home/nvidia/QualityGrader/detector
-          readOnly: true
         - name: json-files
           mountPath: /home/nvidia/QualityGrader/json_files
         - name: data
           mountPath: /home/nvidia/QualityGrader/Data
         - name: g-device-settings
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
-          readOnly: true
         - name: qg-device-settings
           mountPath: /home/nvidia/QualityGrader/QG_device_settings.ini
-          readOnly: true
         - name: vs-device-settings
           mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
-          readOnly: true
         - name: settings
           mountPath: /home/nvidia/QualityGrader/settings.ini
-          readOnly: true
         - name: ssd
           mountPath: /home/nvidia/SSD
       {{- end }}
