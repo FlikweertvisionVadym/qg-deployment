@@ -89,6 +89,9 @@ spec:
         resources:
           limits:
             nvidia.com/gpu: 1
+        args:
+        - -cpus
+        - "12"
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
