@@ -90,7 +90,7 @@ spec:
           limits:
             nvidia.com/gpu: 1
         args:
-        - -cpus
+        - --cpus
         - "12"
         volumeMounts:
         - name: classifier
