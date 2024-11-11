@@ -82,6 +82,9 @@ spec:
 
       - name: quality-grader
         image: docker.io/flikweertvision/quality_grader:{{ .softwareVersion }}  # Use the correct image version
+        env:
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: "all"
         securityContext:
           privileged: true  # Equivalent to --privileged
         resources:
