@@ -51,8 +51,6 @@ spec:
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
       - name: panel-pc-gui
         image: docker.io/flikweertvision/panelpc-gui:1.0.3
-        securityContext:
-          privileged: true
         hostNetwork: true
         env:
         - name: NUXT_API_URL
