@@ -51,16 +51,14 @@ spec:
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
       - name: panel-pc-gui
         image: docker.io/flikweertvision/panelpc-gui:1.0.3
-        securityContext:
-          privileged: true
         hostNetwork: true
         env:
         - name: NUXT_API_URL
-          value: "http://10.23.121.50:5000"
+          value: "http://{{ .ip }}:5000"
         - name: VITE_NUXT_API_URL
-          value: "http://10.23.121.50:5000"
+          value: "http://{{ .ip }}:5000"
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:1.6.1-api
+        image: docker.io/flikweertvision/panelpc-api:1.6.2-api_belt-speed-settings
         securityContext:
           privileged: true
         hostNetwork: true
