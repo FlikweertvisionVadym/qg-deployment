@@ -22,6 +22,8 @@ spec:
         app: {{ .type }}-{{ .ip }}  # Unique labels for the pod
         machine-type: {{ .type }}  # Use the machine type for labeling
     spec:
+      automountServiceAccountToken: false
+    spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
