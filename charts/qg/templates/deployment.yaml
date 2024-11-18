@@ -58,7 +58,7 @@ spec:
         - name: VITE_NUXT_API_URL
           value: "http://{{ .ip }}:5000"
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:1.6.1-api
+        image: docker.io/flikweertvision/panelpc-api:1.6.2-api_belt-speed-settings
         securityContext:
           privileged: true
         hostNetwork: true
