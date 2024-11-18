@@ -45,6 +45,7 @@ spec:
       hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
       - name: regcred
+      restartPolicy: Always
       containers:
       
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
