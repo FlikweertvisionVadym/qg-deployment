@@ -116,73 +116,73 @@ spec:
       - name: json-files
         hostPath:
           path: /home/fvt/QualityGrader/Api/json_files
-          type: Directory
+          type: DirectoryOrCreate
       - name: images
         hostPath:
           path: /home/fvt/QualityGrader/Api/images
-          type: Directory
+          type: DirectoryOrCreate
       - name: backup
         hostPath:
           path: /home/fvt/QualityGrader/Api/Backup
-          type: Directory
+          type: DirectoryOrCreate
       - name: device-settings
         hostPath:
           path: /home/fvt/QualityGrader/Api/device_settings.ini
-          type: File
+          type: FileOrCreate
       - name: settings
         hostPath:
           path: /home/fvt/QualityGrader/Api/settings.ini
-          type: File
+          type: FileOrCreate
       - name: logfiles
         hostPath:
           path: /home/fvt/QualityGrader/Api/Logfiles
-          type: Directory
+          type: DirectoryOrCreate
       - name: device-info
         hostPath:
           path: /etc/device_info.json
-          type: File
+          type: FileOrCreate
       {{- else }}
       volumes:
       - name: classifier
         hostPath:
           path: /home/nvidia/QualityGrader/classifier
-          type: Directory
+          type: DirectoryOrCreate
       - name: detector
         hostPath:
           path: /home/nvidia/QualityGrader/detector
-          type: Directory
+          type: DirectoryOrCreate
       - name: json-files
         hostPath:
           path: /home/nvidia/QualityGrader/json_files
-          type: Directory
+          type: DirectoryOrCreate
       - name: data
         hostPath:
           path: /home/nvidia/QualityGrader/Data
-          type: Directory
+          type: DirectoryOrCreate
       - name: g-device-settings
         hostPath:
           path: /home/nvidia/QualityGrader/G_device_settings.ini
-          type: File
+          type: FileOrCreate
       - name: qg-device-settings
         hostPath:
           path: /home/nvidia/QualityGrader/QG_device_settings.ini
-          type: File
+          type: FileOrCreate
       - name: vs-device-settings
         hostPath:
           path: /home/nvidia/QualityGrader/VS_device_settings.ini
-          type: File
+          type: FileOrCreate
       - name: settings
         hostPath:
           path: /home/nvidia/QualityGrader/settings.ini
-          type: File
+          type: FileOrCreate
       - name: ssd
         hostPath:
           path: /home/nvidia/SSD
-          type: Directory
+          type: DirectoryOrCreate
       - name: images
         hostPath:
           path: /home/nvidia/QualityGrader/images
-          type: Directory
+          type: DirectoryOrCreate
       {{- end }}
 ---
 {{- end }}  # End of machines range
