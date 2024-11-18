@@ -53,8 +53,7 @@ spec:
         image: docker.io/flikweertvision/panelpc-gui:1.0.3
         securityContext:
           privileged: true
-        ports:
-        - containerPort: 3000
+        hostNetwork: true
         env:
         - name: NUXT_API_URL
           value: "http://10.23.121.50:5000"
