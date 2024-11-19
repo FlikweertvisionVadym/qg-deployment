@@ -4,7 +4,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .type }}-{{ .jetsonType }}-software-deployment  # Unique name for each deployment
+  name: {{lower .type }}-software-deployment  # Unique name for each deployment
   namespace: default
 spec:
   replicas: 1  # Ensures only one instance per machine
@@ -14,12 +14,12 @@ spec:
       maxUnavailable: 1  # Control the number of pods that can be unavailable during an update
   selector:
     matchLabels:
-      app: {{ .type }}-{{ .jetsonType }}  # Ensure the label matches the selector
+      app: {{lower .type }}  # Ensure the label matches the selector
       machine-type: {{ .type }}
   template:
     metadata:
       labels:
-        app: {{ .type }}-{{ .jetsonType }}  # Unique labels for the pod
+        app: {{lower .type }}  # Unique labels for the pod
         machine-type: {{ .type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
