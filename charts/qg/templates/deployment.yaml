@@ -7,7 +7,7 @@ metadata:
   name: {{lower .type }}-software-deployment  # Unique name for each deployment
   namespace: default
 spec:
-  replicas: 1  # Ensures only one instance per machine
+  replicas: 20  # Ensures only one instance per machine
   strategy:
     type: RollingUpdate  # Enable rolling updates
     rollingUpdate:
