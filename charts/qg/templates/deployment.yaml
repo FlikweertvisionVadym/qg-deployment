@@ -47,12 +47,36 @@ spec:
       imagePullSecrets:
       - name: regcred
       restartPolicy: Always
-      containers:
-      
+      initContainers:
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
-      - name: panel-pc-gui
+      - name: panel-pc-gui-build
         image: docker.io/flikweertvision/panelpc-gui:1.0.3
         hostNetwork: true
+        securityContext:
+          privileged: true
+        env:
+        - name: NUXT_API_URL
+          value: "http://{{ .ip }}:5000"
+        - name: VITE_NUXT_API_URL
+          value: "http://{{ .ip }}:5000"
+        command: npx nuxt generate
+        volumeMounts:
+          - name: gui-build-artifacts
+            mountPath: /app/.output/
+      {{- end }}
+      
+      containers:
+      {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
+      - name: panel-pc-gui-serve
+        image: docker.io/flikweertvision/panelpc-gui:1.0.3
+        securityContext:
+          privileged: true
+        hostNetwork: true
+        command: npx --yes serve /app/.output/public
+        volumeMounts:
+          - name: gui-build-artifacts
+            mountPath: /app/.output/
+
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:1.6.2-api_belt-speed-settings
         securityContext:
@@ -109,6 +133,10 @@ spec:
       
       {{- if eq .type "PanelPC" }}
       volumes:
+      - name: gui-build-artifacts
+        hostPath:
+          path: /home/fvt/QualityGrader/UI/build
+          type: DirectoryOrCreate
       - name: json-files
         hostPath:
           path: /home/fvt/QualityGrader/Api/json_files
