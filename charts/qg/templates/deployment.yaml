@@ -1,10 +1,10 @@
 {{- range .Values.clients }}
 
-{{- range .machines }}
+{{- range .software }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .ip }}-deployment  # Unique name for each deployment
+  name: {{ .type }}-{{ .jetsonType }}-software-deployment  # Unique name for each deployment
   namespace: default
 spec:
   replicas: 1  # Ensures only one instance per machine
@@ -14,25 +14,26 @@ spec:
       maxUnavailable: 1  # Control the number of pods that can be unavailable during an update
   selector:
     matchLabels:
-      app: {{ .type }}-{{ .ip }}  # Ensure the label matches the selector
+      app: {{ .type }}-{{ .jetsonType }}  # Ensure the label matches the selector
       machine-type: {{ .type }}
   template:
     metadata:
       labels:
-        app: {{ .type }}-{{ .ip }}  # Unique labels for the pod
+        app: {{ .type }}-{{ .jetsonType }}  # Unique labels for the pod
         machine-type: {{ .type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
     spec:
       affinity:
-        nodeAffinity:
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: machine_ip
-                    operator: In
-                    values:
-                      - {{ .ip }}  # Use each machine's IP
+          - labelSelector:
+              matchExpressions:
+              - key: machine_type
+                operator: In
+                values:
+                - {{ .type }}
+            topologyKey: kubernetes.io/hostname
       
       {{- if eq .type "PanelPC" }}
       {{- else }}  # For all other machine types
@@ -50,6 +51,7 @@ spec:
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
       - name: panel-pc-gui-build
         image: docker.io/flikweertvision/panelpc-gui:1.0.3
+        hostNetwork: true
         securityContext:
           privileged: true
         env:
