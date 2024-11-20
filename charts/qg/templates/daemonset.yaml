@@ -39,36 +39,18 @@ spec:
       imagePullSecrets:
       - name: regcred
 
-      # INIT CONTAINER
-      # BUILD OF NUXT APP FOR SPEEDING OF BOOT
+     containers:
       {{- if eq .type "PanelPC-GUI" }}
-      initContainers:
-      - name: panel-pc-gui-build
-        image: docker.io/flikweertvision/panelpc-gui:1.0.3
-        hostNetwork: true
+      - name: panelpc-gui
+        image: docker.io/flikweertvision/panelpc-gui:{{ .softwareVersion }}
         securityContext:
           privileged: true
+        hostNetwork: true
         env:
         - name: NUXT_API_URL
           value: "http://10.23.121.50:5000"
         - name: VITE_NUXT_API_URL
           value: "http://10.23.121.50:5000"
-        command: ["npx", "nuxt", "generate"]
-        volumeMounts:
-          - name: gui-build-artifacts
-            mountPath: /app/.output/
-          - name: nuxt-artifacts
-            mountPath: /app/.nuxt/
-      {{- end }}
-
-      containers:
-      {{- if eq .type "PanelPC-GUI" }}
-      - name: panel-pc-gui-serve
-        image: docker.io/flikweertvision/panelpc-gui:{{ .softwareVersion }}
-        securityContext:
-          privileged: true
-        hostNetwork: true
-        command: ["npx", "--yes", "serve", "/app/.output/public"]
         volumeMounts:
           - name: gui-build-artifacts
             mountPath: /app/.output/
