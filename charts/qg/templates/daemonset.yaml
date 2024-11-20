@@ -48,6 +48,8 @@ spec:
         volumeMounts:
           - name: gui-build-artifacts
             mountPath: /app/.output/
+          - name: nuxt-artifacts
+            mountPath: /app/.nuxt/
       {{- end }}
 
       containers:
@@ -61,6 +63,8 @@ spec:
         volumeMounts:
           - name: gui-build-artifacts
             mountPath: /app/.output/
+          - name: nuxt-artifacts
+            mountPath: /app/.nuxt/
 
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:1.6.2-api_belt-speed-settings
@@ -121,6 +125,10 @@ spec:
       - name: gui-build-artifacts
         hostPath:
           path: /home/fvt/QualityGrader/UI/build
+          type: DirectoryOrCreate
+      - name: nuxt-artifacts
+        hostPath:
+          path: /home/fvt/QualityGrader/UI/nuxt
           type: DirectoryOrCreate
       - name: json-files
         hostPath:
