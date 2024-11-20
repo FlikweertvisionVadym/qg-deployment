@@ -41,9 +41,9 @@ spec:
           privileged: true
         env:
         - name: NUXT_API_URL
-          value: "http://{{ .ip }}:5000"
+          value: "http://10.23.121.50:5000"
         - name: VITE_NUXT_API_URL
-          value: "http://{{ .ip }}:5000"
+          value: "http://10.23.121.50:5000"
         command: ["npx", "nuxt", "generate"]
         volumeMounts:
           - name: gui-build-artifacts
