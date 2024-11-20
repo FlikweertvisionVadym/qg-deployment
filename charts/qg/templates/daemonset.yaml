@@ -19,6 +19,11 @@ spec:
     spec:
       automountServiceAccountToken: false
       nodeSelector:
+        {{ - if eq .type "PanelPC-API" }}
+        machine-type: "PanelPC"
+        {{ - else if eq .type "PanelPC-GUI" }}
+        machine-type: "PanelPC"
+        {{ - else }}
         machine-type: {{ .type }}
 
       {{- if eq .type "PanelPC-API" }}
