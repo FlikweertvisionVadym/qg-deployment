@@ -21,7 +21,8 @@ spec:
       nodeSelector:
         machine-type: {{ .type }}
 
-      {{- if eq .type "PanelPC" }}
+      {{- if eq .type "PanelPC-API" }}
+      {{- else if eq .type "PanelPC-GUI" }}
       {{- else }}  # For all other machine types
       tolerations:
       - key: nvidia.com/gpu
