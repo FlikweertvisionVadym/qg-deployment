@@ -161,6 +161,7 @@ spec:
           path: /etc/device_info.json
           type: FileOrCreate
       {{- else if eq .type "PanelPC-GUI" }}
+      volumes:
       - name: gui-build-artifacts
         hostPath:
           path: /home/fvt/QualityGrader/UI/build
