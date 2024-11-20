@@ -11,4 +11,7 @@ clients:
       - type: QG
         softwareVersion: "1.6.4-pc-orin"
         jetsonType: "orin"
-      - type: PanelPC
+      - type: PanelPC-API
+        softwareVersion: "1.6.2-api_belt-speed-settings"
+      - type: PanelPC-GUI
+        softwareVersion: "1.0.3"
