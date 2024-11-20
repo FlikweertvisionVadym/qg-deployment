@@ -39,7 +39,7 @@ spec:
       imagePullSecrets:
       - name: regcred
 
-     containers:
+      containers:
       {{- if eq .type "PanelPC-GUI" }}
       - name: panelpc-gui
         image: docker.io/flikweertvision/panelpc-gui:{{ .softwareVersion }}
