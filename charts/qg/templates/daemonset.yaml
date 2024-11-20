@@ -35,7 +35,7 @@ spec:
       initContainers:
       {{- if eq .type "PanelPC" }}  # Check if machine type is PanelPC
       - name: panel-pc-gui-build
-        image: docker.io/your-image
+        image: docker.io/flikweertvision/panelpc-gui:1.0.3
         hostNetwork: true
         securityContext:
           privileged: true
