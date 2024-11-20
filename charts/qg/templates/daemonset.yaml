@@ -18,7 +18,7 @@ spec:
         machine-type: {{ .type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      {{- if contains .type "PanelPC" }}
+      {{- if contains "PanelPC" .type }}
       nodeSelector:
         machine-type: "PanelPC"
       {{- else }}
