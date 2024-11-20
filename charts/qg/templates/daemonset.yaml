@@ -25,6 +25,7 @@ spec:
         machine-type: "PanelPC"
         {{ - else }}
         machine-type: {{ .type }}
+        {{- end }}
 
       {{- if eq .type "PanelPC-API" }}
       {{- else if eq .type "PanelPC-GUI" }}
