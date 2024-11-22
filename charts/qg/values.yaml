@@ -16,5 +16,5 @@ clients:
       - type: PanelPC-GUI
         softwareVersion: "1.0.3"
 
-presync:
+preSync:
   endpoint: "10.23.121.50:5001"
