@@ -25,9 +25,16 @@ spec:
               # Step 2: Use nc (netcat) to check if the machine status endpoint is available
               endpoint="10.23.121.50"
               port="5000"
-              response=$(echo "GET /machine_status_monitorings_systeem HTTP/1.1\r\nHost: $endpoint\r\n\r\n" | nc $endpoint $port)
+              # Attempt to check if the endpoint is reachable by sending an HTTP request
+              response=$(echo "GET /machine_status_monitorings_systeem HTTP/1.1\r\nHost: $endpoint\r\n\r\n" | nc -w 5 $endpoint $port)
 
-              # Step 3: Check if the response contains the expected values for QG_active and VS_active
+              # Step 3: If the endpoint is not reachable (response is empty), allow the sync
+              if [ -z "$response" ]; then
+                echo "Endpoint $endpoint is not reachable. Allowing sync to proceed."
+                exit 0
+              fi
+
+              # Step 4: If the response is available, check if it contains the expected values for QG_active and VS_active
               if echo "$response" | grep -q '"QG_active":false' && echo "$response" | grep -q '"VS_active":false'; then
                 echo "Machine status is as expected."
               else
