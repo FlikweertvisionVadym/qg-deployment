@@ -12,10 +12,7 @@ spec:
         - name: presync
           image: nyurik/alpine-python3-requests
           command:
-            - sh
-            - -c
-            - |
-              python3 -c "
+              - python3 -c "
               import requests
               import json
               from datetime import datetime
