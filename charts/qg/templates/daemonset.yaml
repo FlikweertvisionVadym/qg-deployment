@@ -50,7 +50,6 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        hostNetwork: true
         env:
         - name: NUXT_API_URL
           value: "http://10.23.121.50:5000"
@@ -68,7 +67,6 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        hostNetwork: true
         volumeMounts:
         - name: json-files
           mountPath: /home/fvt/QualityGrader/Api/json_files
