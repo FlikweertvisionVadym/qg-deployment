@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: machine-status-check
-          image: radial/busyboxplus:curl
+          image: alpine:latest
           command:
             - /bin/sh
             - -c
