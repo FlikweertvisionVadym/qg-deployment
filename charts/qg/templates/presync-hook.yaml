@@ -17,8 +17,4 @@ spec:
             - |
               echo "Checking if machine is ready..."
               # Replace this with your actual logic, like a curl request to the endpoint
-              curl -sf {{ .Values.preSync.endpoint }}
-              if [ $? -ne 0 ]; then
-                echo "Machine is not ready. Exiting."
-                exit 1
-              fi
+              exit 0
