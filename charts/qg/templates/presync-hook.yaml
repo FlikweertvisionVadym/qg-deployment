@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Name }}-presync-hook
+  name: presync-hook
   annotations:
     argocd.argoproj.io/hook: PreSync
 spec:
