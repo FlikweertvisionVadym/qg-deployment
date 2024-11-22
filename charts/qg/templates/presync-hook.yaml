@@ -10,12 +10,12 @@ spec:
       restartPolicy: Never
       containers:
         - name: presync
-          image: python:3.9-slim
+          image: nyurik/alpine-python3-requests
           command:
             - sh
             - -c
             - |
-              pip install requests && python -c "
+              python3 -c "
               import requests
               import json
               from datetime import datetime
