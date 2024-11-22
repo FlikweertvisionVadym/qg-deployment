@@ -16,37 +16,37 @@ spec:
             - -c
             - |
               pip install requests && python -c "
-import requests
-import json
-from datetime import datetime
-
-# Step 1: Check if the current time is after 11 AM
-current_time = datetime.now().hour
-if current_time < 11:
-    print("It\'s before 11 AM. Skipping update.")
-    exit(0)
-
-# Step 2: Make request to the endpoint
-endpoint = 'http://10.23.121.50:5000/machine_status_monitorings_systeem'
-try:
-    response = requests.get(endpoint)
-    response.raise_for_status()  # Will raise an error if the request fails
-except requests.RequestException as e:
-    print(f'Failed to reach the endpoint: {e}')
-    exit(1)
-
-# Step 3: Check that the machine status values are as expected
-try:
-    data = response.json()
-    qg_active = data.get('machine0', {}).get('QG_active')
-    vs_active = data.get('machine0', {}).get('VS_active')
-
-    if qg_active != False or vs_active != False:
-        print(f'Machine status is not as expected: QG_active={qg_active}, VS_active={vs_active}. Exiting.')
-        exit(1)
-except ValueError as e:
-    print(f'Error parsing JSON from the endpoint: {e}')
-    exit(1)
-
-print('Machine status is as expected and time is after 11 AM. Proceeding with sync.')
-"
+              import requests
+              import json
+              from datetime import datetime
+              
+              # Step 1: Check if the current time is after 11 AM
+              current_time = datetime.now().hour
+              if current_time < 11:
+                  print("It\'s before 11 AM. Skipping update.")
+                  exit(0)
+              
+              # Step 2: Make request to the endpoint
+              endpoint = 'http://10.23.121.50:5000/machine_status_monitorings_systeem'
+              try:
+                  response = requests.get(endpoint)
+                  response.raise_for_status()  # Will raise an error if the request fails
+              except requests.RequestException as e:
+                  print(f'Failed to reach the endpoint: {e}')
+                  exit(1)
+              
+              # Step 3: Check that the machine status values are as expected
+              try:
+                  data = response.json()
+                  qg_active = data.get('machine0', {}).get('QG_active')
+                  vs_active = data.get('machine0', {}).get('VS_active')
+              
+                  if qg_active != False or vs_active != False:
+                      print(f'Machine status is not as expected: QG_active={qg_active}, VS_active={vs_active}. Exiting.')
+                      exit(1)
+              except ValueError as e:
+                  print(f'Error parsing JSON from the endpoint: {e}')
+                  exit(1)
+              
+              print('Machine status is as expected and time is after 11 AM. Proceeding with sync.')
+              "
