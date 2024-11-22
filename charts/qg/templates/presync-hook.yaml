@@ -19,7 +19,7 @@ spec:
               current_hour=$(date +'%H')
               if [ "$current_hour" -lt 11 ]; then
                 echo "It is before 11 AM. Skipping sync."
-                exit 0
+                exit 1
               fi
 
               # Step 2: Use nc (netcat) to check if the machine status endpoint is available
