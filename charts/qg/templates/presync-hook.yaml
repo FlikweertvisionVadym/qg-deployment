@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: machine-status-check
-          image: alpine:latest
+          image: alpine/curl:latest
           command:
             - /bin/sh
             - -c
