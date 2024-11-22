@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-presync-hook
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: presync
+          image: busybox:1.28
+          command:
+            - sh
+            - -c
+            - |
+              echo "Checking if machine is ready..."
+              # Replace this with your actual logic, like a curl request to the endpoint
+              curl -sf {{ .Values.preSync.endpoint }}
+              if [ $? -ne 0 ]; then
+                echo "Machine is not ready. Exiting."
+                exit 1
+              fi
