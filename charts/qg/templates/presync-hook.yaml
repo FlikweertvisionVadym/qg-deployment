@@ -49,3 +49,4 @@ except ValueError as e:
     exit(1)
 
 print('Machine status is as expected and time is after 11 AM. Proceeding with sync.')
+"
