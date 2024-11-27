@@ -35,10 +35,10 @@ spec:
 
                 # Step 3: Parse the response and check machine status
                 echo "Response from endpoint: $response"
-                if echo "$response" | grep -q '"QG_active":false' && echo "$response" | grep -q '"VS_active":false'; then
-                  echo "Machine status is as expected."
-                else
+                if echo "$response" | grep -q '"QG_active":true' || echo "$response" | grep -q '"VS_active":true'; then
                   echo "Machine status is not as expected."
                   exit 1
+                else
+                  echo "Machine status is as expected."
                 fi
       restartPolicy: Never
