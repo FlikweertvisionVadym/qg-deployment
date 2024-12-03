@@ -15,11 +15,11 @@ spec:
             - /bin/sh
             - -c
             - |
-                # Step 1: Check if current time is after 11 AM
+                # Step 1: Check if current time is after 8 AM
                 current_hour=$(date +'%H')
                 echo "Current hour: $current_hour"
-                if [ "$current_hour" -lt 10 ]; then
-                  echo "It is before 10 AM. Skipping sync."
+                if [ "$current_hour" -lt 8 ]; then
+                  echo "It is before 8 AM. Skipping sync."
                   exit 1
                 fi
 
