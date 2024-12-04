@@ -24,7 +24,7 @@ spec:
                 fi
 
                 # Step 2: Check if the machine status endpoint is reachable
-                endpoint="10.23.121.50"
+                endpoint="{{server}}"
                 port="5000"
                 response=$(curl -s --max-time 10 "http://$endpoint:$port/machine_status_monitorings_systeem")
 
