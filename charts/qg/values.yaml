@@ -12,6 +12,6 @@ clients:
         softwareVersion: "1.6.4-pc_migration_tool-orin"
         jetsonType: "orin"
       - type: PanelPC-API
-        softwareVersion: "1.6.2-api_belt-speed-settings"
+        softwareVersion: "1.6.2-api_belt-speed-settings-interface"
       - type: PanelPC-GUI
         softwareVersion: "1.0.3"
