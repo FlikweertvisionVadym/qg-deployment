@@ -76,8 +76,6 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/Backup
         - name: device-settings
           mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
-        - name: settings
-          mountPath: /home/fvt/QualityGrader/Api/settings.ini
         - name: logfiles
           mountPath: /home/fvt/QualityGrader/Api/Logfiles
         - name: device-info
@@ -111,8 +109,6 @@ spec:
           mountPath: /home/nvidia/QualityGrader/QG_device_settings.ini
         - name: vs-device-settings
           mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
-        - name: settings
-          mountPath: /home/nvidia/QualityGrader/settings.ini
         - name: ssd
           mountPath: /home/nvidia/SSD
       {{- end }}
@@ -134,10 +130,6 @@ spec:
       - name: device-settings
         hostPath:
           path: /home/fvt/QualityGrader/Api/device_settings.ini
-          type: FileOrCreate
-      - name: settings
-        hostPath:
-          path: /home/fvt/QualityGrader/Api/settings.ini
           type: FileOrCreate
       - name: logfiles
         hostPath:
@@ -186,10 +178,6 @@ spec:
       - name: vs-device-settings
         hostPath:
           path: /home/nvidia/QualityGrader/VS_device_settings.ini
-          type: FileOrCreate
-      - name: settings
-        hostPath:
-          path: /home/nvidia/QualityGrader/settings.ini
           type: FileOrCreate
       - name: ssd
         hostPath:
