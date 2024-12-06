@@ -113,6 +113,8 @@ spec:
           mountPath: /home/nvidia/SSD
         - name: version-backups
           mountPath: /home/nvidia/QualityGrader/version_backups
+        - name: version
+          mountPath: /home/nvidia/QualityGrader/version.json
       {{- end }}
       
       {{- if eq .type "PanelPC-API" }}
@@ -189,6 +191,10 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/version_backups
           type: DirectoryOrCreate
+      - name: version
+        hostPath:
+          path: /home/nvidia/QualityGrader/version.json
+          type: FileOrCreate
       - name: images
         hostPath:
           path: /home/nvidia/QualityGrader/images
