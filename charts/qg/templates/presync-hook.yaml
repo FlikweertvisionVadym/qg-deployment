@@ -29,7 +29,7 @@ spec:
 
                 # Extract base IP (strip any existing port from endpoint)
                 base_ip=$(echo "$endpoint" | sed -E 's/:[0-9]+$//')
-                full_url="http://$base_ip:$port/machine_status_monitorings_systeem"
+                full_url="$base_ip:$port/machine_status_monitorings_systeem"
 
                 echo "Checking endpoint: $full_url"
                 response=$(curl -s --max-time 10 "$full_url")
