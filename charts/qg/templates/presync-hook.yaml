@@ -26,10 +26,16 @@ spec:
                 # Step 2: Check if the machine status endpoint is reachable
                 endpoint="{{ .Values.endpoint }}"
                 port="5000"
-                response=$(curl -s --max-time 10 "http://$endpoint:$port/machine_status_monitorings_systeem")
+
+                # Extract base IP (strip any existing port from endpoint)
+                base_ip=$(echo "$endpoint" | sed -E 's/:[0-9]+$//')
+                full_url="http://$base_ip:$port/machine_status_monitorings_systeem"
+
+                echo "Checking endpoint: $full_url"
+                response=$(curl -s --max-time 10 "$full_url")
 
                 if [ $? -ne 0 ]; then
-                  echo "Endpoint $endpoint is not reachable. Allowing sync to proceed."
+                  echo "Endpoint $base_ip is not reachable on port $port. Allowing sync to proceed."
                   exit 0
                 fi
 
