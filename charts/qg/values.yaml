@@ -9,7 +9,7 @@ clients:
     subnet: 10.23.121.0/24
     software:
       - type: QG
-        softwareVersion: "1.6.4-pc_migration_tool-orin"
+        softwareVersion: "1.6.4-pc-orin"
         jetsonType: "orin"
       - type: PanelPC-API
         softwareVersion: "1.6.2-api_belt-speed-settings-interface"
