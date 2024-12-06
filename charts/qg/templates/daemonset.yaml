@@ -111,7 +111,7 @@ spec:
           mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
         - name: ssd
           mountPath: /home/nvidia/SSD
-        - name: version_backups
+        - name: version-backups
           mountPath: /home/nvidia/QualityGrader/version_backups
       {{- end }}
       
@@ -185,7 +185,7 @@ spec:
         hostPath:
           path: /home/nvidia/SSD
           type: DirectoryOrCreate
-      - name: version_backups
+      - name: version-backups
         hostPath:
           path: /home/nvidia/QualityGrader/version_backups
           type: DirectoryOrCreate
