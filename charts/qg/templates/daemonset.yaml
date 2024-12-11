@@ -201,4 +201,3 @@ spec:
       {{- end }}
 ---
 {{- end }}  # End of machines range
-{{- end }}  # End of group range
