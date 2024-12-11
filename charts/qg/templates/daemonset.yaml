@@ -1,5 +1,3 @@
-{{- range .Values.clients }}
-
 {{- range .software }}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
@@ -202,4 +200,3 @@ spec:
       {{- end }}
 ---
 {{- end }}  # End of machines range
-{{- end }}  # End of clients range
