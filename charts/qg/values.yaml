@@ -1,6 +1,6 @@
 clients:
-  - name: test-linux1
-    subnet: 10.23.254.0/24
+  - name: test-pc
+    subnet: 10.24.223.0/24
     software:
       - type: QG
         softwareVersion: "1.6.4-pc-orin"
