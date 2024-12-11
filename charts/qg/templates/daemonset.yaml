@@ -1,5 +1,5 @@
 {{- $group := .Values.groups | index .Values.group }}
-{{- range .software }}
+{{- range $group.software }}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
