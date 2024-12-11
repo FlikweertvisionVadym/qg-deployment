@@ -1,8 +1,10 @@
-software:
-  - type: QG
-    softwareVersion: "1.6.5-pc_belt_speed_demo-orin"
-    jetsonType: "orin"
-  - type: PanelPC-API
-    softwareVersion: "1.6.2-api_belt-speed-settings-interface"
-  - type: PanelPC-GUI
-    softwareVersion: "1.0.3"
+group:
+  - name: test-group
+    software:
+      - type: QG
+        softwareVersion: "1.6.5-pc_belt_speed_demo-orin"
+        jetsonType: "orin"
+      - type: PanelPC-API
+        softwareVersion: "1.6.2-api_belt-speed-settings-interface"
+      - type: PanelPC-GUI
+        softwareVersion: "1.0.3"
