@@ -1,4 +1,4 @@
-{{- $group := .Values.groups | index .Values.group }}
+{{- $group := .Values.group | index .Values.groups }}
 {{- range $group.software }}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
