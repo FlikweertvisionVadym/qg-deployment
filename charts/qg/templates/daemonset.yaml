@@ -59,6 +59,12 @@ spec:
           mountPath: /app/.output/
         - name: nuxt-artifacts
           mountPath: /app/.nuxt/
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 3
 
       {{- else if eq .type "PanelPC-API" }} # CONTAINERS FOR PANELPC API
       - name: panelpc-interface
@@ -66,6 +72,12 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 3
+          periodSeconds: 3
         volumeMounts:
         - name: json-files
           mountPath: /home/fvt/QualityGrader/Api/json_files
@@ -93,6 +105,12 @@ spec:
         resources:
           limits:
             nvidia.com/gpu: 1
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5001
+          initialDelaySeconds: 3
+          periodSeconds: 3
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
