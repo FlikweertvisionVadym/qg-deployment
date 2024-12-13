@@ -1,15 +1,16 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- range $group.software }}
+{{- $software_type := "QG" }}
+{{- $software := $software_type | index $group}}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower .type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: {{lower .type }}  # Ensure the label matches the selector
-      machine-type: {{ .type }}
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        app: {{lower .type }}  # Unique labels for the pod
-        machine-type: {{ .type }}  # Use the machine type for labeling
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
       nodeSelector:
-        machine-type: {{ .type }}
+        machine-type: {{ $software_type }}
 
       tolerations:
       - key: nvidia.com/gpu
@@ -36,7 +37,7 @@ spec:
       containers:
       
       - name: quality-grader
-        image: docker.io/flikweertvision/quality_grader:{{ .softwareVersion }}  # Use the correct image version
+        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
         env:
         - name: NVIDIA_VISIBLE_DEVICES
@@ -119,5 +120,3 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/images
           type: DirectoryOrCreate
----
-{{- end }}  # End of machines range
