@@ -1,25 +1,24 @@
 groups:
   test-group:
     software:
-      - type: QG
+      QG:
         softwareVersion: "1.6.5-pc_belt_speed_demo-orin"
         jetsonType: "orin"
-      - type: PanelPC-API
+      PanelPC-API:
         softwareVersion: "1.6.2-api_belt-speed-settings-interface"
-      - type: PanelPC-GUI
+      PanelPC-GUI:
         softwareVersion: "1.0.3"
   production:
     software:
-      - type: QG
+      QG:
         softwareVersion: "1.6.5-pc_belt_speed_demo-orin"
         jetsonType: "orin"
-      - type: PanelPC-API
+      PanelPC-API:
         softwareVersion: "1.6.2-api_belt-speed-settings-interface"
-      - type: PanelPC-GUI
+      PanelPC-GUI:
         softwareVersion: "1.0.3"
   divider:
     software:
-      - type: DV
+      DV:
         softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier"
         jetsonType: "xavier"
-
