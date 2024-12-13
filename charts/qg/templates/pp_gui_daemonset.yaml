@@ -1,4 +1,7 @@
-{{- $panelpc_ip := .Values.panelpc_ip }}
+{{- $url := .Values.endpoint }}
+{{- $ipRegex := `https:\/\/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+):` }}
+{{- $panelpc_ip := regexFind $ipRegex $url }}
+
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "PanelPC-GUI" }}
 {{- $software := $software_type | index $group.software}}
