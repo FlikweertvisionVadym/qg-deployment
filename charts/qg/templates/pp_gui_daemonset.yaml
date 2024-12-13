@@ -1,7 +1,7 @@
 {{- $panelpc_ip := .Values.panelpc_ip }}
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "PanelPC-GUI" }}
-{{- $software := $software_type | index $group}}
+{{- $software := $software_type | index $group.software}}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
