@@ -1,5 +1,5 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- range $group.software }}
+{{- $software_type := "PanelPC-API" | index $group}}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
@@ -8,8 +8,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{lower .type }}  # Ensure the label matches the selector
-      machine-type: {{ .type }}
+      app: {{lower $software_type.type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type.type }}
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,8 +17,8 @@ spec:
   template:
     metadata:
       labels:
-        app: {{lower .type }}  # Unique labels for the pod
-        machine-type: {{ .type }}  # Use the machine type for labeling
+        app: {{lower $software_type.type }}  # Unique labels for the pod
+        machine-type: {{ $software_type.type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
       nodeSelector:
@@ -30,7 +30,7 @@ spec:
 
       containers:
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:{{ .softwareVersion }}
+        image: docker.io/flikweertvision/panelpc-api:{{ $software_type.softwareVersion }}
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
@@ -79,5 +79,3 @@ spec:
         hostPath:
           path: /etc/device_info.json
           type: FileOrCreate
----
-{{- end }}  # End of machines range
