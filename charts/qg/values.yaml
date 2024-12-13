@@ -17,4 +17,9 @@ groups:
         softwareVersion: "1.6.2-api_belt-speed-settings-interface"
       - type: PanelPC-GUI
         softwareVersion: "1.0.3"
+  divider:
+    software:
+      - type: DV
+        softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier",
+        jetsonType: "xavier"
 
