@@ -4,7 +4,7 @@
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower .type }}-pp-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower .type }}-pp-gui-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
 spec:
   selector:
