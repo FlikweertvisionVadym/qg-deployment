@@ -29,30 +29,6 @@ spec:
       - name: regcred
 
       containers:
-      {{- if eq .type "PanelPC-GUI" }}
-      - name: panelpc-gui
-        image: docker.io/flikweertvision/panelpc-gui:{{ .softwareVersion }}
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          privileged: true
-        env:
-        - name: NUXT_API_URL
-          value: "http://10.23.121.50:5000"
-        - name: VITE_NUXT_API_URL
-          value: "http://10.23.121.50:5000"
-        volumeMounts:
-        - name: gui-build-artifacts
-          mountPath: /app/.output/
-        - name: nuxt-artifacts
-          mountPath: /app/.nuxt/
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-
-      {{- else if eq .type "PanelPC-API" }} # CONTAINERS FOR PANELPC API
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:{{ .softwareVersion }}
         imagePullPolicy: IfNotPresent
@@ -77,9 +53,7 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/Logfiles
         - name: device-info
           mountPath: /etc/device_info.json
-      {{- end }}
-      
-      {{- if eq .type "PanelPC-API" }}
+
       volumes:
       - name: json-files
         hostPath:
@@ -105,16 +79,5 @@ spec:
         hostPath:
           path: /etc/device_info.json
           type: FileOrCreate
-      {{- else if eq .type "PanelPC-GUI" }}
-      volumes:
-      - name: gui-build-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/build
-          type: DirectoryOrCreate
-      - name: nuxt-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/nuxt
-          type: DirectoryOrCreate
-      {{- end }}
 ---
 {{- end }}  # End of machines range

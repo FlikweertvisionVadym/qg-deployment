@@ -1,0 +1,64 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- range $group.software }}
+apiVersion: apps/v1
+kind: DaemonSet  # Changed to DaemonSet
+metadata:
+  name: {{lower .type }}-pp-software-daemonset  # Updated name to reflect the DaemonSet type
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: {{lower .type }}  # Ensure the label matches the selector
+      machine-type: {{ .type }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+  template:
+    metadata:
+      labels:
+        app: {{lower .type }}  # Unique labels for the pod
+        machine-type: {{ .type }}  # Use the machine type for labeling
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector:
+        machine-type: "PanelPC"
+
+      hostNetwork: true  # Equivalent to --net=host
+      imagePullSecrets:
+      - name: regcred
+
+      containers:
+      - name: panelpc-gui
+        image: docker.io/flikweertvision/panelpc-gui:{{ .softwareVersion }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        env:
+        - name: NUXT_API_URL
+          value: "http://10.23.121.50:5000"
+        - name: VITE_NUXT_API_URL
+          value: "http://10.23.121.50:5000"
+        volumeMounts:
+        - name: gui-build-artifacts
+          mountPath: /app/.output/
+        - name: nuxt-artifacts
+          mountPath: /app/.nuxt/
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+      
+      volumes:
+      - name: gui-build-artifacts
+        hostPath:
+          path: /home/fvt/QualityGrader/UI/build
+          type: DirectoryOrCreate
+      - name: nuxt-artifacts
+        hostPath:
+          path: /home/fvt/QualityGrader/UI/nuxt
+          type: DirectoryOrCreate
+---
+{{- end }}  # End of machines range
