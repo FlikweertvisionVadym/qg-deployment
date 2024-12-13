@@ -1,15 +1,16 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $software_type := "PanelPC-API" | index $group}}
+{{- $software_type := "PanelPC-API" }}
+{{- $software := $software_type | index $group}}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower .type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: {{lower $software_type.type }}  # Ensure the label matches the selector
-      machine-type: {{ $software_type.type }}
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,8 +18,8 @@ spec:
   template:
     metadata:
       labels:
-        app: {{lower $software_type.type }}  # Unique labels for the pod
-        machine-type: {{ $software_type.type }}  # Use the machine type for labeling
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
       nodeSelector:
@@ -30,7 +31,7 @@ spec:
 
       containers:
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:{{ $software_type.softwareVersion }}
+        image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
