@@ -24,7 +24,7 @@ spec:
                 fi
 
                 # Step 2: Check if the machine status endpoint is reachable
-                endpoint="{{ .Values.panelpc-ip }}:5000"
+                endpoint="{{ .Values.panelpc_ip }}:5000"
 
                 # Construct the full URL with the specified port
                 full_url="http://$endpoint/machine_status_monitorings_systeem"
