@@ -19,7 +19,7 @@ groups:
         softwareVersion: "1.0.3"
   divider:
     software:
-      - type: DV
+      - type: QG
         softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier",
         jetsonType: "xavier"
 
