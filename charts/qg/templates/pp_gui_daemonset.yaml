@@ -1,0 +1,67 @@
+{{- $url := .Values.endpoint }}
+{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
+{{- $panelpc_ip := regexFind $ipRegex $url }}
+
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "PanelPC-GUI" }}
+{{- $software := $software_type | index $group.software}}
+apiVersion: apps/v1
+kind: DaemonSet  # Changed to DaemonSet
+metadata:
+  name: {{lower $software_type }}-pp-gui-software-daemonset  # Updated name to reflect the DaemonSet type
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector:
+        machine-type: "PanelPC"
+
+      hostNetwork: true  # Equivalent to --net=host
+      imagePullSecrets:
+      - name: regcred
+
+      containers:
+      - name: panelpc-gui
+        image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        env:
+        - name: NUXT_API_URL
+          value: "http://{{ $panelpc_ip }}:5000"
+        - name: VITE_NUXT_API_URL
+          value: "http://{{ $panelpc_ip }}:5000"
+        volumeMounts:
+        - name: gui-build-artifacts
+          mountPath: /app/.output/
+        - name: nuxt-artifacts
+          mountPath: /app/.nuxt/
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+      
+      volumes:
+      - name: gui-build-artifacts
+        hostPath:
+          path: /home/fvt/QualityGrader/UI/build
+          type: DirectoryOrCreate
+      - name: nuxt-artifacts
+        hostPath:
+          path: /home/fvt/QualityGrader/UI/nuxt
+          type: DirectoryOrCreate
