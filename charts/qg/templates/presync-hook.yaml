@@ -1,5 +1,5 @@
 {{- $url := .Values.endpoint }}
-{{- $ipRegex := `https:\/\/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+):` }}
+{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
 {{- $panelpc_ip := regexFind $ipRegex $url }}
 
 apiVersion: batch/v1
