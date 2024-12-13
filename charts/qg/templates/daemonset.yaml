@@ -1,4 +1,5 @@
 {{- $group := .Values.group | index .Values.groups }}
+{{- $panelpc_ip := .Values.panelpc_ip }}
 {{- range $group.software }}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
@@ -51,9 +52,9 @@ spec:
           privileged: true
         env:
         - name: NUXT_API_URL
-          value: "http://{{ .Values.panelpc_ip }}:5000"
+          value: "http://{{ $panelpc_ip }}:5000"
         - name: VITE_NUXT_API_URL
-          value: "http://{{ .Values.panelpc_ip }}:5000"
+          value: "http://{{ $panelpc_ip }}:5000"
         volumeMounts:
         - name: gui-build-artifacts
           mountPath: /app/.output/
