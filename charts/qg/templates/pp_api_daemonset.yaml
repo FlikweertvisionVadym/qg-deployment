@@ -1,6 +1,7 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "PanelPC-API" }}
 {{- $software := $software_type | index $group.software}}
+{{- if $software }}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
@@ -80,3 +81,4 @@ spec:
         hostPath:
           path: /etc/device_info.json
           type: FileOrCreate
+{{- end }}
