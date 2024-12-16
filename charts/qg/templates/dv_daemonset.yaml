@@ -37,6 +37,14 @@ spec:
 
       containers:
       - name: quality-grader
+        livenessProbe:
+          httpGet:
+            path: /machine_status_monitorings_systeem
+            port: 5001
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          failureThreshold: 1
+          successThreshold: 1
         image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
         env:
@@ -47,14 +55,6 @@ spec:
         resources:
           limits:
             nvidia.com/gpu: 1
-        livenessProbe:
-          httpGet:
-            path: /machine_status_monitorings_systeem
-            port: 5001
-          initialDelaySeconds: 30
-          periodSeconds: 15
-          failureThreshold: 1
-          successThreshold: 1
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
