@@ -52,9 +52,9 @@ spec:
           httpGet:
             path: /machine_status_monitorings_systeem
             port: 5001
-          initialDelaySeconds: 60
+          initialDelaySeconds: 30
           periodSeconds: 15
-          failureThreshold: 3
+          failureThreshold: 1
           successThreshold: 1
         volumeMounts:
         - name: classifier
