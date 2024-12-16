@@ -22,6 +22,7 @@ spec:
         app: {{lower $software_type }}  # Unique labels for the pod
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
+      minReadySeconds: 30
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: {{ $software_type }}
