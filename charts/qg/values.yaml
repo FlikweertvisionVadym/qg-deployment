@@ -20,5 +20,5 @@ groups:
   divider:
     software:
       DV:
-        softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier"
+        softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-orin"
         jetsonType: "orin"
