@@ -8,7 +8,6 @@ metadata:
   name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
 spec:
-  minReadySeconds: 30
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
