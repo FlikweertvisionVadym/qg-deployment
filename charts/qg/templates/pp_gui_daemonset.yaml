@@ -5,6 +5,7 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "PanelPC-GUI" }}
 {{- $software := $software_type | index $group.software}}
+{{- if $software }}
 apiVersion: apps/v1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
@@ -65,3 +66,4 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/UI/nuxt
           type: DirectoryOrCreate
+{{- end }}
