@@ -49,11 +49,11 @@ spec:
             nvidia.com/gpu: 1
         startupProbe:
           httpGet:
-            path: /machine_status_monitorings_systee
+            path: /machine_status_monitorings_systeem
             port: 5001
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 15
-          failureThreshold: 1
+          failureThreshold: 3
           successThreshold: 1
         volumeMounts:
         - name: classifier
