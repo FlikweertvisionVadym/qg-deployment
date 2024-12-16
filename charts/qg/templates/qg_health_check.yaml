@@ -1,0 +1,30 @@
+# templates/argocd-cm-health-check.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  # Define custom health check for your DaemonSet (Always Unhealthy)
+  resource.custom.health.daemonset.quality-grader: |
+    health = {}
+    
+    # if obj.status -= nil then
+    #   if obj.status.conditions -= nil then
+    #     for i, condition in ipairs(obj.status.conditions) do
+    #       if condition.type == "Ready" and condition.status == "False" then
+    #         health.status = "Degraded"
+    #         health.message = condition.message
+    #         return health
+    #       end
+    #       if condition.type == "Ready" and condition.status == "True" then
+    #         health.status = "Healthy"
+    #         health.message = condition.message
+    #         return health
+    #     end
+    #   end
+    # end
+    
+    health.status = "Progressing"
+    health.message = "Waiting for application"
+    return health
