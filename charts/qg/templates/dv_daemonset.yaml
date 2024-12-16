@@ -54,6 +54,8 @@ spec:
             port: 5001
           initialDelaySeconds: 60
           periodSeconds: 15
+          failureThreshold: 3
+          successThreshold: 1
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
