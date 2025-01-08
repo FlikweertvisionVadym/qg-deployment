@@ -2,7 +2,7 @@ groups:
   test-group:
     software:
       QG:
-        softwareVersion: "1.6.5-pc_belt_speed_demo-orin"
+        softwareVersion: "1.7.0-pc_docker-orin"
         jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "1.6.2-api_belt-speed-settings-interface"
