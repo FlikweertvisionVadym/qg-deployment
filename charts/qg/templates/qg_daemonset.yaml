@@ -75,6 +75,8 @@ spec:
           mountPath: /home/nvidia/QualityGrader/version_backups
         - name: version
           mountPath: /home/nvidia/QualityGrader/version.json
+        - name: images
+          mountPath: /home/nvidia/QualityGrader/images
       
       volumes:
       - name: classifier
