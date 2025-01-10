@@ -5,7 +5,7 @@ groups:
         softwareVersion: "1.7.0-pc_docker-orin"
         jetsonType: "orin"
       PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
+        softwareVersion: "1.6.2-api_belt-speed-settings-interface"
       PanelPC-GUI:
         softwareVersion: "1.0.3"
   production:
