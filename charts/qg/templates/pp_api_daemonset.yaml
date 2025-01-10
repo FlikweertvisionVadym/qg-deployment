@@ -33,7 +33,7 @@ spec:
       containers:
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
         livenessProbe:
