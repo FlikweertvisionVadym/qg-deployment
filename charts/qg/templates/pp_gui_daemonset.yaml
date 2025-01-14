@@ -41,9 +41,7 @@ spec:
         securityContext:
           privileged: true
         env:
-        - name: NUXT_API_URL
-          value: "http://{{ $panelpc_ip }}:5000"
-        - name: VITE_NUXT_API_URL
+        - name: NUXT_PUBLIC_API_URL
           value: "http://{{ $panelpc_ip }}:5000"
         volumeMounts:
         - name: gui-build-artifacts
