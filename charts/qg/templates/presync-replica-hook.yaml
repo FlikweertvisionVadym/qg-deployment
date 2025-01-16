@@ -12,7 +12,7 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: your-service-account  # Ensure proper permissions
+      serviceAccountName: panel-pc-service-account  # Ensure proper permissions
       containers:
         - name: node_indexer
           image: bitnami/kubectl:latest
