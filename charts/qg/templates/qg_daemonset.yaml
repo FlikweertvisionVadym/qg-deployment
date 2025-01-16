@@ -8,7 +8,7 @@ metadata:
   name: {{lower $software_type }}-program-software-deployment
   namespace: default
 spec:
-  replicas: {{ .Files.Get "dynamic-values.yaml" | default "1" }}
+  replicas: 1
   selector:
     matchLabels:
       app: {{lower $software_type }}

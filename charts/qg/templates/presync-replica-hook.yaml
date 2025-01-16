@@ -21,7 +21,7 @@ spec:
             - -c
             - |
                 # Step 1: Dynamically create a values override for replicaCount
-                WORKER_NODES=$(kubectl get nodes -l node-role.kubernetes.io/worker --no-headers | wc -l)
+                WORKER_NODES=$(sudo k3s kubectl get nodes -l node-role.kubernetes.io/worker --no-headers | wc -l)
                 if [[ "$WORKER_NODES" -eq 0 ]]; then
                   echo "No worker nodes detected. Aborting deployment."
                   exit 1
