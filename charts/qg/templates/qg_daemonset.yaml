@@ -8,7 +8,7 @@ metadata:
   name: {{lower $software_type }}-program-software-deployment
   namespace: default
 spec:
-  replicas: {{ len (lookup "v1" "Node" "" "").items | where "metadata.labels.node-role.kubernetes.io/worker" "==" "true" }}
+  replicas: {{ .Files.Get "dynamic-values.yaml" | default "1" }}
   selector:
     matchLabels:
       app: {{lower $software_type }}
