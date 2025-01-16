@@ -1,17 +1,13 @@
-{{- $group := .Values.group | index .Values.groups }}
-{{- $software_type := "QG" }}
-{{- $software := $software_type | index $group.software}}
-{{- if $software }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{lower $software_type }}-program-software-deployment
+  name: {{ lower $software_type }}-program-software-deployment
   namespace: default
 spec:
-  replicas: 1 
+  replicas: {{ .Values.replicaCount }}  # Manually set this to match the number of nodes
   selector:
     matchLabels:
-      app: {{lower $software_type }}
+      app: {{ lower $software_type }}
       machine-type: {{ $software_type }}
   strategy:
     type: RollingUpdate
@@ -21,17 +17,27 @@ spec:
   template:
     metadata:
       labels:
-        app: {{lower $software_type }}
+        app: {{ lower $software_type }}
         machine-type: {{ $software_type }}
     spec:
-      automountServiceAccountToken: false
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - {{ lower $software_type }}
+            topologyKey: "kubernetes.io/hostname"  # Ensures only one pod per node
       nodeSelector:
-        machine-type: {{ $software_type }}
+        machine-type: {{ $software_type }}  # Ensures pods are scheduled on matching nodes
+      automountServiceAccountToken: false
       tolerations:
       - key: nvidia.com/gpu
         operator: Exists
         effect: NoSchedule
-      hostNetwork: true  # Review if necessary for Deployment
+      hostNetwork: true
       imagePullSecrets:
       - name: regcred
       containers:
@@ -120,4 +126,3 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/images
           type: DirectoryOrCreate
-{{- end }}
