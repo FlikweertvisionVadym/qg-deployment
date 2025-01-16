@@ -2,7 +2,7 @@ groups:
   test-group:
     software:
       QG:
-        softwareVersion: "1.7.0-pc_docker-orin"
+        softwareVersion: "1.7.0-pc_docker_jp5-orin"
         jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "1.7.0-ppc_docker"
