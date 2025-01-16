@@ -8,7 +8,7 @@ metadata:
   name: {{lower $software_type }}-program-software-deployment
   namespace: default
 spec:
-  replicas: 0
+  replicas: 100  # High to allow spreading, constrained by affinity
   selector:
     matchLabels:
       app: {{lower $software_type }}
@@ -25,8 +25,28 @@ spec:
         machine-type: {{ $software_type }}
     spec:
       automountServiceAccountToken: false
-      nodeSelector:
-        machine-type: {{ $software_type }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - {{ $software_type }}  # Target worker nodes
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: {{lower $software_type }}
+              topologyKey: "kubernetes.io/hostname"  # One pod per node
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: {{lower $software_type }}
       tolerations:
       - key: nvidia.com/gpu
         operator: Exists
