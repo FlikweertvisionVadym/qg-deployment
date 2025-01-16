@@ -1,0 +1,34 @@
+{{- $url := .Values.endpoint }}
+{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
+{{- $panelpc_ip := regexFind $ipRegex $url }}
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: machine-status-check
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: your-service-account  # Ensure proper permissions
+      containers:
+        - name: machine-status-check
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+                # Step 1: Dynamically create a values override for replicaCount
+                WORKER_NODES=$(kubectl get nodes -l node-role.kubernetes.io/worker --no-headers | wc -l)
+                if [[ "$WORKER_NODES" -eq 0 ]]; then
+                  echo "No worker nodes detected. Aborting deployment."
+                  exit 1
+                fi
+
+                echo "replicaCount: $WORKER_NODES" > /workdir/dynamic-values.yaml
+      volumes:
+        - name: workdir
+          emptyDir: {}
+      restartPolicy: Never
