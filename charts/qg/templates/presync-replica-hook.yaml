@@ -5,7 +5,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: machine-status-check
+  name: node_indexer
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -14,7 +14,7 @@ spec:
     spec:
       serviceAccountName: your-service-account  # Ensure proper permissions
       containers:
-        - name: machine-status-check
+        - name: node_indexer
           image: bitnami/kubectl:latest
           command:
             - /bin/sh
