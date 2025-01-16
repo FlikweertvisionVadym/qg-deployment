@@ -8,7 +8,7 @@ metadata:
   name: {{lower $software_type }}-program-software-deployment
   namespace: default
 spec:
-  replicas: 100  # High to allow spreading, constrained by affinity
+  replicas: {{ len (lookup "v1" "Node" "" "").items | where "metadata.labels.node-role.kubernetes.io/worker" "==" "true" }}
   selector:
     matchLabels:
       app: {{lower $software_type }}
