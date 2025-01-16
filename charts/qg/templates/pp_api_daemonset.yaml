@@ -3,33 +3,33 @@
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps/v1
-kind: DaemonSet  # Changed to DaemonSet
+kind: Deployment  # Changed from DaemonSet to Deployment
 metadata:
-  name: {{lower $software_type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-pp-api-software-deployment  # Updated name to reflect Deployment type
   namespace: default
 spec:
+  replicas: 1  # Added replica count, adjust as needed
   selector:
     matchLabels:
-      app: {{lower $software_type }}  # Ensure the label matches the selector
+      app: {{lower $software_type }}
       machine-type: {{ $software_type }}
-  updateStrategy:
+  strategy:  # Replaced updateStrategy with strategy
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 100%
+      maxSurge: 25%
+      maxUnavailable: 25%
   template:
     metadata:
       labels:
-        app: {{lower $software_type }}  # Unique labels for the pod
-        machine-type: {{ $software_type }}  # Use the machine type for labeling
+        app: {{lower $software_type }}
+        machine-type: {{ $software_type }}
     spec:
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: "PanelPC"
-
-      hostNetwork: true  # Equivalent to --net=host
+      hostNetwork: true  # Review if necessary for Deployment
       imagePullSecrets:
       - name: regcred
-
       containers:
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
@@ -55,7 +55,6 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/Logfiles
         - name: device-info
           mountPath: /etc/device_info.json
-
       volumes:
       - name: json-files
         hostPath:
