@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: panel-pc-cluster-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: panel-pc-service-account
+    namespace: argocd  # Replace with your namespace
+roleRef:
+  kind: ClusterRole
+  name: panel-pc-cluster-role
+  apiGroup: rbac.authorization.k8s.io
