@@ -40,13 +40,13 @@ spec:
         #         matchLabels:
         #           app: {{lower $software_type }}
         #       topologyKey: "kubernetes.io/hostname"  # One pod per node
-      topologySpreadConstraints:
-        - maxSkew: 2
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: {{lower $software_type }}
+      # topologySpreadConstraints:
+      #   - maxSkew: 1
+      #     topologyKey: "kubernetes.io/hostname"
+      #     whenUnsatisfiable: DoNotSchedule
+      #     labelSelector:
+      #       matchLabels:
+      #         app: {{lower $software_type }}
       tolerations:
       - key: nvidia.com/gpu
         operator: Exists
