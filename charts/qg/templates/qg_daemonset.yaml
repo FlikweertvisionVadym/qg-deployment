@@ -2,6 +2,21 @@
 {{- $software_type := "QG" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 5001
+      port: 5001
+      targetPort: 5001
+  selector:
+    app: app-server
+
+---
+
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
