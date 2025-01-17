@@ -8,9 +8,6 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
-  selector:
-    matchLabels:
-      name: {{ lower $softwareType }}-prepuller
   template:
     metadata:
       labels:
