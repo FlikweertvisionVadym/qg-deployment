@@ -8,7 +8,7 @@ metadata:
   name: {{lower $software_type }}-program-software-deployment
   namespace: default
 spec:
-  replicas: 4  # High to allow spreading, constrained by affinity
+  replicas: 2  # High to allow spreading, constrained by affinity
   selector:
     matchLabels:
       app: {{lower $software_type }}
