@@ -63,9 +63,9 @@ spec:
           value: "all"
         securityContext:
           privileged: true
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        # resources:
+        #   limits:
+        #     nvidia.com/gpu: 1
         livenessProbe:
           httpGet:
             path: /machine_status_monitorings_systeem
