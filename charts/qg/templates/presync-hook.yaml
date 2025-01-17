@@ -26,5 +26,4 @@ spec:
       - name: {{ lower $softwareType }}-prepuller
         image: docker.io/alpine:3.21
         imagePullPolicy: IfNotPresent
-        command: ["sh", "-c", "echo 'Pulling image for {{ $softwareType }} with version {{ $software.softwareVersion }}'; exit 0"]
 {{- end }}
