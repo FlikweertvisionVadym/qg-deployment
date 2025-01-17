@@ -35,13 +35,13 @@ spec:
 
       imagePullSecrets:
       - name: regcred
+      
+      hostNetwork: true
 
       containers:
       - name: quality-grader
         image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 5001
         env:
         - name: NVIDIA_VISIBLE_DEVICES
           value: "all"
