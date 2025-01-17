@@ -24,7 +24,7 @@ spec:
       # Configure an init container for the image to be pulled
       initContainers:
         - name: {{ lower $softwareType }}-prepuller
-          image: docker.io/flikweertvision/{{ lower $softwareType }}:{{ $software.softwareVersion }}
+          image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "echo 'Image pulled for {{ $softwareType }} with version {{ $software.softwareVersion }}'"]
 
