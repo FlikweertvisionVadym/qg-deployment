@@ -3,66 +3,48 @@
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower $software_type }}-program-software-deployment
+  name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: {{lower $software_type }}
+      app: {{lower $software_type }}  # Ensure the label matches the selector
       machine-type: {{ $software_type }}
-  strategy:
+  updateStrategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxUnavailable: 100%
   template:
     metadata:
       labels:
-        app: {{lower $software_type }}
-        machine-type: {{ $software_type }}
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: machine-type
-                    operator: In
-                    values:
-                      - {{ $software_type }}  # Target worker nodes
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: {{lower $software_type }}
-              topologyKey: "kubernetes.io/hostname"  # One pod per node
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: "kubernetes.io/hostname"
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app: {{lower $software_type }}
+      nodeSelector:
+        machine-type: {{ $software_type }}
+
       tolerations:
       - key: nvidia.com/gpu
         operator: Exists
         effect: NoSchedule
-      hostNetwork: true  # Review if necessary for Deployment
+
+      hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
       - name: regcred
+
       containers:
+      
       - name: quality-grader
-        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
         env:
         - name: NVIDIA_VISIBLE_DEVICES
           value: "all"
         securityContext:
-          privileged: true
+          privileged: true  # Equivalent to --privileged
         resources:
           limits:
             nvidia.com/gpu: 1
@@ -95,6 +77,7 @@ spec:
           mountPath: /home/nvidia/QualityGrader/version.json
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
+      
       volumes:
       - name: classifier
         hostPath:
