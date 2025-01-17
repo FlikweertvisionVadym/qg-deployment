@@ -9,9 +9,7 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
-    metadata:
-      labels:
-        name: {{ lower $softwareType }}-prepuller
+    restartPolicy: Never
     spec:
       automountServiceAccountToken: false
       nodeSelector:
