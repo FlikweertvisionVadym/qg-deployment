@@ -40,7 +40,7 @@ spec:
       
       initContainers:
       - name: test-init
-        image: busybox:1.28
+        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
         command: ['sh', '-c', "exit 0;"]
       containers:
       - name: quality-grader
