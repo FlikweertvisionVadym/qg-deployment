@@ -1,0 +1,42 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "QG" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{lower $software_type }}-prepuller
+spec:
+  selector:
+    matchLabels:
+      name: {{lower $software_type }}-prepuller
+  template:
+    metadata:
+      labels:
+        name: {{lower $software_type }}-prepuller
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector:
+        machine-type: {{ $software_type }}
+      imagePullSecrets:
+      - name: regcred
+      # Configure an init container for each image you want to pull
+      initContainers:
+        - name: {{lower $software_type }}-prepuller-1
+          image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "-c", "'true'"]
+
+      # Use the pause container to ensure the Pod goes into a `Running` phase
+      # but doesn't take up resource on the cluster
+      containers:
+        - name: pause
+          image: gcr.io/google_containers/pause:3.2
+          resources:
+            limits:
+              cpu: 1m
+              memory: 8Mi
+            requests:
+              cpu: 1m
+              memory: 8Mi
+{{- end }}
