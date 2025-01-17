@@ -33,7 +33,6 @@ spec:
         operator: Exists
         effect: NoSchedule
 
-      hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
       - name: regcred
 
