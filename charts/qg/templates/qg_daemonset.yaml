@@ -15,7 +15,7 @@ spec:
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
-      rollingUpdateType: Surging
+      rollingUpdateType: Standard
       
   template:
     metadata:
