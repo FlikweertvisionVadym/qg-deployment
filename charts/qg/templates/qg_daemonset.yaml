@@ -34,12 +34,12 @@ spec:
                     operator: In
                     values:
                       - {{ $software_type }}  # Target worker nodes
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: {{lower $software_type }}
-              topologyKey: "kubernetes.io/hostname"  # One pod per node
+        # podAntiAffinity:
+        #   requiredDuringSchedulingIgnoredDuringExecution:
+        #     - labelSelector:
+        #         matchLabels:
+        #           app: {{lower $software_type }}
+        #       topologyKey: "kubernetes.io/hostname"  # One pod per node
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
