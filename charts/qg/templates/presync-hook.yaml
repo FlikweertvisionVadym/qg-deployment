@@ -13,16 +13,12 @@ spec:
       restartPolicy: Never
       automountServiceAccountToken: false
       nodeSelector:
-        machine-type: {{ $softwareType }}
+        machine-type: {{ $softwareType }} 
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - {{ .NodeName }} 
                   - key: machine-type
                     operator: In
                     values:
