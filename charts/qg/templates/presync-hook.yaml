@@ -1,52 +1,42 @@
-{{- $url := .Values.endpoint }}
-{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
-{{- $panelpc_ip := regexFind $ipRegex $url }}
-
-apiVersion: batch/v1
-kind: Job
+{{- $group := .Values.group | index .Values.groups }}
+{{- range $softwareType, $software := $group.software }}
+apiVersion: apps/v1
+kind: DaemonSet
 metadata:
-  name: machine-status-check
+  name: {{ lower $softwareType }}-prepuller
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
+  selector:
+    matchLabels:
+      name: {{ lower $softwareType }}-prepuller
   template:
+    metadata:
+      labels:
+        name: {{ lower $softwareType }}-prepuller
     spec:
+      automountServiceAccountToken: false
+      nodeSelector:
+        machine-type: {{ $softwareType }}
+      imagePullSecrets:
+      - name: regcred
+      # Configure an init container for the image to be pulled
+      initContainers:
+        - name: {{ lower $softwareType }}-prepuller
+          image: docker.io/flikweertvision/{{ lower $softwareType }}:{{ $software.softwareVersion }}
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "-c", "echo 'Image pulled for {{ $softwareType }} with version {{ $software.softwareVersion }}'"]
+
+      # Use the pause container to keep the pod alive until the hook completes
       containers:
-        - name: machine-status-check
-          image: alpine/curl:latest
-          command:
-            - /bin/sh
-            - -c
-            - |
-                # Step 1: Check if current time is after 8 AM
-                current_hour=$(date +'%H')
-                echo "Current hour: $current_hour"
-                if [ "$current_hour" -lt 7 ]; then
-                  echo "It is before 7 AM. Skipping sync."
-                  exit 1
-                fi
-
-                # Step 2: Check if the machine status endpoint is reachable
-                endpoint="{{ $panelpc_ip }}:5000"
-
-                # Construct the full URL with the specified port
-                full_url="http://$endpoint/machine_status_monitorings_systeem"
-
-                echo "Checking endpoint: $full_url"
-                response=$(curl -s --max-time 10 "$full_url")
-
-                if [ $? -ne 0 ]; then
-                  echo "Endpoint $endpoint is not reachable. Allowing sync to proceed."
-                  exit 0
-                fi
-
-                # Step 3: Parse the response and check machine status
-                echo "Response from endpoint: $response"
-                if echo "$response" | grep -q '"QG_active":true' || echo "$response" | grep -q '"VS_active":true'; then
-                  echo "Machine status is not as expected."
-                  exit 1
-                else
-                  echo "Machine status is as expected."
-                fi
-      restartPolicy: Never
+        - name: pause
+          image: gcr.io/google_containers/pause:3.2
+          resources:
+            limits:
+              cpu: 1m
+              memory: 8Mi
+            requests:
+              cpu: 1m
+              memory: 8Mi
+{{- end }}
