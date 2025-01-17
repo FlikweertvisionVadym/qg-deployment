@@ -10,10 +10,6 @@ metadata:
   annotations:
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
-  ports:
-  - port: 5001
-    targetPort: 5001
-    nodePort: 5001
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
@@ -45,6 +41,10 @@ spec:
       - name: quality-grader
         image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5001  # Expose port 5001
+          name: http-port
+          protocol: TCP
         env:
         - name: NVIDIA_VISIBLE_DEVICES
           value: "all"
