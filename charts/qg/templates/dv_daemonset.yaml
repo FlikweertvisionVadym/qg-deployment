@@ -2,58 +2,62 @@
 {{- $software_type := "DV" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
-apiVersion: apps/v1
-kind: Deployment  # Changed from DaemonSet to Deployment
+apiVersion: apps.kruise.io/v1alpha1
+kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower $software_type }}-program-software-deployment  # Updated name to reflect Deployment type
+  name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
+  annotations:
+    apps.kruise.io/image-predownload-parallelism: "10"
 spec:
-  replicas: 1  # Added replica count, adjust as needed
   selector:
     matchLabels:
-      app: {{lower $software_type }}
+      app: {{lower $software_type }}  # Ensure the label matches the selector
       machine-type: {{ $software_type }}
-  strategy:
+  updateStrategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 100%
+      maxUnavailable: 0
+      rollingUpdateType: Standard
   template:
     metadata:
       labels:
-        app: {{lower $software_type }}
-        machine-type: {{ $software_type }}
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: {{ $software_type }}
+      
       tolerations:
       - key: nvidia.com/gpu
         operator: Exists
         effect: NoSchedule
-      hostNetwork: true  # Review if necessary for Deployment
+
       imagePullSecrets:
       - name: regcred
+      
+      hostNetwork: true
+      
       containers:
       - name: quality-grader
-        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c"]
+        args: 
+        - "sleep 10 && exec supervisord -c /home/nvidia/QualityGrader/supervisord.conf -n"
         env:
         - name: NVIDIA_VISIBLE_DEVICES
           value: "all"
         securityContext:
-          privileged: true
-        resources:
-          limits:
-            nvidia.com/gpu: 1
-        startupProbe:
+          privileged: true  # Equivalent to --privileged
+        livenessProbe:
           httpGet:
             path: /machine_status_monitorings_systeem
             port: 5001
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 15
-          failureThreshold: 3
-          successThreshold: 1
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
@@ -65,7 +69,7 @@ spec:
           mountPath: /home/nvidia/QualityGrader/Data
         - name: g-device-settings
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
-        - name: dv-device-settings
+        - name: sg-device-settings
           mountPath: /home/nvidia/QualityGrader/SG_device_settings.ini
         - name: ssd
           mountPath: /home/nvidia/SSD
@@ -75,6 +79,7 @@ spec:
           mountPath: /home/nvidia/QualityGrader/version.json
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
+      
       volumes:
       - name: classifier
         hostPath:
@@ -96,7 +101,7 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/G_device_settings.ini
           type: FileOrCreate
-      - name: dv-device-settings
+      - name: sg-device-settings
         hostPath:
           path: /home/nvidia/QualityGrader/SG_device_settings.ini
           type: FileOrCreate
