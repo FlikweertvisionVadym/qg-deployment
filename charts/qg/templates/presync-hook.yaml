@@ -21,7 +21,6 @@ spec:
         machine-type: {{ $softwareType }}
       imagePullSecrets:
       - name: regcred
-      restartPolicy: Never
       initContainers:
         - name: {{ lower $softwareType }}-prepuller
           image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
