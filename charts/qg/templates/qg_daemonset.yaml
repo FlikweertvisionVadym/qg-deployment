@@ -44,7 +44,7 @@ spec:
       - name: quality-grader
         image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
-        command: ["sleep 5 &&", "supervisord", "-c", "/home/nvidia/QualityGrader/supervisord.conf", "-n"]
+        command: ["python3", "-c", "\"import time; time.sleep(5)\"", "&&", "supervisord", "-c", "/home/nvidia/QualityGrader/supervisord.conf", "-n"]
         env:
         - name: NVIDIA_VISIBLE_DEVICES
           value: "all"
