@@ -16,7 +16,6 @@ spec:
       labels:
         app: {{ lower $softwareType }}-prepuller
     spec:
-      restartPolicy: Always
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: {{ $softwareType }}  # You can change or remove this to run on all nodes
