@@ -1,28 +1,23 @@
-{{- $group := .Values.group | index .Values.groups }}
-{{- range $softwareType, $software := $group.software }}
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: DaemonSet
 metadata:
   name: {{ lower $softwareType }}-prepuller
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
+  selector:
+    matchLabels:
+      app: {{ lower $softwareType }}-prepuller
   template:
+    metadata:
+      labels:
+        app: {{ lower $softwareType }}-prepuller
     spec:
-      restartPolicy: Never
+      restartPolicy: Always
       automountServiceAccountToken: false
       nodeSelector:
-        machine-type: {{ $softwareType }}
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: machine-type
-                    operator: In
-                    values:
-                      - {{ $softwareType }}
+        machine-type: {{ $softwareType }}  # You can change or remove this to run on all nodes
       imagePullSecrets:
       - name: regcred
       containers:
@@ -30,4 +25,3 @@ spec:
         image: docker.io/alpine:3.21
         imagePullPolicy: IfNotPresent
         command: ["sh", "-c", "echo 'Pulling image for {{ $softwareType }} with version {{ $software.softwareVersion }}'; exit 0"]
-{{- end }}
