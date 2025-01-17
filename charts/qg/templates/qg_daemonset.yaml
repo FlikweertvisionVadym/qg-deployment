@@ -7,6 +7,8 @@ kind: DaemonSet  # Changed to DaemonSet
 metadata:
   name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
+  annotations:
+    apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
     matchLabels:
@@ -16,7 +18,6 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       rollingUpdateType: Standard
-      
   template:
     metadata:
       labels:
