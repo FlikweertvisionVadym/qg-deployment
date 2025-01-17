@@ -1,6 +1,6 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- range $softwareType, $software := $group.software }}
-apiVersion: apps/v1
+apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ lower $softwareType }}-prepuller
