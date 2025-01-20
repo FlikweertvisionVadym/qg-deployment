@@ -37,7 +37,7 @@ spec:
       hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
       - name: regcred
-
+      terminationGracePeriodSeconds: 5
       containers:
       - name: panelpc-gui
         image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
