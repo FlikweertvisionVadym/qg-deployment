@@ -2,11 +2,13 @@
 {{- $software_type := "PanelPC-API" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
-apiVersion: apps/v1
+apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
   name: {{lower $software_type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
+  annotations:
+    apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
     matchLabels:
@@ -15,7 +17,9 @@ spec:
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 100%
+      maxSurge: 100%
+      maxUnavailable: 0
+      rollingUpdateType: Standard
   template:
     metadata:
       labels:
@@ -33,6 +37,9 @@ spec:
       containers:
       - name: panelpc-interface
         image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
+        command: ["/bin/bash", "-c"]
+        args: 
+        - "sleep 10 && exec supervisord -c /home/fvt/QualityGrader/Api/supervisord.conf -n"
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
