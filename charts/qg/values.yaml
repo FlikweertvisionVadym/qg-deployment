@@ -7,7 +7,7 @@ groups:
       PanelPC-API:
         softwareVersion: "1.7.0-ppc_docker"
       PanelPC-GUI:
-        softwareVersion: "2.3.0-server-sleep"
+        softwareVersion: "2.4.0-server-docker"
   production:
     software:
       QG:
