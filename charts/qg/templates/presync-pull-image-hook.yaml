@@ -1,7 +1,7 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $qgSoftware := $group.software.QG }}
-{{- $panelPCAPI := $group.software.PanelPC_API }}
-{{- $panelPCGUI := $group.software.PanelPC_GUI }}
+{{- $panelPCAPI := index $group.software "PanelPC_API" }}
+{{- $panelPCGUI := index $group.software "PanelPC_GUI" }}
 
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
