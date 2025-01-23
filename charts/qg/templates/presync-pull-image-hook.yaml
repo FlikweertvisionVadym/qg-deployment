@@ -1,7 +1,7 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $qgSoftwareVersion := $group.software.QG.softwareVersion }}
-{{- $panelPCAPIVersion := $group.software.PanelPC_API.softwareVersion }}
-{{- $panelPCGUIVersion := $group.software.PanelPC_GUI.softwareVersion }}
+{{- $qgSoftware := $group.software.QG }}
+{{- $panelPCAPI := $group.software.PanelPC_API }}
+{{- $panelPCGUI := $group.software.PanelPC_GUI }}
 
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
@@ -13,7 +13,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/quality_grader:{{ $qgSoftwareVersion.softwareVersion }}
+  image: docker.io/flikweertvision/quality_grader:{{ $qgSoftware.softwareVersion }}
   selector:
     matchLabels:
       machine_type: QG # Select all nodes labeled machine_type=QG
@@ -37,7 +37,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPIVersion.softwareVersion }}
+  image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPI.softwareVersion }}
   selector:
     matchLabels:
       machine_type: PanelPC # Select all nodes labeled machine_type=PanelPC-API
@@ -61,7 +61,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUIVersion.softwareVersion }}
+  image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUI.softwareVersion }}
   selector:
     matchLabels:
       machine_type: PanelPC # Select all nodes labeled machine_type=PanelPC-GUI
