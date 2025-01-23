@@ -61,7 +61,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
+  image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUIVersion.softwareVersion }}
   selector:
     matchLabels:
       machine_type: PanelPC # Select all nodes labeled machine_type=PanelPC-GUI
