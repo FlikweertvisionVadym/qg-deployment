@@ -3,7 +3,7 @@
 {{- $panelpc_ip := regexFind $ipRegex $url }}
 
 {{- $group := .Values.group | index .Values.groups }}
-{{- $software_type := "PanelPC-GUI" }}
+{{- $software_type := "PanelPC_GUI" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
