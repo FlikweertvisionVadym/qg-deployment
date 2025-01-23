@@ -1,4 +1,4 @@
-{{- $group := .Values.groups.test-group }}
+{{- $group := .Values.group | index .Values.groups }}
 {{- $qgSoftwareVersion := $group.software.QG.softwareVersion }}
 {{- $panelPCAPIVersion := $group.software.PanelPC-API.softwareVersion }}
 {{- $panelPCGUIVersion := $group.software.PanelPC-GUI.softwareVersion }}
