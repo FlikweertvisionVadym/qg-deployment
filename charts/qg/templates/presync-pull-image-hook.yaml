@@ -1,0 +1,73 @@
+{{- $group := .Values.groups.test-group }}
+{{- $qgSoftwareVersion := $group.software.QG.softwareVersion }}
+{{- $panelPCAPIVersion := $group.software.PanelPC-API.softwareVersion }}
+{{- $panelPCGUIVersion := $group.software.PanelPC-GUI.softwareVersion }}
+
+# ImagePullJob for QG nodes
+---
+apiVersion: apps.kruise.io/v1alpha1
+kind: ImagePullJob
+metadata:
+  name: pre-pull-image-qg
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  image: docker.io/flikweertvision/quality_grader:{{ $qgSoftwareVersion.softwareVersion }}
+  selector:
+    matchLabels:
+      machine_type: QG # Select all nodes labeled machine_type=QG
+  parallelism: 5 # Controls how many nodes pull the image simultaneously
+  completionPolicy:
+    type: Always
+    activeDeadlineSeconds: 3000
+    ttlSecondsAfterFinished: 300
+  pullPolicy:
+    backoffLimit: 3
+    timeoutSeconds: 300
+
+# ImagePullJob for PanelPC-API nodes
+---
+apiVersion: apps.kruise.io/v1alpha1
+kind: ImagePullJob
+metadata:
+  name: pre-pull-image-panelpc-api
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPIVersion.softwareVersion }}
+  selector:
+    matchLabels:
+      machine_type: PanelPC # Select all nodes labeled machine_type=PanelPC-API
+  parallelism: 5
+  completionPolicy:
+    type: Always
+    activeDeadlineSeconds: 3000
+    ttlSecondsAfterFinished: 300
+  pullPolicy:
+    backoffLimit: 3
+    timeoutSeconds: 300
+
+# ImagePullJob for PanelPC-GUI nodes
+---
+apiVersion: apps.kruise.io/v1alpha1
+kind: ImagePullJob
+metadata:
+  name: pre-pull-image-panelpc-gui
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
+  selector:
+    matchLabels:
+      machine_type: PanelPC # Select all nodes labeled machine_type=PanelPC-GUI
+  parallelism: 5
+  completionPolicy:
+    type: Always
+    activeDeadlineSeconds: 3000
+    ttlSecondsAfterFinished: 300
+  pullPolicy:
+    backoffLimit: 3
+    timeoutSeconds: 300
