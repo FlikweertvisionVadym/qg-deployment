@@ -4,7 +4,6 @@
 {{- $panelPCGUIVersion := $group.software.PanelPC-GUI.softwareVersion }}
 
 # ImagePullJob for QG nodes
----
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
 metadata:
