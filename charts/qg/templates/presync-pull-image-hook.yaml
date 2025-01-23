@@ -12,6 +12,8 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
+  pullSecrets:
+  - regcred
   image: docker.io/flikweertvision/quality_grader:{{ $qgSoftwareVersion.softwareVersion }}
   selector:
     matchLabels:
@@ -35,6 +37,8 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
+  pullSecrets:
+  - regcred
   image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPIVersion.softwareVersion }}
   selector:
     matchLabels:
@@ -58,6 +62,8 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
+  pullSecrets:
+  - regcred
   image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
   selector:
     matchLabels:
