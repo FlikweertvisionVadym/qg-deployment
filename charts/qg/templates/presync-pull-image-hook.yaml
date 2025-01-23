@@ -3,7 +3,6 @@
 {{- $panelPCAPIVersion := $group.software.PanelPC-API.softwareVersion }}
 {{- $panelPCGUIVersion := $group.software.PanelPC-GUI.softwareVersion }}
 
-# ImagePullJob for QG nodes
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
 metadata:
@@ -27,7 +26,6 @@ spec:
     backoffLimit: 3
     timeoutSeconds: 300
 
-# ImagePullJob for PanelPC-API nodes
 ---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
@@ -52,7 +50,6 @@ spec:
     backoffLimit: 3
     timeoutSeconds: 300
 
-# ImagePullJob for PanelPC-GUI nodes
 ---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
