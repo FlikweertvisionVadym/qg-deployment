@@ -4,9 +4,9 @@ groups:
       QG:
         softwareVersion: "1.7.0-pc_docker_jp5-orin"
         jetsonType: "orin"
-      PanelPC_API:
+      PanelPC-API:
         softwareVersion: "1.7.0-ppc_docker"
-      PanelPC_GUI:
+      PanelPC-GUI:
         softwareVersion: "2.3.0-server-sleep"
   production:
     software:
