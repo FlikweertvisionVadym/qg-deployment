@@ -58,19 +58,6 @@ spec:
             port: 5001
           initialDelaySeconds: 60
           periodSeconds: 15
-        lifecycle:
-          preStop:
-            exec:
-              command:
-                - /bin/sh
-                - -c
-                - |
-                  # Custom script to check machine status before stopping
-                  while [ "running" = "running" ]; do
-                    echo "Machine is running, waiting..."
-                    sleep 5
-                  done
-                  echo "Machine is idle. Proceeding to stop container."
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
