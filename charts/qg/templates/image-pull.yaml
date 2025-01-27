@@ -15,8 +15,9 @@ spec:
   image: docker.io/flikweertvision/quality_grader:{{ $qgSoftware.softwareVersion }}
   parallelism: 5 # Controls how many nodes pull the image simultaneously
   selector:
-    matchLabels:
-      machine-type: QG
+    nodeSelector:
+      matchLabels:
+        machine-type: QG
   completionPolicy:
     type: Always
     activeDeadlineSeconds: 3000
