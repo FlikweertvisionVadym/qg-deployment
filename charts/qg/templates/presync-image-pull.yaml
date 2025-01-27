@@ -7,8 +7,7 @@ kind: ImagePullJob
 metadata:
   name: pre-pull-image-qg
   annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   pullSecrets:
   - regcred
@@ -31,8 +30,6 @@ metadata:
   name: pre-pull-image-panelpc-api
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
   pullSecrets:
   - regcred
@@ -55,8 +52,6 @@ metadata:
   name: pre-pull-image-panelpc-gui
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
   pullSecrets:
   - regcred
