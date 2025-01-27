@@ -16,8 +16,7 @@ spec:
   parallelism: 5 # Controls how many nodes pull the image simultaneously
   selector:
     nodeSelector:
-      matchLabels:
-        machine-type: QG
+      machine-type: QG
   completionPolicy:
     type: Always
     activeDeadlineSeconds: 3000
