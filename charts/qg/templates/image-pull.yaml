@@ -8,6 +8,8 @@ metadata:
   name: pre-pull-image-qg
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   pullSecrets:
@@ -31,6 +33,8 @@ metadata:
   name: pre-pull-image-panelpc-api
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   pullSecrets:
@@ -54,6 +58,8 @@ metadata:
   name: pre-pull-image-panelpc-gui
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   pullSecrets:
