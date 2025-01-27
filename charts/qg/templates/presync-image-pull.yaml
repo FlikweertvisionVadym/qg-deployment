@@ -38,9 +38,9 @@ spec:
   pullSecrets:
   - regcred
   image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPI.softwareVersion }}
-  podSelector:
+  selector:
     matchLabels:
-      machine-type: PanelPC-API
+      machine-type: PanelPC
   parallelism: 5
   completionPolicy:
     type: Always
@@ -62,9 +62,9 @@ spec:
   pullSecrets:
   - regcred
   image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUI.softwareVersion }}
-  podSelector:
+  selector:
     matchLabels:
-      machine-type: PanelPC-GUI
+      machine-type: PanelPC
   parallelism: 5
   completionPolicy:
     type: Always
