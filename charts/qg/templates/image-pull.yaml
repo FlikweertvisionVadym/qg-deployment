@@ -31,7 +31,7 @@ metadata:
   name: pre-pull-image-panelpc-api
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   pullSecrets:
   - regcred
@@ -54,7 +54,7 @@ metadata:
   name: pre-pull-image-panelpc-gui
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   pullSecrets:
   - regcred
