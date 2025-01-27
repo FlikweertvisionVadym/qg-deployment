@@ -14,7 +14,7 @@ spec:
   pullSecrets:
   - regcred
   image: docker.io/flikweertvision/quality_grader:{{ $qgSoftware.softwareVersion }}
-  podSelector:
+  selector:
     matchLabels:
       machine-type: QG
   parallelism: 5 # Controls how many nodes pull the image simultaneously
