@@ -14,9 +14,6 @@ spec:
   pullSecrets:
   - regcred
   image: docker.io/flikweertvision/quality_grader:{{ $qgSoftware.softwareVersion }}
-  selector:
-    matchLabels:
-      machine-type: QG
   parallelism: 5 # Controls how many nodes pull the image simultaneously
   completionPolicy:
     type: Always
@@ -38,9 +35,6 @@ spec:
   pullSecrets:
   - regcred
   image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPI.softwareVersion }}
-  selector:
-    matchLabels:
-      machine-type: PanelPC
   parallelism: 5
   completionPolicy:
     type: Always
@@ -62,9 +56,6 @@ spec:
   pullSecrets:
   - regcred
   image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUI.softwareVersion }}
-  selector:
-    matchLabels:
-      machine-type: PanelPC
   parallelism: 5
   completionPolicy:
     type: Always
