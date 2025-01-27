@@ -8,7 +8,7 @@ metadata:
   name: {{lower $software_type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "3"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
