@@ -17,7 +17,6 @@ spec:
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 100%
       maxUnavailable: 100%
       rollingUpdateType: Standard
   template:
