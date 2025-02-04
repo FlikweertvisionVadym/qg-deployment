@@ -1,0 +1,78 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $qgSoftware := $group.software.QG }}
+{{- $panelPCAPI := index $group.software "PanelPC-API" }}
+{{- $panelPCGUI := index $group.software "PanelPC-GUI" }}
+apiVersion: apps.kruise.io/v1alpha1
+kind: ImagePullJob
+metadata:
+  name: pre-pull-image-qg
+  namespace: default
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  pullSecrets:
+  - regcred
+  image: docker.io/flikweertvision/quality_grader:{{ $qgSoftware.softwareVersion }}
+  parallelism: 5 # Controls how many nodes pull the image simultaneously
+  selector:
+    matchLabels:
+      machine-type: QG
+  completionPolicy:
+    type: Always
+    activeDeadlineSeconds: 3000
+    ttlSecondsAfterFinished: 300
+  pullPolicy:
+    backoffLimit: 3
+    timeoutSeconds: 300
+---
+apiVersion: apps.kruise.io/v1alpha1
+kind: ImagePullJob
+metadata:
+  name: pre-pull-image-panelpc-api
+  namespace: default
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  pullSecrets:
+  - regcred
+  image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPI.softwareVersion }}
+  parallelism: 5
+  selector:
+    matchLabels:
+      machine-type: PanelPC
+  completionPolicy:
+    type: Always
+    activeDeadlineSeconds: 3000
+    ttlSecondsAfterFinished: 300
+  pullPolicy:
+    backoffLimit: 3
+    timeoutSeconds: 300
+---
+apiVersion: apps.kruise.io/v1alpha1
+kind: ImagePullJob
+metadata:
+  name: pre-pull-image-panelpc-gui
+  namespace: default
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  pullSecrets:
+  - regcred
+  image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUI.softwareVersion }}
+  parallelism: 5
+  selector:
+    matchLabels:
+      machine-type: PanelPC
+  completionPolicy:
+    type: Always
+    activeDeadlineSeconds: 3000
+    ttlSecondsAfterFinished: 300
+  pullPolicy:
+    backoffLimit: 3
+    timeoutSeconds: 300
