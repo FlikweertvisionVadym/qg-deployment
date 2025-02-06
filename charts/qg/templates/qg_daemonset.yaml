@@ -35,6 +35,9 @@ spec:
       - key: nvidia.com/gpu
         operator: Exists
         effect: NoSchedule
+      - key: maintanance-mode
+        operator: Exists
+        effect: NoSchedule
 
       imagePullSecrets:
       - name: regcred
