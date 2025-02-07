@@ -24,7 +24,7 @@ spec:
     activeDeadlineSeconds: 3000
     ttlSecondsAfterFinished: 300
   pullPolicy:
-    backoffLimit: 3
+    backoffLimit: 5
     timeoutSeconds: 300
 ---
 apiVersion: apps.kruise.io/v1alpha1
@@ -49,7 +49,7 @@ spec:
     activeDeadlineSeconds: 3000
     ttlSecondsAfterFinished: 300
   pullPolicy:
-    backoffLimit: 3
+    backoffLimit: 5
     timeoutSeconds: 300
 ---
 apiVersion: apps.kruise.io/v1alpha1
@@ -74,5 +74,5 @@ spec:
     activeDeadlineSeconds: 3000
     ttlSecondsAfterFinished: 300
   pullPolicy:
-    backoffLimit: 3
+    backoffLimit: 5
     timeoutSeconds: 300
