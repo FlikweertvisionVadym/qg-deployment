@@ -1,11 +1,14 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $qgSoftware := $group.software.QG }}
-{{- $panelPCAPI := index $group.software "PanelPC-API" }}
-{{- $panelPCGUI := index $group.software "PanelPC-GUI" }}
+{{- $machineTypes := list "QG" "DV" }} # Define supported machine types
+
+{{- range $machineType := $machineTypes }}
+  {{- if hasKey $group.software $machineType }} # Ensure the software exists before processing
+    {{- $software := index $group.software $machineType }}
+---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
 metadata:
-  name: pre-pull-image-qg
+  name: pre-pull-image-{{ lower $machineType }}
   namespace: default
   annotations:
     argocd.argoproj.io/hook: PreSync
@@ -14,11 +17,11 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/quality_grader:{{ $qgSoftware.softwareVersion }}
-  parallelism: 5 # Controls how many nodes pull the image simultaneously
+  image: docker.io/flikweertvision/{{ lower $machineType }}:{{ $software.softwareVersion }}
+  parallelism: 5
   selector:
     matchLabels:
-      machine-type: QG
+      machine-type: {{ $machineType }}
   completionPolicy:
     type: Always
     activeDeadlineSeconds: 3000
@@ -26,6 +29,13 @@ spec:
   pullPolicy:
     backoffLimit: 5
     timeoutSeconds: 300
+  {{- end }}
+{{- end }}
+
+{{- $panelPCAPI := index $group.software "PanelPC-API" | default dict }}
+{{- $panelPCGUI := index $group.software "PanelPC-GUI" | default dict }}
+
+{{- if $panelPCAPI.softwareVersion }}
 ---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
@@ -51,6 +61,9 @@ spec:
   pullPolicy:
     backoffLimit: 5
     timeoutSeconds: 300
+{{- end }}
+
+{{- if $panelPCGUI.softwareVersion }}
 ---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
@@ -76,3 +89,4 @@ spec:
   pullPolicy:
     backoffLimit: 5
     timeoutSeconds: 300
+{{- end }}
