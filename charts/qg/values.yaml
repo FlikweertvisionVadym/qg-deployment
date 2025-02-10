@@ -40,3 +40,7 @@ groups:
       DV:
         softwareVersion: "DV-new-interface-docker-orin"
         jetsonType: "orin"
+      PanelPC-API:
+        softwareVersion: "1.7.0-ppc_docker"
+      PanelPC-GUI:
+        softwareVersion: "2.3.0-server"
