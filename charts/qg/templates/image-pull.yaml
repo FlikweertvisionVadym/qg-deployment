@@ -17,7 +17,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/{{ lower $machineType }}:{{ $software.softwareVersion }}
+  image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
   parallelism: 5
   selector:
     matchLabels:
