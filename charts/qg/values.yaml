@@ -14,7 +14,7 @@ groups:
         softwareVersion: "dev_supervisor_restart_fix-orin"
         jetsonType: "orin"
       PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
+        softwareVersion: "dev_supervisor_restart_fix"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
   production-jp5:
