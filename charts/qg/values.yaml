@@ -11,10 +11,10 @@ groups:
   production:
     software:
       QG:
-        softwareVersion: "dev_supervisor_restart_fix-orin"
+        softwareVersion: "dev_dev-orin"
         jetsonType: "orin"
       PanelPC-API:
-        softwareVersion: "dev_supervisor_restart_fix"
+        softwareVersion: "dev_dev"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
   production-jp5:
