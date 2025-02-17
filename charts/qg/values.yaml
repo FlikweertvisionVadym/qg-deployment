@@ -41,6 +41,6 @@ groups:
         softwareVersion: "DV_dev_main-orin"
         jetsonType: "orin"
       PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
+        softwareVersion: "dev_divider_fix"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
