@@ -38,7 +38,7 @@ groups:
   divider:
     software:
       DV:
-        softwareVersion: "DV-new-interface-docker-orin"
+        softwareVersion: "DV_dev_main-orin"
         jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "1.7.0-ppc_docker"
