@@ -47,7 +47,7 @@ groups:
   multi-model:
     software:
       QG:
-        softwareVersion: "dev_1.7.0-pc_multi-model"
+        softwareVersion: "dev_1.7.0-pc_multi-model-orin"
         jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "dev_1.7.0ppc_multi-model"
