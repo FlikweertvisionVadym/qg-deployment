@@ -8,6 +8,15 @@ groups:
         softwareVersion: "1.7.0-ppc_docker"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+  test-group-gui-2-4-0:
+    software:
+      QG:
+        softwareVersion: "1.7.0-pc_docker-orin"
+        jetsonType: "orin"
+      PanelPC-API:
+        softwareVersion: "1.7.0-ppc_docker"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.4.0-server"
   production:
     software:
       QG:
