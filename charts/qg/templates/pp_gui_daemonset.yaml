@@ -49,10 +49,10 @@ spec:
         - name: NUXT_PUBLIC_API_URL
           value: "http://{{ $panelpc_ip }}:5000"
         volumeMounts:
-        - name: gui-build-artifacts
-          mountPath: /app/.output/
-        - name: nuxt-artifacts
-          mountPath: /app/.nuxt/
+        - name: gui-app
+          mountPath: /app
+        # - name: nuxt-artifacts
+        #   mountPath: /app/.nuxt/
         livenessProbe:
           httpGet:
             path: /
@@ -61,12 +61,12 @@ spec:
           periodSeconds: 15
       
       volumes:
-      - name: gui-build-artifacts
+      - name: gui-app
         hostPath:
-          path: /home/fvt/QualityGrader/UI/build
+          path: /home/fvt/QualityGrader/UI/app
           type: DirectoryOrCreate
-      - name: nuxt-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/nuxt
-          type: DirectoryOrCreate
+      # - name: nuxt-artifacts
+      #   hostPath:
+      #     path: /home/fvt/QualityGrader/UI
+      #     type: DirectoryOrCreate
 {{- end }}
