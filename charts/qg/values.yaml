@@ -40,3 +40,12 @@ groups:
       DV:
         softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier"
         jetsonType: "xavier"
+  multi-model-new-model:
+    software:
+      QG:
+        softwareVersion: "dev_1.7.0-pc_multi-model-orin"
+        jetsonType: "orin"
+      PanelPC-API:
+        softwareVersion: "dev_1.7.0ppc_multi-model-new-model"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.4.0-server_model-tom"
