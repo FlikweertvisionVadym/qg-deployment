@@ -57,4 +57,4 @@ groups:
       PanelPC-API:
         softwareVersion: "dev_1.7.0ppc_multi-model"
       PanelPC-GUI:
-        softwareVersion: "2.4.0-server"
+        softwareVersion: "dev_2.4.0-server"
