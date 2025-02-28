@@ -63,6 +63,10 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/Logfiles
         - name: device-info
           mountPath: /etc/device_info.json
+        - name: version
+          mountPath: /home/fvt/QualityGrader/Api/version.json
+        - name: backup-versions
+          mountPath: /home/fvt/QualityGrader/Api/backup_versions
 
       volumes:
       - name: json-files
@@ -89,4 +93,12 @@ spec:
         hostPath:
           path: /etc/device_info.json
           type: FileOrCreate
+      - name: version
+        hostPath:
+          path: /home/fvt/QualityGrader/Api/version.json
+          type: File
+      - name: backup-versions
+        hostPath:
+          path: /home/fvt/QualityGrader/Api/backup_versions
+          type: DirectoryOrCreate
 {{- end }}
