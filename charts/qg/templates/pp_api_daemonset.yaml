@@ -96,7 +96,7 @@ spec:
       - name: version
         hostPath:
           path: /home/fvt/QualityGrader/Api/version.json
-          type: File
+          type: FileOrCreate
       - name: version-backups
         hostPath:
           path: /home/fvt/QualityGrader/Api/version_backups
