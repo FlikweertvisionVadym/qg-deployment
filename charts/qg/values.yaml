@@ -20,10 +20,10 @@ groups:
   production-update:
     software:
       QG:
-        softwareVersion: "dev_dev-orin"
+        softwareVersion: "dev_migration_manager_adjustments-orin"
         jetsonType: "orin"
       PanelPC-API:
-        softwareVersion: "dev_dev"
+        softwareVersion: "dev_migration_manager_adjustments"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
   production-jp5:
