@@ -1,13 +1,4 @@
 groups:
-  test-group:
-    software:
-      QG:
-        softwareVersion: "1.7.0-pc_docker-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
   production:
     software:
       QG:
@@ -15,24 +6,6 @@ groups:
         jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "v1.7.7-api"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
-  production-update:
-    software:
-      QG:
-        softwareVersion: "dev_dev-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "dev_dev"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
-  production-jp5:
-    software:
-      QG:
-        softwareVersion: "1.7.0-pc_docker_jp5-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
   production-vdberge:
@@ -62,12 +35,3 @@ groups:
         softwareVersion: "dev_1.7.0ppc_multi-model"
       PanelPC-GUI:
         softwareVersion: "dev_2.4.0-server"
-  multi-model-bugfix:
-    software:
-      QG:
-        softwareVersion: "dev_1.7.0-pc_multi-model-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "dev_1.7.0ppc_multi-model"
-      PanelPC-GUI:
-        softwareVersion: "dev_2.4.0-server_bugfix"
