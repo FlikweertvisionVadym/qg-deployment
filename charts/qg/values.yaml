@@ -1,45 +1,16 @@
 groups:
-  test-group:
-    software:
-      QG:
-        softwareVersion: "1.7.0-pc_docker-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
   production:
     software:
       QG:
         softwareVersion: "v1.7.7-pc-orin"
-        jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "v1.7.7-api"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
-  production-update:
-    software:
-      QG:
-        softwareVersion: "dev_dev-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "dev_dev"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
-  production-jp5:
-    software:
-      QG:
-        softwareVersion: "1.7.0-pc_docker_jp5-orin"
-        jetsonType: "orin"
-      PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
   production-vdberge:
     software:
       QG:
         softwareVersion: "1.7.0-pc_min-speed-limited-orin"
-        jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "1.7.0-ppc_docker"
       PanelPC-GUI:
@@ -47,13 +18,15 @@ groups:
   divider:
     software:
       DV:
-        softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier"
-        jetsonType: "xavier"
+        softwareVersion: "DV_dev_DV-new-interface-docker-orin"
+      PanelPC-API:
+        softwareVersion: "dev_divider_fix"
+      PanelPC-GUI:
+        softwareVersion: "2.3.0-server"
   multi-model:
     software:
       QG:
         softwareVersion: "dev_1.7.0-pc_multi-model-orin"
-        jetsonType: "orin"
       PanelPC-API:
         softwareVersion: "dev_1.7.0ppc_multi-model"
       PanelPC-GUI:
