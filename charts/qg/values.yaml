@@ -47,8 +47,8 @@ groups:
   divider:
     software:
       DV:
-        softwareVersion: "DV1.1.11-Main_Quiks-fn-suppressed_docker-xavier"
-        jetsonType: "xavier"
+        softwareVersion: "DV_dev_DV-new-interface-docker-orin"
+        jetsonType: "orin"
   multi-model:
     software:
       QG:
