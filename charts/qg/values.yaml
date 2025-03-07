@@ -49,6 +49,10 @@ groups:
       DV:
         softwareVersion: "DV_dev_DV-new-interface-docker-orin"
         jetsonType: "orin"
+      PanelPC-API:
+        softwareVersion: "dev_divider_fix"
+      PanelPC-GUI:
+        softwareVersion: "2.3.0-server"
   multi-model:
     software:
       QG:
