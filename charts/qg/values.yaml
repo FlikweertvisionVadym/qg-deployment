@@ -34,7 +34,7 @@ groups:
   multi-model-bugfix:
     software:
       QG:
-        softwareVersion: "dev_1.8.0_bugfix-orin"
+        softwareVersion: "dev_1.8.0pc_bugfix-orin"
       PanelPC-API:
         softwareVersion: "dev_1.8.0ppc_bugfix"
       PanelPC-GUI:
