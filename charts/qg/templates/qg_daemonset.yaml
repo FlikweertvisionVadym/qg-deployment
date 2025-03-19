@@ -27,7 +27,7 @@ spec:
         app: {{lower $software_type }}  # Unique labels for the pod
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
-      backoffLimit: 5
+      backoffLimit: 2
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: {{ $software_type }}
