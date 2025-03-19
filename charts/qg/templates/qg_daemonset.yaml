@@ -60,8 +60,9 @@ spec:
           httpGet:
             path: /machine_status_monitorings_systeem
             port: 5001
+          failureThreshold: 2
           initialDelaySeconds: 45
-          periodSeconds: 3
+          periodSeconds: 15
         volumeMounts:
         - name: classifier
           mountPath: /home/nvidia/QualityGrader/classifier
