@@ -56,7 +56,7 @@ spec:
           value: "all"
         securityContext:
           privileged: true  # Equivalent to --privileged
-        startupProbe:
+        livenessProbe:
           httpGet:
             path: /machine_status_monitorings_systeem
             port: 5001
