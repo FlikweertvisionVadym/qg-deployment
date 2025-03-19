@@ -60,6 +60,7 @@ spec:
           httpGet:
             path: /machine_status_monitorings_systeem
             port: 5001
+          failureThreshold: 2
           initialDelaySeconds: 60
           periodSeconds: 15
         volumeMounts:
