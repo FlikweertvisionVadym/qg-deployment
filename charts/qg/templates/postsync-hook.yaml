@@ -28,16 +28,26 @@ spec:
               ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
               cp /root/.ssh_copy/authorized_keys /tmp/authorized_keys
               cat ~/.ssh/id_rsa.pub >> /root/.ssh_copy/authorized_keys
-
+              
 
               chmod 700 ~/.ssh_copy
               chmod 600 ~/.ssh_copy/*
 
+              
+              endpoint="{{ $panelpc_ip }}:3000"
+
+              # Loop until the endpoint is reachable
+              while ! curl --silent --head $endpoint > /dev/null; do
+                echo "Waiting for endpoint $endpoint to be reachable..."
+                sleep 2  # Wait for 2 seconds before retrying
+              done
+
+              echo "Endpoint $endpoint is reachable. Proceeding..."
+
               COMMAND="sudo apt install -y screen && pgrep chrome | xargs kill -9 && sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c \\\"./kiosk.sh; exec bash\\\" exit\""
               ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "$COMMAND"
               cat ~/.ssh_copy/authorized_keys
-              # mv /tmp/authorized_keys /root/.ssh_copy/authorized_keys
-              sleep 1000
+              mv /tmp/authorized_keys /root/.ssh_copy/authorized_keys
           volumeMounts:
             - name: ssh-keys
               mountPath: /root/.ssh_copy
