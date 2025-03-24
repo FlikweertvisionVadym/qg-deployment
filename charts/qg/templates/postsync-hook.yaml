@@ -17,5 +17,27 @@ spec:
         - name: refresh-browser
           image: alpine/curl:latest
           command:
-            - echo "test"
+            - sh
+            - -c
+            - |
+              apk add --no-cache openssh
+              apk add --no-cache sshpass
+
+              ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+              cp /root/.ssh_copy/authorized_keys /tmp/authorized_keys
+              cat ~/.ssh/id_rsa.pub >> /root/.ssh_copy/authorized_keys
+
+              COMMAND="sudo apt install -y screen && pgrep chrome | xargs kill -9 && sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c \\\"./kiosk.sh; exec bash\\\" exit\""
+              ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "$COMMAND"
+
+              mv /tmp/authorized_keys /root/.ssh_copy/authorized_keys
+          volumeMounts:
+            - name: ssh-keys
+              mountPath: /root/.ssh_copy
       restartPolicy: Never
+      volumes:
+        - name: ssh-keys
+          hostPath:
+            path: /root/.ssh
+            type: Directory
+      
