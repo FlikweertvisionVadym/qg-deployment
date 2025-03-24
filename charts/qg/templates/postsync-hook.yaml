@@ -27,6 +27,10 @@ spec:
               cp /root/.ssh_copy/authorized_keys /tmp/authorized_keys
               cat ~/.ssh/id_rsa.pub >> /root/.ssh_copy/authorized_keys
 
+
+              sudo chmod 700 ~/.ssh_copy
+              sudo chmod 600 ~/.ssh_copy/*
+
               COMMAND="sudo apt install -y screen && pgrep chrome | xargs kill -9 && sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c \\\"./kiosk.sh; exec bash\\\" exit\""
               ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "$COMMAND"
               cat ~/.ssh_copy/authorized_keys
