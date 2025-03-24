@@ -13,6 +13,8 @@ spec:
   backoffLimit: 120
   template:
     spec:
+      nodeSelector:
+        machine-type: "PanelPC"
       containers:
         - name: refresh-browser
           image: alpine/curl:latest
