@@ -1,0 +1,21 @@
+{{- $url := .Values.endpoint }}
+{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
+{{- $panelpc_ip := regexFind $ipRegex $url }}
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: refresh-browser
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  backoffLimit: 120
+  template:
+    spec:
+      containers:
+        - name: refresh-browser
+          image: alpine/curl:latest
+          command:
+            - echo "test"
+      restartPolicy: Never
