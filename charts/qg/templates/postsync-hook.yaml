@@ -22,9 +22,6 @@ spec:
             - sh
             - -c
             - |
-              
-
-              
               endpoint="{{ $panelpc_ip }}:3000"
 
               # Loop until the endpoint is reachable
