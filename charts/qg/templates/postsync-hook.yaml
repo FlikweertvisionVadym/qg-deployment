@@ -22,16 +22,7 @@ spec:
             - sh
             - -c
             - |
-              apk add --no-cache openssh
-              apk add --no-cache sshpass
-
-              ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
-              cp /root/.ssh_copy/authorized_keys /tmp/authorized_keys
-              cat ~/.ssh/id_rsa.pub >> /root/.ssh_copy/authorized_keys
               
-
-              chmod 700 ~/.ssh_copy
-              chmod 600 ~/.ssh_copy/*
 
               
               endpoint="{{ $panelpc_ip }}:3000"
@@ -42,6 +33,13 @@ spec:
                 sleep 2  # Wait for 2 seconds before retrying
               done
 
+              apk add --no-cache openssh
+              apk add --no-cache sshpass
+
+              ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+              cp /root/.ssh_copy/authorized_keys /tmp/authorized_keys
+              cat ~/.ssh/id_rsa.pub >> /root/.ssh_copy/authorized_keys
+              
               echo "Endpoint $endpoint is reachable. Proceeding..."
 
               COMMAND="sudo apt install -y screen && pgrep chrome | xargs kill -9 && sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c \\\"./kiosk.sh; exec bash\\\" exit\""
