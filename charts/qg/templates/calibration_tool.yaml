@@ -46,6 +46,8 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/json_files/hardware_configuration
         - name: device-settings
           mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
+        - name: calibration-results
+          mountPath: /app/Calibration_results
 
       volumes:
       - name: json-files
@@ -56,6 +58,10 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/Api/device_settings.ini
           type: FileOrCreate
+      - name: calibration-results
+        hostPath:
+          path: /home/fvt/QualityGrader/calibration-results
+          type: DirectoryOrCreate
 {{- end }}
 
 ---
