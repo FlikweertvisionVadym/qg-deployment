@@ -91,7 +91,7 @@ spec:
 
       containers:
       - name: panelpc-calibration-interface-server
-        image: docker.io/flikweertvision/calibration-interface-server:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/calibration-interface-client:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: g-device-settings
