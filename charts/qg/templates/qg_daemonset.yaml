@@ -15,10 +15,6 @@ spec:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
       machine-type: {{ $software_type }}
-      mode: operating
-    matchExpressions:
-    - { key: mode, operator: DoesNotExist }
-    - { key: mode, operator: In, values: [operating] }
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -30,12 +26,21 @@ spec:
       labels:
         app: {{lower $software_type }}  # Unique labels for the pod
         machine-type: {{ $software_type }}  # Use the machine type for labeling
-        mode: operating
     spec:
       automountServiceAccountToken: false
-      nodeSelector:
-        machine-type: {{ $software_type }}
-        mode:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - {{ $software_type }}
+                  - key: mode
+                    operator: NotIn
+                    values:
+                      - calibrating
       
       tolerations:
       - key: nvidia.com/gpu
