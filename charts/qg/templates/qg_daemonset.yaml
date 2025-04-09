@@ -30,7 +30,7 @@ spec:
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: {{ $software_type }}
-        mode: operating
+        mode:
       
       tolerations:
       - key: nvidia.com/gpu
