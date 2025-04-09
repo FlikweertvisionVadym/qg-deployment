@@ -39,8 +39,6 @@ spec:
       - name: panelpc-calibration-interface-server
         image: docker.io/flikweertvision/calibration-interface-server:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
-        securityContext:
-          privileged: true  # Equivalent to --privileged
         volumeMounts:
         - name: json-files
           mountPath: /home/fvt/QualityGrader/Api/json_files/hardware_configuration
@@ -95,6 +93,8 @@ spec:
       - name: panelpc-calibration-interface-server
         image: docker.io/flikweertvision/calibration-interface-client:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true  # Equivalent to --privileged
         volumeMounts:
         - name: g-device-settings
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
