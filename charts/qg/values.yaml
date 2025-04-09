@@ -7,6 +7,8 @@ groups:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+      Calibration-Tool:
+        softwareVersion: "v0.1.1"
   production-vdberge:
     software:
       QG:
