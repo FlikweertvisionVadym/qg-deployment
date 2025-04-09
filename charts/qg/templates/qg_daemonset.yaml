@@ -15,6 +15,7 @@ spec:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
       machine-type: {{ $software_type }}
+      mode: operating
     matchExpressions:
     - { key: mode, operator: DoesNotExist }
     - { key: mode, operator: In, values: [operating] }
@@ -29,6 +30,7 @@ spec:
       labels:
         app: {{lower $software_type }}  # Unique labels for the pod
         machine-type: {{ $software_type }}  # Use the machine type for labeling
+        mode: operating
     spec:
       automountServiceAccountToken: false
       nodeSelector:
