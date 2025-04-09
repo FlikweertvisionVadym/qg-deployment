@@ -1,5 +1,5 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $software_type := "QG" }}
+{{- $software_type := "QG1" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
