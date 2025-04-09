@@ -15,6 +15,9 @@ spec:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
       machine-type: {{ $software_type }}
+    matchExpressions:
+    - { key: mode, operator: DoesNotExist }
+    - { key: mode, operator: In, values: [operating] }
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
