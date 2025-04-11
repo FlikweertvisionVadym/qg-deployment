@@ -33,6 +33,8 @@ groups:
         softwareVersion: "dev_1.8.0ppc_new-errors"
       PanelPC-GUI:
         softwareVersion: "dev_2.4.1-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.2"
   vs-flipper-test:
     software:
       QG:
