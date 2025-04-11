@@ -28,11 +28,11 @@ groups:
   multi-model:
     software:
       QG:
-        softwareVersion: "dev_1.7.0-pc_multi-model-orin"
+        softwareVersion: "dev_1.8.0pc_new-errors-orin"
       PanelPC-API:
-        softwareVersion: "dev_1.7.0ppc_multi-model"
+        softwareVersion: "dev_1.8.0ppc_new-errors"
       PanelPC-GUI:
-        softwareVersion: "dev_2.4.0-server"
+        softwareVersion: "dev_2.4.1-server"
   vs-flipper-test:
     software:
       QG:
