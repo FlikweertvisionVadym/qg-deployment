@@ -43,3 +43,11 @@ groups:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+  flipper-opcua-hotfix-test:
+    software:
+      QG:
+        softwareVersion: "dev_hotfix_vs-flipper-test_opcua-timeout-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "2.3.0-server"
