@@ -14,7 +14,7 @@ data:
           fallthrough in-addr.arpa ip6.arpa
         }
         hosts /etc/coredns/NodeHosts {
-          10.10.4.10 rmq.flikweertvision.nl
+          10.187.50.7 rmq.flikweertvision.nl
           ttl 60
           reload 15s
           fallthrough
