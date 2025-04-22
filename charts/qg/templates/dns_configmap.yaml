@@ -6,10 +6,6 @@ metadata:
 data:
   Corefile: |
     .:53 {
-        hosts {
-            10.187.50.7 rmq.flikweertvision.nl
-            fallthrough
-        }
         errors
         health
         ready
