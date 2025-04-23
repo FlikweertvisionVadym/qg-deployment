@@ -39,3 +39,11 @@ groups:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+  v179:
+    software:
+      QG:
+        softwareVersion: "v1.7.9-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "2.3.0-server"
