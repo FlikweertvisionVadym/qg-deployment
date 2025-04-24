@@ -48,6 +48,9 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
         - name: calibration-results
           mountPath: /app/Calibration_results
+        - name: kube-config
+          mountPath: /etc/rancher/k3s/k3s.yaml
+          readOnly: true
 
       volumes:
       - name: json-files
@@ -62,6 +65,11 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/calibration-results
           type: DirectoryOrCreate
+      - name: kube-config
+        hostPath:
+          path: /etc/rancher/k3s/k3s.yaml
+          type: File
+          
 {{- end }}
 
 ---
