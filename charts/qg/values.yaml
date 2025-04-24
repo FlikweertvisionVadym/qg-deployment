@@ -2,9 +2,9 @@ groups:
   production:
     software:
       QG:
-        softwareVersion: "dev_refactor_merge-orin"
+        softwareVersion: "v1.7.8-pc-orin"
       PanelPC-API:
-        softwareVersion: "dev_refactor_merge"
+        softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
       Calibration-Tool:
