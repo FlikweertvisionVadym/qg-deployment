@@ -106,6 +106,7 @@ spec:
       automountServiceAccountToken: false
       nodeSelector:
         mode: calibrating
+        machine-type: QG
 
       hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
