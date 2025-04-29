@@ -28,26 +28,11 @@ spec:
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: machine-type
-                    operator: In
-                    values:
-                      - "QG"      
-      tolerations:
-      - key: nvidia.com/gpu
-        operator: Exists
-        effect: NoSchedule
-      - key: maintanance-mode
-        operator: Exists
-        effect: NoSchedule
-
       imagePullSecrets:
       - name: regcred
-      
+      nodeSelector:
+        machine-type: "QG"
+
       hostNetwork: true
       
       containers:
