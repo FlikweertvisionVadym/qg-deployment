@@ -1,0 +1,65 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "Plc-Tool" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps.kruise.io/v1alpha1
+kind: DaemonSet  # Changed to DaemonSet
+metadata:
+  name: {{lower $software_type }}-plc-tool-software-daemonset  # Updated name to reflect the DaemonSet type
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    apps.kruise.io/image-predownload-parallelism: "10"
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
+      rollingUpdateType: Standard
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
+    spec:
+      automountServiceAccountToken: false
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - "QG"      
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      - key: maintanance-mode
+        operator: Exists
+        effect: NoSchedule
+
+      imagePullSecrets:
+      - name: regcred
+      
+      hostNetwork: true
+      
+      containers:
+      - name: quality-grader
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $software.softwareVersion }}  # Use the correct image version
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+      
+      volumes:
+      - name: g-device-settings
+        hostPath:
+          path: /home/nvidia/QualityGrader/G_device_settings.ini
+          type: FileOrCreate
+{{- end }}
