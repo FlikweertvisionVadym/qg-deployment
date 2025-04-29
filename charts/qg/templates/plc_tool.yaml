@@ -3,9 +3,9 @@
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
-kind: DaemonSet  # Changed to DaemonSet
+kind: Job
 metadata:
-  name: {{lower $software_type }}-plc-tool-software-daemonset
+  name: {{lower $software_type }}-plc-tool-software-job
   namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -26,9 +26,7 @@ spec:
       - name: regcred
       nodeSelector:
         machine-type: "QG"
-
       hostNetwork: true
-      
       containers:
       - name: quality-grader
         image: docker.io/flikweertvision/plc_deploy_backup:{{ $software.softwareVersion }}
@@ -36,7 +34,6 @@ spec:
         volumeMounts:
         - name: g-device-settings
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
-      
       volumes:
       - name: g-device-settings
         hostPath:
