@@ -5,7 +5,7 @@
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower $software_type }}-plc-tool-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-plc-tool-software-daemonset
   namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -13,19 +13,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{lower $software_type }}  # Ensure the label matches the selector
+      app: {{lower $software_type }}
       machine-type: {{ $software_type }}
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 100%
-      maxUnavailable: 0
-      rollingUpdateType: Standard
   template:
     metadata:
       labels:
-        app: {{lower $software_type }}  # Unique labels for the pod
-        machine-type: {{ $software_type }}  # Use the machine type for labeling
+        app: {{lower $software_type }}
+        machine-type: {{ $software_type }}
     spec:
       automountServiceAccountToken: false
       imagePullSecrets:
@@ -37,7 +31,7 @@ spec:
       
       containers:
       - name: quality-grader
-        image: docker.io/flikweertvision/plc_deploy_backup:{{ $software.softwareVersion }}  # Use the correct image version
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         volumeMounts:
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini

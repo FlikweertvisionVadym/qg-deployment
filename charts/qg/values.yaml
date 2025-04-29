@@ -37,6 +37,8 @@ groups:
         softwareVersion: "dev_2.4.1-server"
       Calibration-Tool:
         softwareVersion: "v0.2.2"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.6_SP18"
   vs-flipper-test:
     software:
       QG:
@@ -45,6 +47,8 @@ groups:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.6_SP18"
   179-test:
     software:
       QG:
