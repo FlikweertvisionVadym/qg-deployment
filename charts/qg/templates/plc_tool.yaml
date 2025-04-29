@@ -34,6 +34,7 @@ spec:
         image: docker.io/flikweertvision/plc_deploy_backup:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         volumeMounts:
+        - name: g-device-settings
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
       
       volumes:
