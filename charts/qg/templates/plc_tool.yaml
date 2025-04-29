@@ -3,7 +3,7 @@
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: batch/v1
-kind: Job
+kind: Daemonset
 metadata:
   name: plc-tool-software-job
   namespace: default
