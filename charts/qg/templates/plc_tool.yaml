@@ -31,4 +31,6 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/G_device_settings.ini
           type: FileOrCreate
+
+      restartPolicy: Never
 {{- end }}
