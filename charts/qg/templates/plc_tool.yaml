@@ -2,7 +2,7 @@
 {{- $software_type := "Plc-Tool" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
-apiVersion: batch/v1
+apiVersion: apps.kruise.io/v1alpha1
 kind: Daemonset
 metadata:
   name: plc-tool-software-daemonset
