@@ -11,7 +11,15 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
   template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }} 
     spec:
       automountServiceAccountToken: false
       imagePullSecrets:
