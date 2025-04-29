@@ -3,7 +3,7 @@
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
-kind: Daemonset
+kind: DaemonSet
 metadata:
   name: plc-tool-software-daemonset
   namespace: default
