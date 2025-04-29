@@ -5,21 +5,13 @@
 apiVersion: apps.kruise.io/v1alpha1
 kind: Job
 metadata:
-  name: {{lower $software_type }}-plc-tool-software-job
+  name: plc-tool-software-job
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
-    apps.kruise.io/image-predownload-parallelism: "10"
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
 spec:
-  selector:
-    matchLabels:
-      app: {{lower $software_type }}
-      machine-type: {{ $software_type }}
   template:
-    metadata:
-      labels:
-        app: {{lower $software_type }}
-        machine-type: {{ $software_type }}
     spec:
       automountServiceAccountToken: false
       imagePullSecrets:
