@@ -70,7 +70,7 @@ groups:
       PanelPC-API:
         softwareVersion: "dev_new_model_selection"
       PanelPC-GUI:
-        softwareVersion: "dev_2.4.1-server"
+        softwareVersion: "dev_new-model-selector"
       Calibration-Tool:
         softwareVersion: "v0.2.12"
       Plc-Tool:
