@@ -8,7 +8,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.24"
+        softwareVersion: "v0.2.25"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   qg_179:
@@ -20,7 +20,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.24"
+        softwareVersion: "v0.2.25"
       Plc-Tool:
         softwareVersion: "QG_V2.4.4_SP18"
   qg_180:
@@ -32,7 +32,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.24"
+        softwareVersion: "v0.2.25"
       Plc-Tool:
         softwareVersion: "QG_V2.4.4_SP18"
   qg_181:
@@ -44,7 +44,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.24"
+        softwareVersion: "v0.2.25"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
   production-vdberge:
@@ -72,7 +72,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_new-model-selector"
       Calibration-Tool:
-        softwareVersion: "v0.2.24"
+        softwareVersion: "v0.2.25"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   vs-flipper-test:
@@ -94,6 +94,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.24"
+        softwareVersion: "v0.2.25"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
