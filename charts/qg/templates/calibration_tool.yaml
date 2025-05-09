@@ -1,0 +1,142 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "Calibration-Tool" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps.kruise.io/v1alpha1
+kind: DaemonSet  # Changed to DaemonSet
+metadata:
+  name: {{lower $software_type }}-calibration-tool-server-software-daemonset  # Updated name to reflect the DaemonSet type
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    apps.kruise.io/image-predownload-parallelism: "10"
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
+      rollingUpdateType: Standard
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector:
+        machine-type: "PanelPC"
+
+      hostNetwork: true  # Equivalent to --net=host
+      imagePullSecrets:
+      - name: regcred
+
+      containers:
+      - name: panelpc-calibration-interface-server
+        image: docker.io/flikweertvision/calibration-interface-server:{{ $software.softwareVersion }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true  # Equivalent to --privileged
+        volumeMounts:
+        - name: json-files
+          mountPath: /home/fvt/QualityGrader/Api/json_files/hardware_configuration
+        - name: device-settings
+          mountPath: /home/fvt/QualityGrader/Api/device_settings.ini
+        - name: calibration-results
+          mountPath: /app/Calibration_results
+        - name: kube-config
+          mountPath: /etc/rancher/k3s/k3s.yaml
+          readOnly: true
+
+      volumes:
+      - name: json-files
+        hostPath:
+          path: /home/fvt/QualityGrader/Api/json_files/hardware_configuration
+          type: DirectoryOrCreate
+      - name: device-settings
+        hostPath:
+          path: /home/fvt/QualityGrader/Api/device_settings.ini
+          type: FileOrCreate
+      - name: calibration-results
+        hostPath:
+          path: /home/fvt/QualityGrader/calibration-results
+          type: DirectoryOrCreate
+      - name: kube-config
+        hostPath:
+          path: /etc/rancher/k3s/k3s.yaml
+          type: File
+          
+{{- end }}
+
+---
+
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "Calibration-Tool" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps.kruise.io/v1alpha1
+kind: DaemonSet  # Changed to DaemonSet
+metadata:
+  name: {{lower $software_type }}-calibration-tool-client-software-daemonset  # Updated name to reflect the DaemonSet type
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    apps.kruise.io/image-predownload-parallelism: "10"
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
+      rollingUpdateType: Standard
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector:
+        mode: calibrating
+        machine-type: QG
+
+      hostNetwork: true  # Equivalent to --net=host
+      imagePullSecrets:
+      - name: regcred
+
+      containers:
+      - name: panelpc-calibration-interface-server
+        image: docker.io/flikweertvision/calibration-interface-client:{{ $software.softwareVersion }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true  # Equivalent to --privileged
+        volumeMounts:
+        - name: g-device-settings
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+        - name: qg-device-settings
+          mountPath: /home/nvidia/QualityGrader/QG_device_settings.ini
+        - name: vs-device-settings
+          mountPath: /home/nvidia/QualityGrader/VS_device_settings.ini
+
+      volumes:
+      - name: g-device-settings
+        hostPath:
+          path: /home/nvidia/QualityGrader/G_device_settings.ini
+          type: FileOrCreate
+      - name: qg-device-settings
+        hostPath:
+          path: /home/nvidia/QualityGrader/QG_device_settings.ini
+          type: FileOrCreate
+      - name: vs-device-settings
+        hostPath:
+          path: /home/nvidia/QualityGrader/VS_device_settings.ini
+          type: FileOrCreate
+{{- end }}

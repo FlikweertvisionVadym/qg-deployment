@@ -1,6 +1,8 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "QG" }}
 {{- $software := $software_type | index $group.software}}
+# {{- $plc_softw := "Plc-Tool" }}
+# {{- $plc := $plc_softw | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
@@ -28,8 +30,19 @@ spec:
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      nodeSelector:
-        machine-type: {{ $software_type }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - {{ $software_type }}
+                  - key: mode
+                    operator: NotIn
+                    values:
+                      - calibrating
       
       tolerations:
       - key: nvidia.com/gpu
@@ -86,6 +99,13 @@ spec:
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
       
+      # initContainers:
+      # - name: plc-tool
+      #   image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
+      #   volumeMounts:
+      #   - name: g-device-settings
+      #     mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+
       volumes:
       - name: classifier
         hostPath:
@@ -131,4 +151,6 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/images
           type: DirectoryOrCreate
+      
+    
 {{- end }}
