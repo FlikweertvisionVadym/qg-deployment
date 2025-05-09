@@ -11,6 +11,18 @@ groups:
         softwareVersion: "v0.2.26"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
+  production_calibration-tool:
+    software:
+      QG:
+        softwareVersion: "v1.7.8-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.26"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.6_SP18"
   qg_179:
     software:
       QG:
