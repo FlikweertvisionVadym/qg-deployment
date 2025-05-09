@@ -1,8 +1,8 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "QG" }}
 {{- $software := $software_type | index $group.software}}
-{{- $plc_softw := "Plc-Tool" }}
-{{- $plc := $plc_softw | index $group.software}}
+# {{- $plc_softw := "Plc-Tool" }}
+# {{- $plc := $plc_softw | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
