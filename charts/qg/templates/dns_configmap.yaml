@@ -15,6 +15,7 @@ data:
         }
         hosts /etc/coredns/NodeHosts {
           10.187.50.7 rmq.flikweertvision.nl
+          10.187.50.7 api.flikweertvision.nl
           ttl 60
           reload 15s
           fallthrough
