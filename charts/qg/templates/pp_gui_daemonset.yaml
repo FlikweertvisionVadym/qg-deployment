@@ -48,6 +48,8 @@ spec:
         env:
         - name: NUXT_PUBLIC_API_URL
           value: "http://{{ $panelpc_ip }}:5000"
+        - name: CALIBRATION_TOOL_URL
+          value: "http://{{ $panelpc_ip }}:5123"
         volumeMounts:
         - name: gui-build-artifacts
           mountPath: /app/.output/

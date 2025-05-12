@@ -7,6 +7,8 @@ groups:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.30"
   production-vdberge:
     software:
       QG:
@@ -15,6 +17,8 @@ groups:
         softwareVersion: "1.7.0-ppc_docker"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.30"
   divider:
     software:
       DV:
@@ -23,6 +27,8 @@ groups:
         softwareVersion: "dev_divider_fix"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.30"
   multi-model:
     software:
       QG:
@@ -31,6 +37,8 @@ groups:
         softwareVersion: "dev_1.8.0ppc_bugfix"
       PanelPC-GUI:
         softwareVersion: "dev_2.4.1-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.30"
   vs-flipper-test:
     software:
       QG:
@@ -39,3 +47,15 @@ groups:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
         softwareVersion: "2.3.0-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.30"
+  service-round-xavier-swap:
+    software:
+      QG:
+        softwareVersion: "v1.7.9-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.30"
