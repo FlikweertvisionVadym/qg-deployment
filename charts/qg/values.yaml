@@ -29,6 +29,16 @@ groups:
         softwareVersion: "2.3.0-server"
       Calibration-Tool:
         softwareVersion: "v0.2.34"
+  divider-test:
+    software:
+      DV:
+        softwareVersion: "DV_dev_DV-fixed-button-docker-orin"
+      PanelPC-API:
+        softwareVersion: "dev_divider_fix"
+      PanelPC-GUI:
+        softwareVersion: "dev_combined-interface-docker"
+      Calibration-Tool:
+        softwareVersion: "v0.2.34"
   multi-model:
     software:
       QG:
