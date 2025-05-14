@@ -40,7 +40,7 @@ spec:
               echo "Endpoint $endpoint is reachable. Proceeding..."
 
               COMMAND_KILL_CHROME="sudo apt install -y screen && pgrep chrome | xargs kill -9;"
-              COMMAND_START_CHROME="sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c \\\"./kiosk.sh; exec bash\\\" exit\""
+              COMMAND_START_CHROME="sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c './kiosk.sh; exec bash' exit\""
               ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "$COMMAND_KILL_CHROME"
               ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "$COMMAND_START_CHROME"
               cat ~/.ssh_copy/authorized_keys
