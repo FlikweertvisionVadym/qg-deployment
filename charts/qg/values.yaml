@@ -34,7 +34,7 @@ groups:
       QG:
         softwareVersion: "dev_1.8.0pc_new-errors-orin"
       PanelPC-API:
-        softwareVersion: "dev_1.8.0ppc_bugfix"
+        softwareVersion: "dev_new_model_selection"
       PanelPC-GUI:
         softwareVersion: "dev_new-model-selector"
       Calibration-Tool:
