@@ -39,6 +39,32 @@ spec:
               
               echo "Endpoint $endpoint is reachable. Proceeding..."
 
+              # Update kiosk.sh to ensure the correct user-agent is set
+              UPDATE_USER_AGENT_SCRIPT='
+              if grep -q "/usr/bin/chromium-browser" /home/kiosk/kiosk.sh; then
+                if grep -q -- "--user-agent=" /home/kiosk/kiosk.sh; then
+                  # User agent flag exists, update if needed
+                  if ! grep -q -- "--user-agent=\"UA_panelpc_fvt\"" /home/kiosk/kiosk.sh; then
+                    # Replace existing user-agent with the correct one
+                    sed -i "s/--user-agent=[^[:space:]]*/--user-agent=\"UA_panelpc_fvt\"/" /home/kiosk/kiosk.sh
+                    echo "Updated user-agent parameter"
+                  else
+                    echo "User-agent parameter already set correctly"
+                  fi
+                else
+                  # User agent flag doesn't exist, add it as the first argument
+                  sed -i "s|/usr/bin/chromium-browser|/usr/bin/chromium-browser --user-agent=\"UA_panelpc_fvt\"|" /home/kiosk/kiosk.sh
+                  echo "Added user-agent parameter"
+                fi
+              else
+                echo "Could not find chromium-browser command in kiosk.sh"
+              fi
+              '
+              
+              # Execute the update script on the remote machine
+              ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "bash -c '$UPDATE_USER_AGENT_SCRIPT'"
+              
+              # Then proceed with restarting the browser
               COMMAND_KILL_CHROME="sudo apt install -y screen && pgrep chrome | xargs kill -9;"
               COMMAND_START_CHROME="sudo -u kiosk -i bash -c \"export DISPLAY=:0 && screen -S start_browser -d -m bash -c './kiosk.sh; exec bash' exit\""
               ssh -o StrictHostKeyChecking=no root@{{ $panelpc_ip }} "$COMMAND_KILL_CHROME"
@@ -54,4 +80,3 @@ spec:
           hostPath:
             path: /root/.ssh
             type: Directory
-      
