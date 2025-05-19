@@ -47,7 +47,7 @@ spec:
           privileged: true
         env:
         - name: NUXT_PUBLIC_API_URL
-          value: "/api"
+          value: "http://{{ $panelpc_ip }}:9090/api"
         - name: CALIBRATION_TOOL_URL
           value: "http://{{ $panelpc_ip }}:5123"
         volumeMounts:
