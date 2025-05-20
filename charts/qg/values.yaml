@@ -32,11 +32,11 @@ groups:
   multi-model:
     software:
       QG:
-        softwareVersion: "dev_1.8.0pc_bugfix-orin"
+        softwareVersion: "dev_1.8.1-pc_rc.1-orin"
       PanelPC-API:
-        softwareVersion: "dev_1.8.0ppc_bugfix"
+        softwareVersion: "dev_1.8.1-ppc_rc.1"
       PanelPC-GUI:
-        softwareVersion: "dev_2.4.1-server"
+        softwareVersion: "dev_2.4.1-server_rc.1"
       Calibration-Tool:
         softwareVersion: "v0.2.34"
   vs-flipper-test:
