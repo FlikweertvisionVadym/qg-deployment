@@ -69,3 +69,27 @@ groups:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
         softwareVersion: "v0.2.48"
+  qg_181:
+    software:
+      QG:
+        softwareVersion: "dev_1.8.1-pc_rc.1-orin"
+      PanelPC-API:
+        softwareVersion: "dev_1.8.1-ppc_rc.1"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.4.1-server_rc.1"
+      Calibration-Tool:
+        softwareVersion: "v0.2.48"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.4_SP18"
+  qg_182:
+    software:
+      QG:
+        softwareVersion: "dev_MD-315_add-sensors-orin"
+      PanelPC-API:
+        softwareVersion: "dev_1.8.1-ppc_rc.1"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.4.1-server_rc.1"
+      Calibration-Tool:
+        softwareVersion: "v0.2.48"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.7_SP18"

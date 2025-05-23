@@ -1,8 +1,8 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "QG" }}
 {{- $software := $software_type | index $group.software}}
-# {{- $plc_softw := "Plc-Tool" }}
-# {{- $plc := $plc_softw | index $group.software}}
+{{- $plc_softw := "Plc-Tool" }}
+{{- $plc := $plc_softw | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
@@ -99,12 +99,12 @@ spec:
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
       
-      # initContainers:
-      # - name: plc-tool
-      #   image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
-      #   volumeMounts:
-      #   - name: g-device-settings
-      #     mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+      initContainers:
+      - name: plc-tool
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
+        volumeMounts:
+        - name: g-device-settings
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
 
       volumes:
       - name: classifier
