@@ -6,9 +6,9 @@ groups:
       PanelPC-API:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.34"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
   production_plc:
@@ -18,23 +18,11 @@ groups:
       PanelPC-API:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.34"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
-        softwareVersion: "QG_V2.4.4_SP18"
-  production-vdberge:
-    software:
-      QG:
-        softwareVersion: "1.7.0-pc_min-speed-limited-orin"
-      PanelPC-API:
-        softwareVersion: "1.7.0-ppc_docker"
-      PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
-      Calibration-Tool:
-        softwareVersion: "v0.2.34"
-      Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   divider:
     software:
       DV:
@@ -44,7 +32,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_combined-interface-docker"
       Calibration-Tool:
-        softwareVersion: "v0.2.34"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
   multi-model:
@@ -56,7 +44,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.4.1-server_rc.1"
       Calibration-Tool:
-        softwareVersion: "v0.2.34"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
   vs-flipper-test:
@@ -66,9 +54,9 @@ groups:
       PanelPC-API:
         softwareVersion: "v1.7.7-api"
       PanelPC-GUI:
-        softwareVersion: "2.3.0-server"
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.34"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
   service-round-xavier-swap:
@@ -80,19 +68,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.34"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
-
-  qg_182_test:
-    software:
-      QG:
-        softwareVersion: "dev_MD-315_add-sensors-orin"
-      PanelPC-API:
-        softwareVersion: "dev_1.8.1-ppc_rc.1"
-      PanelPC-GUI:
-        softwareVersion: "dev_2.4.1-server_rc.1"
-      Calibration-Tool:
-        softwareVersion: "v0.2.34"
-      Plc-Tool:
-        softwareVersion: "QG_V2.4.7_SP18"
