@@ -152,5 +152,5 @@ spec:
           path: /home/nvidia/QualityGrader/images
           type: DirectoryOrCreate
       
-    
+   
 {{- end }}
