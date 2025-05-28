@@ -22,7 +22,7 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.51"
       Plc-Tool:
-        softwareVersion: "QG_V2.4.4_SP18"
+        softwareVersion: "QG_V2.4.6_SP18"
   divider:
     software:
       DV:
