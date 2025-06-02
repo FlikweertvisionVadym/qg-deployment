@@ -42,7 +42,7 @@ groups:
       PanelPC-API:
         softwareVersion: "dev_1.8.1-ppc_rc.2"
       PanelPC-GUI:
-        softwareVersion: "dev_2.4.1-server_rc.2"
+        softwareVersion: "dev_2.4.1-server_rc.3"
       Calibration-Tool:
         softwareVersion: "v0.2.51"
       Plc-Tool:
