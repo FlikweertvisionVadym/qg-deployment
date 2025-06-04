@@ -38,11 +38,11 @@ groups:
   multi-model:
     software:
       QG:
-        softwareVersion: "dev_1.8.1-pc_rc.1-orin"
+        softwareVersion: "dev_1.8.1-pc_rc.2-orin"
       PanelPC-API:
-        softwareVersion: "dev_1.8.1-ppc_rc.1"
+        softwareVersion: "dev_1.8.1-ppc_rc.2"
       PanelPC-GUI:
-        softwareVersion: "dev_2.4.1-server_rc.1"
+        softwareVersion: "dev_2.4.1-server_rc.3"
       Calibration-Tool:
         softwareVersion: "v0.2.51"
       Plc-Tool:
