@@ -8,7 +8,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "empty"
   production_plc:
@@ -20,7 +20,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   divider:
@@ -32,7 +32,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_combined-interface-docker"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "empty"
   multi-model:
@@ -44,7 +44,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.4.1-server_rc.3"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "empty"
   vs-flipper-test:
@@ -56,7 +56,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "empty"
   service-round-xavier-swap:
@@ -68,7 +68,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "empty"
   mock-image-collection:
@@ -80,6 +80,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.57"
+        softwareVersion: "v0.2.58"
       Plc-Tool:
         softwareVersion: "empty"
