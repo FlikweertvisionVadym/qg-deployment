@@ -71,3 +71,39 @@ groups:
         softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
+  production-europe:
+    software:
+      QG:
+        softwareVersion: "v1.7.9-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.51"
+      Plc-Tool:
+        softwareVersion: "empty"
+  production-asian-oceania:
+    software:
+      QG:
+        softwareVersion: "v1.7.9-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.51"
+      Plc-Tool:
+        softwareVersion: "empty"
+  production-americas:
+    software:
+      QG:
+        softwareVersion: "v1.7.9-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.51"
+      Plc-Tool:
+        softwareVersion: "empty"
