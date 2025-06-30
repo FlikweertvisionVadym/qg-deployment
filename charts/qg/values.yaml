@@ -110,7 +110,7 @@ groups:
   added-sensors-test:
     software:
       QG:
-        softwareVersion: "v1.8.1-pc-orin"
+        softwareVersion: "dev_MD-315_add-sensors-orin"
       PanelPC-API:
         softwareVersion: "v1.8.1-api"
       PanelPC-GUI:
@@ -118,4 +118,4 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.51"
       Plc-Tool:
-        softwareVersion: "QG_V2.4.6_SP18"
+        softwareVersion: "QG_V2.4.7_SP18"
