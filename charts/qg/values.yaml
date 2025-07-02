@@ -11,6 +11,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   production-mm-release-0:
     software:
       QG:
@@ -23,6 +25,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   production-mm-release-1:
     software:
       QG:
@@ -35,6 +39,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   production-mm-release-2:
     software:
       QG:
@@ -47,6 +53,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   production_plc:
     software:
       QG:
@@ -59,6 +67,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   divider:
     software:
       DV:
@@ -71,6 +81,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   multi-model:
     software:
       QG:
@@ -83,6 +95,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   vs-flipper-test:
     software:
       QG:
@@ -95,6 +109,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   service-round-xavier-swap:
     software:
       QG:
@@ -107,6 +123,8 @@ groups:
         softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   mock-image-collection:
     software:
       QG:
@@ -119,6 +137,8 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   added-sensors-test:
     software:
       QG:
@@ -131,6 +151,8 @@ groups:
         softwareVersion: "v0.2.68"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
   calibration-tool-test:
     software:
       QG:
@@ -143,3 +165,5 @@ groups:
         softwareVersion: "v0.2.70"
       Plc-Tool:
         softwareVersion: "empty"
+      Batch-Uploader:
+        softwareVersion: "v0.0.1"
