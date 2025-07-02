@@ -140,6 +140,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.68"
+        softwareVersion: "v0.2.70"
       Plc-Tool:
         softwareVersion: "empty"
