@@ -152,7 +152,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
       Batch-Uploader:
-        softwareVersion: "v0.0.1"
+        softwareVersion: "v0.0.2"
   calibration-tool-test:
     software:
       QG:
