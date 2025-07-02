@@ -1,0 +1,39 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "Batch-Uploader" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps.kruise.io/v1alpha1
+kind: DaemonSet  # Changed to DaemonSet
+metadata:
+  name: {{lower $software_type }}-batch-uploader-software-daemonset  # Updated name to reflect the DaemonSet type
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    apps.kruise.io/image-predownload-parallelism: "10"
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}  # Ensure the label matches the selector
+      machine-type: {{ $software_type }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
+      rollingUpdateType: Standard
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}  # Unique labels for the pod
+        machine-type: {{ $software_type }}  # Use the machine type for labeling
+    spec:
+      automountServiceAccountToken: false
+     
+      imagePullSecrets:
+      - name: regcred
+
+      containers:
+      - name: batch-uploader
+        image: docker.io/flikweertvision/batch-uploader:{{ $software.softwareVersion }}
+        imagePullPolicy: IfNotPresent
+{{- end }}
