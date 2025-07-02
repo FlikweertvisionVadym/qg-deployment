@@ -28,6 +28,21 @@ spec:
         machine-type: "QG"  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - "QG"
+      
+      tolerations:
+      - key: maintanance-mode
+        operator: Exists
+        effect: NoSchedule
      
       imagePullSecrets:
       - name: regcred
