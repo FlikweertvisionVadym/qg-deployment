@@ -122,9 +122,9 @@ groups:
   added-sensors-test:
     software:
       QG:
-        softwareVersion: "dev_MD-315_add-sensors-orin"
+        softwareVersion: "dev_MD-315_added-sensors-with-status-33-orin"
       PanelPC-API:
-        softwareVersion: "v1.8.1-api"
+        softwareVersion: "dev_add-error-33"
       PanelPC-GUI:
         softwareVersion: "v2.4.1-server"
       Calibration-Tool:
