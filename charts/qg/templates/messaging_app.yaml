@@ -14,7 +14,6 @@ spec:
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
-      machine-type: {{ $software_type }}
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -25,7 +24,6 @@ spec:
     metadata:
       labels:
         app: {{lower $software_type }}  # Unique labels for the pod
-        machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
 
