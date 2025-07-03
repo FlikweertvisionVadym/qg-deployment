@@ -28,15 +28,6 @@ spec:
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: machine-type
-                    operator: In
-                    values:
-                      - {{ $software_type }}
 
       hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
