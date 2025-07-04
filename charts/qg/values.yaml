@@ -178,6 +178,6 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.51"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
       Messaging-App:
         softwareVersion: "0.0.1"
