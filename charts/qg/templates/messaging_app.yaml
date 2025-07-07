@@ -5,7 +5,7 @@
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet
 metadata:
-  name: {{lower $software_type }}-messaging-app-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "0"
