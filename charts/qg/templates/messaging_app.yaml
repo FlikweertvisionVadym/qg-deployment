@@ -35,6 +35,15 @@ spec:
       - name: messaging-app
         image: docker.io/flikweertvision/msg-app-excercise:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
+        env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: APP_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: {{lower $software_type }}-software-daemonset
         volumeMounts:
         - name: kube-config
           mountPath: /etc/rancher/k3s/k3s.yaml
