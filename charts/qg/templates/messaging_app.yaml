@@ -25,7 +25,7 @@ spec:
       labels:
         app: {{lower $software_type }}  # Unique labels for the pod
     spec:
-      automountServiceAccountToken: false
+      automountServiceAccountToken: true
 
       hostNetwork: true  # Equivalent to --net=host
       imagePullSecrets:
