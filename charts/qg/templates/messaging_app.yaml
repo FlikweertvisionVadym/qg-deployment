@@ -5,7 +5,7 @@
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet
 metadata:
-  name: {{lower $software_type }}-Messaging-App-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -14,7 +14,6 @@ spec:
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
-      machine-type: {{ $software_type }}
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -25,7 +24,6 @@ spec:
     metadata:
       labels:
         app: {{lower $software_type }}  # Unique labels for the pod
-        machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
 
@@ -37,9 +35,5 @@ spec:
       - name: messaging-app
         image: docker.io/flikweertvision/msg-app-excercise:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
-        # volumeMounts:
-        # - name: kube-config
-        #   mountPath: /etc/rancher/k3s/k3s.yaml
-        #   readOnly: true
           
 {{- end }}
