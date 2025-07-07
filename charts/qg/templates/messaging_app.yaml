@@ -35,5 +35,15 @@ spec:
       - name: messaging-app
         image: docker.io/flikweertvision/msg-app-excercise:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: kube-config
+          mountPath: /etc/rancher/k3s/k3s.yaml
+          readOnly: true
+
+      volumes:
+      - name: kube-config
+        hostPath:
+          path: /etc/rancher/k3s/k3s.yaml
+          type: File
           
 {{- end }}
