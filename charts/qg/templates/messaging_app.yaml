@@ -16,12 +16,6 @@ spec:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
       machine-type: {{ $software_type }}
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 100%
-      maxUnavailable: 0
-      rollingUpdateType: Standard
   template:
     metadata:
       labels:
