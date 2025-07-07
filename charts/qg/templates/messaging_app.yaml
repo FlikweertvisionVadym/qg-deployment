@@ -35,6 +35,8 @@ spec:
       - name: messaging-app
         image: docker.io/flikweertvision/msg-app-excercise:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true  # Equivalent to --privileged
         env:
           - name: POD_IP
             valueFrom:
