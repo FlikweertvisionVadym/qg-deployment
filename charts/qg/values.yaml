@@ -170,7 +170,7 @@ groups:
   hotfix-validate-model:
     software:
       QG:
-        softwareVersion: "dev_validate_model_hotfix-orin"
+        softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
         softwareVersion: "v1.8.1-api"
       PanelPC-GUI:
