@@ -26,7 +26,7 @@ spec:
         app: {{lower $software_type }}  # Unique labels for the pod
     spec:
       automountServiceAccountToken: true
-      
+
       imagePullSecrets:
       - name: regcred
 
@@ -42,9 +42,21 @@ spec:
               fieldRef:
                 fieldPath: status.podIP
           - name: APP_NAME
-            value: {{lower $software_type }}-software-daemonset
+            value: {{lower $software_type }}-software-service
           
 {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{lower $software_type }}-software-service
+spec:
+  selector:
+    app: {{lower $software_type }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
