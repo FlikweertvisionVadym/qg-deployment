@@ -44,16 +44,6 @@ spec:
                 fieldPath: status.podIP
           - name: APP_NAME
             value: {{lower $software_type }}-software-daemonset
-        volumeMounts:
-        - name: kube-config
-          mountPath: /etc/rancher/k3s/k3s.yaml
-          readOnly: true
-
-      volumes:
-      - name: kube-config
-        hostPath:
-          path: /etc/rancher/k3s/k3s.yaml
-          type: File
           
 {{- end }}
 ---
