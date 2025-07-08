@@ -61,17 +61,17 @@ spec:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: pod-reader
+  name: reader-role
   namespace: default
 rules:
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["pods", "services"]
   verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: default-pod-reader
+  name: default-reader-role
   namespace: default
 subjects:
 - kind: ServiceAccount
@@ -79,5 +79,5 @@ subjects:
   namespace: default
 roleRef:
   kind: Role
-  name: pod-reader
+  name: reader-role
   apiGroup: rbac.authorization.k8s.io
