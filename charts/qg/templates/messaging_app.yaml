@@ -51,11 +51,24 @@ kind: Service
 metadata:
   name: {{lower $software_type }}-software-service
 spec:
+  type: ClusterIP
   selector:
     app: {{lower $software_type }}
   ports:
     - protocol: TCP
       port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{lower $software_type }}-software-service-headless
+spec:
+  clusterIP: None
+  selector:
+    app: {{lower $software_type }}
+  ports:
+    - port: 80
       targetPort: 8080
 ---
 apiVersion: rbac.authorization.k8s.io/v1
