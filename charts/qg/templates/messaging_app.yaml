@@ -26,8 +26,7 @@ spec:
         app: {{lower $software_type }}  # Unique labels for the pod
     spec:
       automountServiceAccountToken: true
-
-      hostNetwork: true  # Equivalent to --net=host
+      
       imagePullSecrets:
       - name: regcred
 
