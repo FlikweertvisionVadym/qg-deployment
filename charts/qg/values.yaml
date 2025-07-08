@@ -68,7 +68,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.72"
       Plc-Tool:
         softwareVersion: "empty"
   production-europe:
