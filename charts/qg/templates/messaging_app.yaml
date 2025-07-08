@@ -42,7 +42,7 @@ spec:
               fieldRef:
                 fieldPath: status.podIP
           - name: APP_NAME
-            value: {{lower $software_type }}-software-service
+            value: {{lower $software_type }}
           
 {{- end }}
 ---
