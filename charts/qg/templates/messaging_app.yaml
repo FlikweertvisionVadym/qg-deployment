@@ -50,6 +50,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{lower $software_type }}-software-service
+  namespace: default
 spec:
   type: ClusterIP
   selector:
@@ -63,6 +64,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{lower $software_type }}-software-service-headless
+  namespace: default
 spec:
   clusterIP: None
   selector:
