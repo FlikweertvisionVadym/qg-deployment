@@ -119,3 +119,15 @@ groups:
         softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
+  added-sensors-agroduiv-test:
+    software:
+      QG:
+        softwareVersion: "dev_MD-315_added-sensors-with-status-33-orin"
+      PanelPC-API:
+        softwareVersion: "dev_add-error-33"
+      PanelPC-GUI:
+        softwareVersion: "v2.4.1-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.51"
+      Plc-Tool:
+        softwareVersion: "empty"
