@@ -162,7 +162,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.82"
+        softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "empty"
       Messaging-App:
