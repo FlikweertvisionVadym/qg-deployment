@@ -2,11 +2,11 @@ groups:
   production:
     software:
       QG:
-        softwareVersion: "v1.7.9-pc-orin"
+        softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
-        softwareVersion: "v1.7.7-api"
+        softwareVersion: "v1.8.1-api"
       PanelPC-GUI:
-        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+        softwareVersion: "v2.4.1-server"
       Calibration-Tool:
         softwareVersion: "v0.2.63"
       Plc-Tool:
