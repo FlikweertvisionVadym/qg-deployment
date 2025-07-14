@@ -13,6 +13,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   production-mm-release-0:
     software:
       QG:
@@ -27,6 +29,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   production-mm-release-1:
     software:
       QG:
@@ -41,6 +45,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   production-mm-release-2:
     software:
       QG:
@@ -55,6 +61,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   production_plc:
     software:
       QG:
@@ -69,6 +77,8 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   divider:
     software:
       DV:
@@ -83,6 +93,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   multi-model:
     software:
       QG:
@@ -97,6 +109,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   vs-flipper-test:
     software:
       QG:
@@ -111,6 +125,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   service-round-xavier-swap:
     software:
       QG:
@@ -125,6 +141,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   mock-image-collection:
     software:
       QG:
@@ -139,6 +157,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   added-sensors-test:
     software:
       QG:
@@ -153,6 +173,8 @@ groups:
         softwareVersion: "QG_V2.4.7_SP18"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   calibration-tool-test:
     software:
       QG:
@@ -167,6 +189,8 @@ groups:
         softwareVersion: "empty"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   hotfix-validate-model:
     software:
       QG:
@@ -181,6 +205,8 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
   release-candidate:
     software:
       QG:
@@ -195,3 +221,5 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
       Messaging-App:
         softwareVersion: "0.0.13"
+      Fv-Producer:
+        softwareVersion: "0.0.1"
