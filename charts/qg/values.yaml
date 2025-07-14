@@ -162,7 +162,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.82"
+        softwareVersion: "v0.3.2"
       Plc-Tool:
         softwareVersion: "empty"
       Messaging-App:
@@ -191,20 +191,6 @@ groups:
         softwareVersion: "dev_v2.4.2-candidate"
       Calibration-Tool:
         softwareVersion: "v0.2.51"
-      Plc-Tool:
-        softwareVersion: "QG_V2.4.6_SP18"
-      Messaging-App:
-        softwareVersion: "0.0.13"
-  release-candidate-calibration-tool:
-    software:
-      QG:
-        softwareVersion: "dev_v1.8.3-candidate-orin"
-      PanelPC-API:
-        softwareVersion: "dev_v1.8.2-candidate"
-      PanelPC-GUI:
-        softwareVersion: "dev_v2.4.2-candidate"
-      Calibration-Tool:
-        softwareVersion: "v0.3.1"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
       Messaging-App:
