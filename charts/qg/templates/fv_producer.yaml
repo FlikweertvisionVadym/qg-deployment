@@ -48,7 +48,6 @@ spec:
         - name: quality-grader-home
           mountPath: /home/nvidia/QualityGrader
           readOnly: true
-        volumeMounts:
         - name: quality-grader-etc-fv
           mountPath: /etc/fv
           readOnly: true
