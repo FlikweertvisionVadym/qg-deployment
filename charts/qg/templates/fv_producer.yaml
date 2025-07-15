@@ -52,7 +52,7 @@ spec:
           readOnly: true
         - name: quality-grader-etc-fv
           mountPath: /etc/fv
-          readOnly: true
+          readOnly: false
 
       volumes:
       - name: quality-grader-home
