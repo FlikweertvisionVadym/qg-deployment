@@ -35,6 +35,8 @@ spec:
       nodeSelector:
         machine-type: "QG"
 
+      hostNetwork: true  # Equivalent to --net=host
+
       containers:
       - name: fv-producer
         image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
