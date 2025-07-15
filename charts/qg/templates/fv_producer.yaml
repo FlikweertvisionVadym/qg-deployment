@@ -45,14 +45,22 @@ spec:
         - name: RMQ_URL
           value: "amqp://guest:guest@10.10.4.10:5672/"
         volumeMounts:
-        - name: quality-grader
+        - name: quality-grader-home
           mountPath: /home/nvidia/QualityGrader
+          readOnly: true
+        volumeMounts:
+        - name: quality-grader-etc-fv
+          mountPath: /etc/fv
           readOnly: true
 
       volumes:
-      - name: quality-grader
+      - name: quality-grader-home
         hostPath:
           path: /home/nvidia/QualityGrader
+          type: Directory
+      - name: quality-grader-etc-fv
+        hostPath:
+          path: /etc/fv
           type: Directory
           
 {{- end }}
