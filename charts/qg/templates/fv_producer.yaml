@@ -17,10 +17,9 @@ spec:
         nodeSelectorTerms:
         - matchExpressions:
           - key: machine-type
-            operator: NotIn
+            operator: In
             values:
             - QG
-
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
