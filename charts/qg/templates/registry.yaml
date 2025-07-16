@@ -1,61 +1,62 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: docker-registry
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: docker-registry
-  template:
-    metadata:
-      labels:
-        app: docker-registry
-    spec:
-      nodeSelector:
-        machine-type: "PanelPC"
-      containers:
-      - name: registry
-        image: registry:3
-        ports:
-        - containerPort: 5000
-        volumeMounts:
-        - name: registry-data
-          mountPath: /var/lib/registry
-        - name: registry-config
-          mountPath: /etc/docker/registry
-        env:
-        - name: REGISTRY_PROXY_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: docker-hub-creds
-              key: username
-        - name: REGISTRY_PROXY_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: docker-hub-creds
-              key: password
-      volumes:
-      - name: registry-data
-        hostPath: # Changed back to hostPath
-          path: /opt/registry # The path on the host node
-          type: DirectoryOrCreate # Ensures the directory exists or is created
-      - name: registry-config
-        configMap:
-          name: registry-config
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: registry-config
-data:
-  config.yml: |
-    version: 0.1
-    proxy:
-      remoteurl: https://registry-1.docker.io
-      username: REGISTRY_PROXY_USERNAME
-      password: REGISTRY_PROXY_PASSWORD
-    storage:
-      filesystem:
-        rootdirectory: /var/lib/registry
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: docker-registry
+#   namespace: default
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: docker-registry
+#   template:
+#     metadata:
+#       labels:
+#         app: docker-registry
+#     spec:
+#       nodeSelector:
+#         machine-type: "PanelPC"
+#       containers:
+#       - name: registry
+#         image: registry:3
+#         ports:
+#         - containerPort: 5000
+#         volumeMounts:
+#         - name: registry-data
+#           mountPath: /var/lib/registry
+#         - name: registry-config
+#           mountPath: /etc/docker/registry
+#         env:
+#         - name: REGISTRY_PROXY_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: docker-hub-creds
+#               key: username
+#         - name: REGISTRY_PROXY_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: docker-hub-creds
+#               key: password
+#       volumes:
+#       - name: registry-data
+#         hostPath: # Changed back to hostPath
+#           path: /opt/registry # The path on the host node
+#           type: DirectoryOrCreate # Ensures the directory exists or is created
+#       - name: registry-config
+#         configMap:
+#           name: registry-config
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: registry-config
+#   namespace: default
+# data:
+#   config.yml: |
+#     version: 0.1
+#     proxy:
+#       remoteurl: https://registry-1.docker.io
+#       username: REGISTRY_PROXY_USERNAME
+#       password: REGISTRY_PROXY_PASSWORD
+#     storage:
+#       filesystem:
+#         rootdirectory: /var/lib/registry
