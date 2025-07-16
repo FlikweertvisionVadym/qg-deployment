@@ -20,6 +20,7 @@ spec:
             operator: NotIn
             values:
             - QG
+
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
