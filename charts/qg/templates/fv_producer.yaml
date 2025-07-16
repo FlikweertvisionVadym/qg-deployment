@@ -45,13 +45,13 @@ spec:
           value: "amqp://guest:guest@10.10.4.10:5672/"
         volumeMounts:
         - name: quality-grader-home
-          mountPath: /home/nvidia/QualityGrader
+          mountPath: /home
           readOnly: true
 
       volumes:
       - name: quality-grader-home
         hostPath:
-          path: /home/nvidia/QualityGrader
+          path: /home
           type: Directory
           
 {{- end }}
