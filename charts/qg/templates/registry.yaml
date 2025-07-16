@@ -38,24 +38,12 @@ spec:
               key: password
       volumes:
       - name: registry-data
-        persistentVolumeClaim:
-          claimName: registry-pvc
+        hostPath: # Changed back to hostPath
+          path: /opt/registry # The path on the host node
+          type: DirectoryOrCreate # Ensures the directory exists or is created
       - name: registry-config
         configMap:
           name: registry-config
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: registry-pvc
-  namespace: default
-spec:
-  accessModes:
-    - ReadWriteOnce # This ensures it can be mounted by a single node
-  resources:
-    requests:
-      storage: 20Gi # Adjust this size as needed
-  storageClassName: standard # Use your cluster's default or a specific StorageClass
 ---
 apiVersion: v1
 kind: ConfigMap
