@@ -11,6 +11,15 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: machine-type
+            operator: NotIn
+            values:
+            - QG
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
@@ -43,6 +52,10 @@ spec:
         env:
         - name: RMQ_URL
           value: "amqp://guest:guest@10.10.4.10:5672/"
+        - name: NODE_NAME
+          valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
         volumeMounts:
         - name: quality-grader-home
           mountPath: /home
