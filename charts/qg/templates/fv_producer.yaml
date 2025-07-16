@@ -11,15 +11,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: machine-type
-            operator: In
-            values:
-            - QG
   selector:
     matchLabels:
       app: {{lower $software_type }}  # Ensure the label matches the selector
@@ -42,6 +33,9 @@ spec:
       - name: regcred
 
       hostNetwork: true  # Equivalent to --net=host
+
+      nodeSelector:
+        machine-type: QG
 
       containers:
       - name: fv-producer
