@@ -32,9 +32,6 @@ spec:
       imagePullSecrets:
       - name: regcred
 
-      nodeSelector:
-        machine-type: "QG"
-
       hostNetwork: true  # Equivalent to --net=host
 
       containers:
