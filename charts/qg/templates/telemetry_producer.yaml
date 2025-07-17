@@ -39,7 +39,7 @@ spec:
 
       containers:
       - name: telemetry-producer
-        image: docker.io/flikweertvision/telemetry-producer:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         env:
         - name: RMQ_URL
