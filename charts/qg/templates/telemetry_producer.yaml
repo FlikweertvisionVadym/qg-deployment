@@ -1,5 +1,5 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $software_type := "Fv-Producer" }}
+{{- $software_type := "Telemetry-Producer" }}
 {{- $software := $software_type | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
@@ -38,7 +38,7 @@ spec:
         machine-type: QG
 
       containers:
-      - name: fv-producer
+      - name: telemetry-producer
         image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         env:

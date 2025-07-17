@@ -1,8 +1,8 @@
 groups:
   production:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -15,8 +15,8 @@ groups:
         softwareVersion: "empty"
   production_plc:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -41,8 +41,8 @@ groups:
         softwareVersion: "empty"
   multi-model:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -55,8 +55,8 @@ groups:
         softwareVersion: "empty"
   vs-flipper-test:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "dev_vs_flipper_tests-orin"
       PanelPC-API:
@@ -69,8 +69,8 @@ groups:
         softwareVersion: "empty"
   service-round-xavier-swap:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.7.9-pc-orin"
       PanelPC-API:
@@ -83,8 +83,8 @@ groups:
         softwareVersion: "empty"
   production-europe:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -97,8 +97,8 @@ groups:
         softwareVersion: "empty"
   production-asian-oceania:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -111,8 +111,8 @@ groups:
         softwareVersion: "empty"
   production-americas:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -125,8 +125,8 @@ groups:
         softwareVersion: "empty"
   added-sensors-test:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "dev_MD-315_added-sensors-with-status-33-orin"
       PanelPC-API:
@@ -139,8 +139,8 @@ groups:
         softwareVersion: "QG_V2.4.7_SP18"
   added-sensors-agroduiv-test:
     software:
-      Fv-Producer:
-        softwareVersion: "0.0.19"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.20"
       QG:
         softwareVersion: "dev_MD-315_added-sensors-with-status-33-orin"
       PanelPC-API:
