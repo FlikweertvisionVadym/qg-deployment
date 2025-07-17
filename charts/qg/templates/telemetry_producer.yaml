@@ -58,4 +58,3 @@ spec:
           type: Directory
           
 {{- end }}
-`
