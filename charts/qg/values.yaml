@@ -11,7 +11,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   production-mm-release-0:
     software:
@@ -25,7 +25,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   production-mm-release-1:
     software:
@@ -39,7 +39,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   production-mm-release-2:
     software:
@@ -53,7 +53,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   production_plc:
     software:
@@ -67,7 +67,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   divider:
     software:
@@ -81,7 +81,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   multi-model:
     software:
@@ -95,7 +95,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   vs-flipper-test:
     software:
@@ -109,7 +109,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   service-round-xavier-swap:
     software:
@@ -123,7 +123,7 @@ groups:
         softwareVersion: "v0.2.72"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   mock-image-collection:
     software:
@@ -137,7 +137,7 @@ groups:
         softwareVersion: "v0.2.63"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   added-sensors-test:
     software:
@@ -151,7 +151,7 @@ groups:
         softwareVersion: "v0.2.68"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   calibration-tool-test:
     software:
@@ -165,7 +165,7 @@ groups:
         softwareVersion: "v0.3.4"
       Plc-Tool:
         softwareVersion: "empty"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   hotfix-validate-model:
     software:
@@ -179,7 +179,7 @@ groups:
         softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
   release-candidate:
     software:
@@ -193,5 +193,5 @@ groups:
         softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
-      Fv-Producer:
+      Telemetry-Producer:
         softwareVersion: "0.0.19"
