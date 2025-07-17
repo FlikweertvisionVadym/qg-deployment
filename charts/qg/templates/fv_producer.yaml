@@ -41,8 +41,6 @@ spec:
       - name: fv-producer
         image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
-        securityContext:
-          privileged: true  # Equivalent to --privileged
         env:
         - name: RMQ_URL
           value: "amqp://guest:guest@10.10.4.10:5672/"
