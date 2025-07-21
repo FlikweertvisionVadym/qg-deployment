@@ -2,7 +2,7 @@ groups:
   production:
     software:
       QG:
-        softwareVersion: "v1.8.2-pc-orin"
+        softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
         softwareVersion: "v1.8.2-api"
       PanelPC-GUI:
