@@ -98,29 +98,29 @@ groups:
   production-asian-oceania:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.20"
+        softwareVersion: "v0.0.21"
       QG:
-        softwareVersion: "v1.8.2-pc-orin"
+        softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
-        softwareVersion: "v1.8.1-api"
+        softwareVersion: "v1.8.2-api"
       PanelPC-GUI:
-        softwareVersion: "v2.4.1-server"
+        softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.71"
       Plc-Tool:
         softwareVersion: "empty"
   production-americas:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.20"
+        softwareVersion: "v0.0.21"
       QG:
-        softwareVersion: "v1.8.2-pc-orin"
+        softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
-        softwareVersion: "v1.8.1-api"
+        softwareVersion: "v1.8.2-api"
       PanelPC-GUI:
-        softwareVersion: "v2.4.1-server"
+        softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.71"
       Plc-Tool:
         softwareVersion: "empty"
   added-sensors-test:
