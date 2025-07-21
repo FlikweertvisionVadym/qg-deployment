@@ -4,7 +4,7 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.21"
       QG:
-        softwareVersion: "v1.8.2-pc-orin"
+        softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
         softwareVersion: "v1.8.2-api"
       PanelPC-GUI:
