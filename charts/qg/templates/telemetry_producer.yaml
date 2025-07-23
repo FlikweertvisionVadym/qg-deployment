@@ -1,3 +1,9 @@
+{{- $url := .Values.endpoint }}
+{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
+{{- $machineIp := regexFind $ipRegex $url }}
+
+{{- $softwareVersion := .Values.Version }}
+
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "Telemetry-Producer" }}
 {{- $software := $software_type | index $group.software}}
@@ -34,9 +40,6 @@ spec:
 
       hostNetwork: true  # Equivalent to --net=host
 
-      nodeSelector:
-        machine-type: QG
-
       containers:
       - name: telemetry-producer
         image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
@@ -46,6 +49,10 @@ spec:
           valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
+        - name: MACHINE_IP
+          value: {{ $machineIp }}
+        - name: SOFTWARE_VERSION
+          value: {{ $softwareVersion }}
         volumeMounts:
         - name: quality-grader-home
           mountPath: /home
