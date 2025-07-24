@@ -44,11 +44,11 @@ spec:
             fieldRef:
               fieldPath: status.podIP
         - name: BACKUPCOLLECTOR_INTERVAL_MINS
-          value: "1"
+          value: "360"
         - name: MACHINEDATACOLLECTOR_INTERVAL_MINS
           value: "1"
         - name: METERREADINGCOLLECTOR_INTERVAL_MINS
-          value: "1"
+          value: 60"
         volumeMounts:
         - name: quality-grader-home
           mountPath: /home
