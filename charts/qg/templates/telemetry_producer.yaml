@@ -1,7 +1,3 @@
-{{- $url := .Values.endpoint }}
-{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
-{{- $machineIp := regexFind $ipRegex $url }}
-
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "Telemetry-Producer" }}
 {{- $software := $software_type | index $group.software}}
