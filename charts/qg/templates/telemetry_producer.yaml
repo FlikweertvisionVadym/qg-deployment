@@ -44,7 +44,9 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: MACHINE_IP
-          value: {{ $machineIp }}
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         volumeMounts:
         - name: quality-grader-home
           mountPath: /home
