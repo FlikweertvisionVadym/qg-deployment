@@ -34,18 +34,21 @@ spec:
 
       hostNetwork: true  # Equivalent to --net=host
 
-      nodeSelector:
-        machine-type: QG
-
       containers:
       - name: telemetry-producer
         image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         env:
-        - name: NODE_NAME
+        - name: MACHINE_IP
           valueFrom:
-          fieldRef:
-            fieldPath: spec.nodeName
+            fieldRef:
+              fieldPath: status.podIP
+        - name: BACKUPCOLLECTOR_INTERVAL_MINS
+          value: "360"
+        - name: MACHINEDATACOLLECTOR_INTERVAL_MINS
+          value: "1"
+        - name: METERREADINGCOLLECTOR_INTERVAL_MINS
+          value: 60"
         volumeMounts:
         - name: quality-grader-home
           mountPath: /home
