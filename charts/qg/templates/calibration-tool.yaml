@@ -5,7 +5,7 @@
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
-  name: {{lower $software_type }}-calibration-tool-server-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{lower $software_type }}-server-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "0"
