@@ -48,7 +48,7 @@ spec:
         - name: MACHINEDATACOLLECTOR_INTERVAL_MINS
           value: "1"
         - name: METERREADINGCOLLECTOR_INTERVAL_MINS
-          value: 60"
+          value: "60"
         volumeMounts:
         - name: quality-grader-home
           mountPath: /home
