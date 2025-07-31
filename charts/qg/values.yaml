@@ -137,6 +137,22 @@ groups:
         softwareVersion: "v0.2.51"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
+  mock-image-collection:
+    software:
+      QG:
+        softwareVersion: "dev_AI-1243_save-mock-data-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.63"
+      Plc-Tool:
+        softwareVersion: "empty"
+      Telemetry-Producer:
+        softwareVersion: "v0.0.29"
+      Image-Batch-Uploader:
+        softwareVersion: "v0.0.5"
   added-sensors-agroduiv-test:
     software:
       Telemetry-Producer:
