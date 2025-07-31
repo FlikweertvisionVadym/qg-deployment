@@ -152,7 +152,7 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       Image-Batch-Uploader:
-        softwareVersion: "v0.0.5"
+        softwareVersion: "v0.0.6"
   added-sensors-agroduiv-test:
     software:
       Telemetry-Producer:
