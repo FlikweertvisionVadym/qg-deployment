@@ -13,7 +13,7 @@ groups:
         softwareVersion: "v0.2.71"
       Plc-Tool:
         softwareVersion: "empty"
-  calibraton_tool_hotfix:
+  calibration_tool_hotfix:
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
