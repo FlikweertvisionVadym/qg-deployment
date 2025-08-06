@@ -12,7 +12,7 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.71"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   production_plc:
     software:
       Telemetry-Producer:
