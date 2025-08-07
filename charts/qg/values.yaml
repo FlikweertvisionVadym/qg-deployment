@@ -27,6 +27,20 @@ groups:
         softwareVersion: "v0.2.71"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
+  production_plc_empty:
+    software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.21"
+      QG:
+        softwareVersion: "v1.8.3-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.8.2-api"
+      PanelPC-GUI:
+        softwareVersion: "v2.4.2-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71"
+      Plc-Tool:
+        softwareVersion: "empty"
   divider:
     software:
       DV:
@@ -94,7 +108,7 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.71"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   production-asian-oceania:
     software:
       Telemetry-Producer:
@@ -108,7 +122,7 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.71"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   production-americas:
     software:
       Telemetry-Producer:
@@ -122,7 +136,7 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.2.71"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   added-sensors-test:
     software:
       Telemetry-Producer:
