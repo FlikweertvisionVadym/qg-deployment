@@ -30,7 +30,7 @@ groups:
   production_plc_empty:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -98,7 +98,7 @@ groups:
   hotfix-calibration-service-round:
       software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.7.9-pc-orin"
       PanelPC-API:
