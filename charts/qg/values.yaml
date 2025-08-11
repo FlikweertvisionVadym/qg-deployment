@@ -2,7 +2,7 @@ groups:
   production:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -10,13 +10,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.71"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   production_plc:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -24,9 +24,23 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.71"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
+  production_plc_empty:
+    software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.29"
+      QG:
+        softwareVersion: "v1.8.3-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.8.2-api"
+      PanelPC-GUI:
+        softwareVersion: "v2.4.2-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71.1-hotfix"
+      Plc-Tool:
+        softwareVersion: "empty"
   divider:
     software:
       DV:
@@ -36,13 +50,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_combined-interface-docker"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "empty"
   multi-model:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.2-pc-orin"
       PanelPC-API:
@@ -50,13 +64,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "empty"
   vs-flipper-test:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "dev_vs_flipper_tests-orin"
       PanelPC-API:
@@ -64,13 +78,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "empty"
   service-round-xavier-swap:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.7.9-pc-orin"
       PanelPC-API:
@@ -81,10 +95,24 @@ groups:
         softwareVersion: "v0.2.71"
       Plc-Tool:
         softwareVersion: "empty"
+  hotfix-calibration-service-round:
+      software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.29"
+      QG:
+        softwareVersion: "v1.7.9-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.7.7-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71.1-hotfix"
+      Plc-Tool:
+        softwareVersion: "empty"
   production-europe:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -92,13 +120,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.71"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   production-asian-oceania:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -106,13 +134,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.71"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   production-americas:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -120,13 +148,13 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.71"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
   added-sensors-test:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.21"
+        softwareVersion: "v0.0.29"
       QG:
         softwareVersion: "dev_MD-315_added-sensors-with-status-33-orin"
       PanelPC-API:
@@ -134,20 +162,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.1-server"
       Calibration-Tool:
-        softwareVersion: "v0.2.51"
+        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
-  added-sensors-agroduiv-test:
-    software:
-      Telemetry-Producer:
-        softwareVersion: "v0.0.21"
-      QG:
-        softwareVersion: "dev_MD-315_added-sensors-with-status-33-orin"
-      PanelPC-API:
-        softwareVersion: "dev_add-error-33"
-      PanelPC-GUI:
-        softwareVersion: "v2.4.1-server"
-      Calibration-Tool:
-        softwareVersion: "v0.2.51"
-      Plc-Tool:
-        softwareVersion: "empty"
