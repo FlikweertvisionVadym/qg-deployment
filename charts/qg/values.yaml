@@ -174,7 +174,7 @@ groups:
       PanelPC-API:
         softwareVersion: "v1.8.1-api"
       PanelPC-GUI:
-        softwareVersion: "v2.4.1-server"
+        softwareVersion: "dev_slim-runtime-image"
       Calibration-Tool:
         softwareVersion: "v0.3.9"
       Plc-Tool:
