@@ -50,25 +50,10 @@ spec:
           value: "http://{{ $panelpc_ip }}:5000"
         - name: NUXT_PUBLIC_CALIBRATION_TOOL_URL
           value: "http://{{ $panelpc_ip }}:5123"
-        volumeMounts:
-        - name: gui-build-artifacts
-          mountPath: /app/.output/
-        - name: nuxt-artifacts
-          mountPath: /app/.nuxt/
         livenessProbe:
           httpGet:
             path: /
             port: 3000
           initialDelaySeconds: 60
           periodSeconds: 15
-      
-      volumes:
-      - name: gui-build-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/build
-          type: DirectoryOrCreate
-      - name: nuxt-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/nuxt
-          type: DirectoryOrCreate
 {{- end }}
