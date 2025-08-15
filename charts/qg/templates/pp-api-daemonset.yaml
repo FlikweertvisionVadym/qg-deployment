@@ -67,6 +67,8 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/version.json
         - name: version-backups
           mountPath: /home/fvt/QualityGrader/Api/version_backups
+        - name: timezone-settings
+          mountPath: /etc/timezone
 
       volumes:
       - name: json-files
@@ -101,4 +103,8 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/Api/version_backups
           type: DirectoryOrCreate
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}
