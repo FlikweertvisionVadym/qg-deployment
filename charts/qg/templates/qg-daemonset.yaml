@@ -100,7 +100,10 @@ spec:
           mountPath: /home/nvidia/QualityGrader/images
         - name: logfiles
           mountPath: /etc/fvt_logfiles
-      
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
+
       initContainers:
       - name: plc-tool
         image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
@@ -157,6 +160,8 @@ spec:
         hostPath:
           path: /etc/fvt_logfiles
           type: DirectoryOrCreate
-      
-    
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}
