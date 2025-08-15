@@ -69,6 +69,7 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/version_backups
         - name: timezone-settings
           mountPath: /etc/timezone
+          readOnly: true
 
       volumes:
       - name: json-files
