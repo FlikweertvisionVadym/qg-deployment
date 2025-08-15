@@ -102,6 +102,7 @@ spec:
           mountPath: /etc/fvt_logfiles
         - name: timezone-settings
           mountPath: /etc/timezone
+          readOnly: true
       
       initContainers:
       - name: plc-tool
