@@ -59,7 +59,7 @@ spec:
       
       containers:
       - name: quality-grader
-        image: docker-registry.default.svc.cluster.local:5000/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
+        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash", "-c"]
         args: 
@@ -106,7 +106,7 @@ spec:
       
       initContainers:
       - name: plc-tool
-        image: docker-registry.default.svc.cluster.local:5000/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
         volumeMounts:
         - name: g-device-settings
           mountPath: /home/nvidia/QualityGrader/G_device_settings.ini

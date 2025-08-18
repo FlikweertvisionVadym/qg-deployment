@@ -18,6 +18,7 @@ spec:
         image: registry:2
         ports:
         - containerPort: 5000
+          hostPort: 5000
         env:
         - name: REGISTRY_PROXY_REMOTEURL
           value: https://registry-1.docker.io
