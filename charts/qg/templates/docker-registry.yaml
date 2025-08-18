@@ -17,8 +17,8 @@ spec:
       - name: registry
         image: registry:2
         ports:
-        - containerPort: 5000
-          hostPort: 5000
+        - containerPort: 5233
+          hostPort: 5233
         env:
         - name: REGISTRY_PROXY_REMOTEURL
           value: https://registry-1.docker.io
@@ -33,7 +33,7 @@ spec:
               name: fv-decrypted-secrets
               key: DOCKERHUB_PASSWORD
         - name: REGISTRY_HTTP_ADDR
-          value: :5000
+          value: :5233
         - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
           value: /var/lib/registry
         volumeMounts:
@@ -54,5 +54,5 @@ spec:
   selector: { app: docker-registry }
   ports:
   - name: http
-    port: 5000
-    targetPort: 5000
+    port: 5233
+    targetPort: 5233
