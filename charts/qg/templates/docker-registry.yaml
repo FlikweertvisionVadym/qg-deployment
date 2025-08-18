@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-registry
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: docker-registry }
+  template:
+    metadata:
+      labels: { app: docker-registry }
+    spec:
+      nodeSelector:
+        machine-type: "PanelPC"
+      containers:
+      - name: registry
+        image: registry:2
+        ports:
+        - containerPort: 5000
+        env:
+        - name: REGISTRY_PROXY_REMOTEURL
+          value: https://registry-1.docker.io
+        - name: REGISTRY_PROXY_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: fv-decrypted-secrets
+              key: DOCKERHUB_USER_NAME
+        - name: REGISTRY_PROXY_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: fv-decrypted-secrets
+              key: DOCKERHUB_PASSWORD
+        - name: REGISTRY_HTTP_ADDR
+          value: :5000
+        - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
+          value: /var/lib/registry
+        volumeMounts:
+        - name: registry-data
+          mountPath: /var/lib/registry
+      volumes:
+      - name: registry-data
+        hostPath:
+          path: /opt/registry
+          type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker-registry
+  namespace: default
+spec:
+  selector: { app: docker-registry }
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 5000
