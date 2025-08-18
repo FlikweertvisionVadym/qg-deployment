@@ -156,7 +156,7 @@ groups:
   added-sensors-test:
     software:
       QG:
-        softwareVersion: "dev_MD-315_added-sensors"
+        softwareVersion: "dev_MD-315_add-sensors-orin"
       PanelPC-API:
         softwareVersion: "v1.8.2-api"
       PanelPC-GUI:
