@@ -37,7 +37,7 @@ spec:
 
       containers:
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
+        image: docker-registry.default.svc.cluster.local:5000/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
         command: ["/bin/bash", "-c"]
         args: 
         - "sleep 10 && exec supervisord -c /home/fvt/QualityGrader/Api/supervisord.conf -n"
