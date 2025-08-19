@@ -79,6 +79,6 @@ metadata:
 spec:
   selector: { app: docker-registry }
   ports:
-  - name: http
+  - name: https
     port: 5233
     targetPort: 5233
