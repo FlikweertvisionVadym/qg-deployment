@@ -31,11 +31,11 @@ spec:
         hostPath:
           path: /opt/registry
           type: DirectoryOrCreate
-      - name: client_crt
+      - name: client-crt
         hostPath: 
           path: /var/lib/rancher/k3s/server/tls/client-ca.crt
           type: File
-      - name: client_key
+      - name: client-key
         hostPath: 
           path: /var/lib/rancher/k3s/server/tls/client-ca.key
           type: File
@@ -80,8 +80,8 @@ spec:
         volumeMounts:
         - { name: registry-data,   mountPath: /var/lib/registry }
         - { name: registry-config, mountPath: /etc/docker/registry, readOnly: true }
-        - { name: client_crt, mountPath: /var/lib/rancher/k3s/server/tls/client-ca.crt, readOnly: true }
-        - { name: client_key, mountPath: /var/lib/rancher/k3s/server/tls/client-ca.key, readOnly: true }
+        - { name: client-crt, mountPath: /var/lib/rancher/k3s/server/tls/client-ca.crt, readOnly: true }
+        - { name: client-key, mountPath: /var/lib/rancher/k3s/server/tls/client-ca.key, readOnly: true }
         args: ["/etc/docker/registry/config.yml"]
 
 # ---
