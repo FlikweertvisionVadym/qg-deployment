@@ -4,6 +4,7 @@ metadata:
   name: docker-registry
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "-2"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
@@ -30,6 +31,14 @@ spec:
         hostPath:
           path: /opt/registry
           type: DirectoryOrCreate
+      - name: client_crt
+        hostPath: 
+          path: /var/lib/rancher/k3s/server/tls/client-ca.crt
+          type: File
+      - name: client_key
+        hostPath: 
+          path: /var/lib/rancher/k3s/server/tls/client-ca.key
+          type: File
       - name: registry-config
         emptyDir: {}
 
@@ -53,6 +62,9 @@ spec:
               rootdirectory: /var/lib/registry
           http:
             addr: :5233
+            tls:
+              certificate: /var/lib/rancher/k3s/server/tls/client-ca.crt
+              key: /var/lib/rancher/k3s/server/tls/client-ca.key
           proxy:
             remoteurl: https://registry-1.docker.io
             username: $user
@@ -68,6 +80,8 @@ spec:
         volumeMounts:
         - { name: registry-data,   mountPath: /var/lib/registry }
         - { name: registry-config, mountPath: /etc/docker/registry, readOnly: true }
+        - { name: client_crt, mountPath: /var/lib/rancher/k3s/server/tls, subPath: client-ca.crt, readOnly: true }
+        - { name: client_key, mountPath: /var/lib/rancher/k3s/server/tls, subPath: client-ca.key, readOnly: true }
         args: ["/etc/docker/registry/config.yml"]
 
 # ---
