@@ -4,7 +4,6 @@ metadata:
   name: docker-registry
   namespace: default
   annotations:
-    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "-2"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
