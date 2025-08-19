@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: regcred
         secret:
-          secretName: regcred
+          secretName: regcred               # <-- your dockerconfigjson secret name
       - name: registry-data
         hostPath:
           path: /opt/registry
@@ -27,16 +27,29 @@ spec:
 
       initContainers:
       - name: build-config
-        image: ghcr.io/jqlang/jq:1.7
+        image: busybox:1.36
         volumeMounts:
         - { name: regcred, mountPath: /reg, readOnly: true }
         - { name: registry-config, mountPath: /cfg }
         command: ["/bin/sh","-c"]
         args:
         - |
-          U=$(jq -r '.auths|to_entries[0].value.username // ((to_entries[0].value.auth|@base64d|split(":"))[0])' /reg/.dockerconfigjson)
-          P=$(jq -r '.auths|to_entries[0].value.password // ((to_entries[0].value.auth|@base64d|split(":"))[1])' /reg/.dockerconfigjson)
-          cat > /cfg/config.yml <<'YAML'
+          set -eu
+          # try username/password; fallback to auth
+          user="$(sed -n 's/.*"username"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1 || true)"
+          pass="$(sed -n 's/.*"password"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1 || true)"
+          if [ -z "${user:-}" ] || [ -z "${pass:-}" ]; then
+            auth="$(sed -n 's/.*"auth"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1 || true)"
+            if [ -n "${auth:-}" ]; then
+              up="$(echo "$auth" | base64 -d 2>/dev/null || true)"
+              user="${user:-$(echo "$up" | cut -d: -f1)}"
+              pass="${pass:-$(echo "$up" | cut -d: -f2-)}"
+            fi
+          fi
+          : "${user:?no username found in regcred}"
+          : "${pass:?no password found in regcred}"
+
+          cat > /cfg/config.yml <<EOF
           version: 0.1
           log:
             level: info
@@ -48,9 +61,9 @@ spec:
             addr: :5233
           proxy:
             remoteurl: https://registry-1.docker.io
-          YAML
-          # inject creds
-          printf "  username: %s\n  password: %s\n" "$U" "$P" >> /cfg/config.yml
+            username: ${user}
+            password: ${pass}
+          EOF
 
       containers:
       - name: registry
@@ -61,7 +74,7 @@ spec:
         volumeMounts:
         - { name: registry-data,   mountPath: /var/lib/registry }
         - { name: registry-config, mountPath: /etc/docker/registry, readOnly: true }
-        args: ["/etc/docker/registry/config.yml"]  # no shell
+        args: ["/etc/docker/registry/config.yml"]  # no shell in main container
 
 ---
 apiVersion: v1
