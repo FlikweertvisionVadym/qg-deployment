@@ -178,7 +178,7 @@ groups:
       Calibration-Tool:
         softwareVersion: "v0.3.9"
       Plc-Tool:
-        softwareVersion: "empty"
+        softwareVersion: "QG_V2.4.6_SP18"
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
   hotfix-validate-model:
