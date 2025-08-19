@@ -7,6 +7,7 @@ kind: Job
 metadata:
   name: machine-status-check
   annotations:
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "0"
 spec:
