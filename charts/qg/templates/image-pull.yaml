@@ -11,6 +11,7 @@ metadata:
   name: pre-pull-image-{{ lower $machineType }}
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
@@ -42,6 +43,7 @@ metadata:
   name: pre-pull-image-panelpc-api
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
@@ -69,6 +71,7 @@ metadata:
   name: pre-pull-image-panelpc-gui
   namespace: default
   annotations:
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
