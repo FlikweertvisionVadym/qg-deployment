@@ -36,7 +36,7 @@ spec:
 
       containers:
       - name: telemetry-producer
-        image: 10.23.121.50:5233/flikweertvision/fv-producer:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/fv-producer:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         env:
         - name: MACHINE_IP
