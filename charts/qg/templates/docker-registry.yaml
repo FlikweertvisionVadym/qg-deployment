@@ -13,25 +13,43 @@ spec:
     spec:
       nodeSelector:
         machine-type: "PanelPC"
+      volumes:
+      - name: regcred
+        secret:
+          secretName: regcred
+      - name: registry-data
+        hostPath:
+          path: /opt/registry
+          type: DirectoryOrCreate
+      - name: env
+        emptyDir: {}
+      initContainers:
+      - name: extract-regcred
+        image: ghcr.io/jqlang/jq:1.7
+        volumeMounts:
+        - name: regcred
+          mountPath: /reg
+          readOnly: true
+        - name: env
+          mountPath: /env
+        command: ["/bin/sh","-c"]
+        args:
+        - |
+          jq -r '
+            .auths
+            | to_entries[0] as $e
+            | "REGISTRY_PROXY_USERNAME="+($e.value.username // (($e.value.auth | @base64d | split(":"))[0])),
+              "REGISTRY_PROXY_PASSWORD="+($e.value.password // (($e.value.auth | @base64d | split(":"))[1]))
+          ' /reg/.dockerconfigjson > /env/registry.env
       containers:
       - name: registry
-        image: registry:2
+        image: registry:3
         ports:
         - containerPort: 5233
           hostPort: 5233
         env:
         - name: REGISTRY_PROXY_REMOTEURL
           value: https://registry-1.docker.io
-        - name: REGISTRY_PROXY_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: fv-decrypted-secrets
-              key: DOCKERHUB_USER_NAME
-        - name: REGISTRY_PROXY_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: fv-decrypted-secrets
-              key: DOCKERHUB_PASSWORD
         - name: REGISTRY_HTTP_ADDR
           value: :5233
         - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
@@ -39,11 +57,14 @@ spec:
         volumeMounts:
         - name: registry-data
           mountPath: /var/lib/registry
-      volumes:
-      - name: registry-data
-        hostPath:
-          path: /opt/registry
-          type: DirectoryOrCreate
+        - name: env
+          mountPath: /env
+        command: ["/bin/sh","-c"]
+        args:
+        - |
+          set -a
+          . /env/registry.env
+          exec /entrypoint.sh /etc/docker/registry/config.yml
 ---
 apiVersion: v1
 kind: Service
