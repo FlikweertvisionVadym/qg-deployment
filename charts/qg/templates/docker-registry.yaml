@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: regcred
         secret:
-          secretName: regcred               # <-- your dockerconfigjson secret name
+          secretName: regcred
       - name: registry-data
         hostPath:
           path: /opt/registry
@@ -34,26 +34,12 @@ spec:
         command: ["/bin/sh","-c"]
         args:
         - |
-          set -eu
-          # try username/password; fallback to auth
-          user="$(sed -n 's/.*"username"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1 || true)"
-          pass="$(sed -n 's/.*"password"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1 || true)"
-          if [ -z "${user:-}" ] || [ -z "${pass:-}" ]; then
-            auth="$(sed -n 's/.*"auth"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1 || true)"
-            if [ -n "${auth:-}" ]; then
-              up="$(echo "$auth" | base64 -d 2>/dev/null || true)"
-              user="${user:-$(echo "$up" | cut -d: -f1)}"
-              pass="${pass:-$(echo "$up" | cut -d: -f2-)}"
-            fi
-          fi
-          : "${user:?no username found in regcred}"
-          : "${pass:?no password found in regcred}"
-
+          user=$(sed -n 's/.*"username":[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1)
+          pass=$(sed -n 's/.*"password":[[:space:]]*"\([^"]*\)".*/\1/p' /reg/.dockerconfigjson | head -n1)
           cat > /cfg/config.yml <<EOF
           version: 0.1
           log:
             level: info
-            formatter: text
           storage:
             filesystem:
               rootdirectory: /var/lib/registry
@@ -61,8 +47,8 @@ spec:
             addr: :5233
           proxy:
             remoteurl: https://registry-1.docker.io
-            username: ${user}
-            password: ${pass}
+            username: $user
+            password: $pass
           EOF
 
       containers:
