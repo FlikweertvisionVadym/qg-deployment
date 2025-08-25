@@ -96,7 +96,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   hotfix-calibration-service-round:
-      software:
+    software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
