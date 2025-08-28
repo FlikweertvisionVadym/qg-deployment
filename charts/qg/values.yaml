@@ -212,7 +212,7 @@ groups:
   add-croptypes:
     software:
       QG:
-        softwareVersion: "dev_additional-croptype-exploration"
+        softwareVersion: "dev_additional-croptype-exploration-orin"
       PanelPC-API:
         softwareVersion: "dev_additional-croptypes"
       PanelPC-GUI:
