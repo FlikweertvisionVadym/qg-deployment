@@ -209,3 +209,15 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
+  add-croptypes:
+    software:
+      QG:
+        softwareVersion: "dev_additional-croptype-exploration"
+      PanelPC-API:
+        softwareVersion: "dev_additional-croptypes"
+      PanelPC-GUI:
+        softwareVersion: "dev_dev"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71"
+      Plc-Tool:
+        softwareVersion: "empty"
