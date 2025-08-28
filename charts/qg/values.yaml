@@ -216,7 +216,7 @@ groups:
       PanelPC-API:
         softwareVersion: "dev_additional-croptypes"
       PanelPC-GUI:
-        softwareVersion: "dev_dev"
+        softwareVersion: "dev_crop-types-slim"
       Calibration-Tool:
         softwareVersion: "v0.2.71"
       Plc-Tool:
