@@ -176,7 +176,7 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_slim-runtime-origin-aware"
       Calibration-Tool:
-        softwareVersion: "v0.3.10"
+        softwareVersion: "v0.3.11"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
       Telemetry-Producer:
