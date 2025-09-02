@@ -68,7 +68,7 @@ spec:
             remoteurl: https://registry-1.docker.io
             username: $user
             password: $pass
-            ttl: 672h     # Images invalidate after 4 weeks
+            ttl: 672h # Images invalidate after 4 weeks
           delete: 
             enabled: true # Enable deletion of invalidated images
           maintenance:
