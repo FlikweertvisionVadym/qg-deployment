@@ -1,5 +1,6 @@
 groups:
   production:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -14,6 +15,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   production-pre-release:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -28,6 +30,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   production-empty-plc:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -42,6 +45,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   qg-srs-update-transfer:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -56,6 +60,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   qg-old-update-transfer:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -70,6 +75,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   production_plc:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -84,6 +90,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   production_plc_empty:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -98,6 +105,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   divider:
+    type: "DV"
     software:
       DV:
         softwareVersion: "DV_dev_DV-fixed-button-docker-orin"
@@ -110,6 +118,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   multi-model:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -124,6 +133,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   vs-flipper-test:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -138,6 +148,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   service-round-xavier-swap:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -152,6 +163,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   hotfix-calibration-service-round:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -166,6 +178,7 @@ groups:
       Plc-Tool:
         softwareVersion: "empty"
   production-europe:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -180,6 +193,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   production-asian-oceania:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -194,6 +208,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   production-americas:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -208,6 +223,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
   added-sensors-test:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
@@ -222,6 +238,7 @@ groups:
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
   added-sensors-test-empty-plc:
+    type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
