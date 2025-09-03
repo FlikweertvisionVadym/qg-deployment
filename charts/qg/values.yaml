@@ -2,17 +2,17 @@ groups:
   production:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
-        softwareVersion: "v1.8.3-pc-orin"
+        softwareVersion: "dev_dev-orin"
       PanelPC-API:
-        softwareVersion: "v1.8.2-api"
+        softwareVersion: "dev_dev"
       PanelPC-GUI:
-        softwareVersion: "v2.4.2-server"
+        softwareVersion: "dev_dev"
       Calibration-Tool:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "QG_V2.4.6_SP18"
+        softwareVersion: "QG_V2.4.7_SP18"
   production-pre-release:
     software:
       Telemetry-Producer:
