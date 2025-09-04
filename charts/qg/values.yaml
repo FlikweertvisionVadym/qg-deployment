@@ -107,6 +107,8 @@ groups:
   divider:
     type: "DV"
     software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.30"
       DV:
         softwareVersion: "dev_DV-new-interface-docker-orin"
       PanelPC-API:
