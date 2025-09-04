@@ -1,7 +1,7 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "Telemetry-Producer" }}
 {{- $software := $software_type | index $group.software}}
-{{- if and $software (eq ($group.type | default "") "QG") -}}
+{{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet
 metadata:

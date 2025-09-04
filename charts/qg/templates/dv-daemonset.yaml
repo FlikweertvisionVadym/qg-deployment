@@ -1,6 +1,8 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "DV" }}
 {{- $software := $software_type | index $group.software}}
+{{- $plc_softw := "Plc-Tool" }}
+{{- $plc := $plc_softw | index $group.software}}
 {{- if $software }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
@@ -28,11 +30,25 @@ spec:
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      nodeSelector:
-        machine-type: {{ $software_type }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - {{ $software_type }}
+                  - key: mode
+                    operator: NotIn
+                    values:
+                      - calibrating
       
       tolerations:
       - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      - key: maintanance-mode
         operator: Exists
         effect: NoSchedule
 
@@ -80,7 +96,19 @@ spec:
           mountPath: /home/nvidia/QualityGrader/version.json
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
-      
+        - name: logfiles
+          mountPath: /etc/fvt_logfiles
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
+
+      initContainers:
+      - name: plc-tool
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
+        volumeMounts:
+        - name: g-device-settings
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+
       volumes:
       - name: classifier
         hostPath:
@@ -122,4 +150,12 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/images
           type: DirectoryOrCreate
+      - name: logfiles
+        hostPath:
+          path: /etc/fvt_logfiles
+          type: DirectoryOrCreate
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}
