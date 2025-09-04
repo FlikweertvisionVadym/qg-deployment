@@ -2,14 +2,16 @@
 {{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
 {{- $panelpc_ip := regexFind $ipRegex $url }}
 
-{{- $group := .Values.group | index .Values.groups }}
+{{- $group := index .Values.groups .Values.group }}
 {{- $software_type := "PanelPC-GUI" }}
-{{- $software := $software_type | index $group.software}}
-{{- if and $software (eq ($group.type | default "") "QG") -}}
+{{- $software := index $group.software $software_type }}
+{{- $isQG := eq ($group.type | default "") "QG" }}
+{{- $isDV := eq ($group.type | default "") "DV" }}
+{{- if and $software (or $isQG $isDV) }}
 apiVersion: apps.kruise.io/v1alpha1
-kind: DaemonSet  # Changed to DaemonSet
+kind: DaemonSet
 metadata:
-  name: {{lower $software_type }}-pp-gui-software-daemonset  # Updated name to reflect the DaemonSet type
+  name: {{ lower $software_type }}-pp-gui-software-daemonset
   namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -17,7 +19,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{lower $software_type }}  # Ensure the label matches the selector
+      app: {{ lower $software_type }}
       machine-type: {{ $software_type }}
   updateStrategy:
     type: RollingUpdate
@@ -28,117 +30,64 @@ spec:
   template:
     metadata:
       labels:
-        app: {{lower $software_type }}  # Unique labels for the pod
-        machine-type: {{ $software_type }}  # Use the machine type for labeling
+        app: {{ lower $software_type }}
+        machine-type: {{ $software_type }}
     spec:
       automountServiceAccountToken: false
       nodeSelector:
         machine-type: "PanelPC"
-
-      hostNetwork: true  # Equivalent to --net=host
+      hostNetwork: true
       imagePullSecrets:
-      - name: regcred
+        - name: regcred
       terminationGracePeriodSeconds: 5
       containers:
-      - name: panelpc-gui
-        image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          privileged: true
-        env:
-        - name: NUXT_API_BASE
-          value: "http://{{ $panelpc_ip }}:5000"
-        - name: NUXT_PUBLIC_CALIBRATION_TOOL_URL
-          value: "http://{{ $panelpc_ip }}:5123"
-        volumeMounts:
-        - name: timezone-settings
-          mountPath: /etc/timezone
-          readOnly: true
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-      volumes:
-      - name: timezone-settings
-        hostPath:
-          path: /etc/timezone
-          type: FileOrCreate
+        - name: panelpc-gui
+          image: docker.io/flikweertvision/{{ ternary "panelpc-gui" "panelpc-gui-divider" $isQG }}:{{ $software.softwareVersion }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          env:
+{{- if $isQG }}
+            - name: NUXT_API_BASE
+              value: "http://{{ $panelpc_ip }}:5000"
+            - name: NUXT_PUBLIC_CALIBRATION_TOOL_URL
+              value: "http://{{ $panelpc_ip }}:5123"
 {{- end }}
----
-
-{{- $url := .Values.endpoint }}
-{{- $ipRegex := `[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+` }}
-{{- $panelpc_ip := regexFind $ipRegex $url }}
-
-{{- $group := .Values.group | index .Values.groups }}
-{{- $software_type := "PanelPC-GUI" }}
-{{- $software := $software_type | index $group.software}}
-{{- if and $software (eq ($group.type | default "") "DV") -}}
-apiVersion: apps.kruise.io/v1alpha1
-kind: DaemonSet  # Changed to DaemonSet
-metadata:
-  name: {{lower $software_type }}-pp-gui-software-daemonset  # Updated name to reflect the DaemonSet type
-  namespace: default
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-    apps.kruise.io/image-predownload-parallelism: "10"
-spec:
-  selector:
-    matchLabels:
-      app: {{lower $software_type }}  # Ensure the label matches the selector
-      machine-type: {{ $software_type }}
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 100%
-      maxUnavailable: 0
-      rollingUpdateType: Standard
-  template:
-    metadata:
-      labels:
-        app: {{lower $software_type }}  # Unique labels for the pod
-        machine-type: {{ $software_type }}  # Use the machine type for labeling
-    spec:
-      automountServiceAccountToken: false
-      nodeSelector:
-        machine-type: "PanelPC"
-
-      hostNetwork: true  # Equivalent to --net=host
-      imagePullSecrets:
-      - name: regcred
-      terminationGracePeriodSeconds: 5
-      containers:
-      - name: panelpc-gui
-        image: docker.io/flikweertvision/panelpc-gui-divider:{{ $software.softwareVersion }}
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          privileged: true
-        env:
-        - name: NUXT_PUBLIC_API_URL
-          value: "http://{{ $panelpc_ip }}:5000"
-        - name: CALIBRATION_TOOL_URL
-          value: "http://{{ $panelpc_ip }}:5123"
-        volumeMounts:
-        - name: gui-build-artifacts
-          mountPath: /app/.output/
-        - name: nuxt-artifacts
-          mountPath: /app/.nuxt/
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-      
+{{- if $isDV }}
+            - name: NUXT_PUBLIC_API_URL
+              value: "http://{{ $panelpc_ip }}:5000"
+            - name: CALIBRATION_TOOL_URL
+              value: "http://{{ $panelpc_ip }}:5123"
+{{- end }}
+          volumeMounts:
+            - name: timezone-settings
+              mountPath: /etc/timezone
+              readOnly: true
+{{- if $isDV }}
+            - name: gui-build-artifacts
+              mountPath: /app/.output/
+            - name: nuxt-artifacts
+              mountPath: /app/.nuxt/
+{{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 15
       volumes:
-      - name: gui-build-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/build
-          type: DirectoryOrCreate
-      - name: nuxt-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/nuxt
-          type: DirectoryOrCreate
+        - name: timezone-settings
+          hostPath:
+            path: /etc/timezone
+            type: FileOrCreate
+{{- if $isDV }}
+        - name: gui-build-artifacts
+          hostPath:
+            path: /home/fvt/QualityGrader/UI/build
+            type: DirectoryOrCreate
+        - name: nuxt-artifacts
+          hostPath:
+            path: /home/fvt/QualityGrader/UI/nuxt
+            type: DirectoryOrCreate
+{{- end }}
 {{- end }}
