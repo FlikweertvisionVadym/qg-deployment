@@ -55,6 +55,9 @@ spec:
           mountPath: /app/.output/
         - name: nuxt-artifacts
           mountPath: /app/.nuxt/
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /
@@ -71,4 +74,8 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/UI/nuxt
           type: DirectoryOrCreate
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}
