@@ -80,9 +80,18 @@ spec:
           mountPath: /home/nvidia/QualityGrader/version.json
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
+        - name: logfiles
+          mountPath: /etc/fvt_logfiles
         - name: timezone-settings
           mountPath: /etc/timezone
-      
+
+      initContainers:
+      - name: plc-tool
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
+        volumeMounts:
+        - name: g-device-settings
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+
       volumes:
       - name: classifier
         hostPath:
@@ -123,6 +132,10 @@ spec:
       - name: images
         hostPath:
           path: /home/nvidia/QualityGrader/images
+          type: DirectoryOrCreate
+      - name: logfiles
+        hostPath:
+          path: /etc/fvt_logfiles
           type: DirectoryOrCreate
       - name: timezone-settings
         hostPath:
