@@ -117,7 +117,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: panelpc-gui
-        image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/panelpc-gui-divider:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
