@@ -1,7 +1,7 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "Calibration-Tool" }}
 {{- $software := $software_type | index $group.software}}
-{{- if $software }}
+{{- if and $software (eq ($group.type | default "") "QG") -}}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
@@ -77,7 +77,7 @@ spec:
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "Calibration-Tool" }}
 {{- $software := $software_type | index $group.software}}
-{{- if $software }}
+{{- if and $software (eq ($group.type | default "") "QG") -}}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
