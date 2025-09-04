@@ -1,10 +1,10 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $machineTypes := list "QG" "DV" }} # Define supported machine types
+{{- $machineTypes := list "QG" "DV" }}
 {{- $isDV := eq (lower (toString (default "" $group.type))) "dv" }}
 {{- $typeSuffix := ternary "-dv" "" $isDV }}
 
 {{- range $machineType := $machineTypes }}
-  {{- if hasKey $group.software $machineType }} # Ensure the software exists before processing
+  {{- if hasKey $group.software $machineType }}
     {{- $software := index $group.software $machineType }}
     {{- $qgImageName := ternary "quality_grader-divider" "quality_grader" $isDV }}
 ---
@@ -52,7 +52,8 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  pullSecrets: [ { name: regcred } ]
+  pullSecrets:
+  - regcred
   image: docker.io/flikweertvision/{{ $ppcApiImage }}:{{ $panelPCAPI.softwareVersion }}
   parallelism: 5
   selector:
@@ -79,7 +80,8 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  pullSecrets: [ { name: regcred } ]
+  pullSecrets:
+  - regcred
   image: docker.io/flikweertvision/{{ $ppcGuiImage }}:{{ $panelPCGUI.softwareVersion }}
   parallelism: 5
   selector:
