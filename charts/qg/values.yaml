@@ -18,7 +18,7 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       QG:
-        softwareVersion: "dev_migration-rename-potatovs"
+        softwareVersion: "dev_migration-rename-potatovs-orin"
       PanelPC-API:
         softwareVersion: "dev_dev"
       PanelPC-GUI:
