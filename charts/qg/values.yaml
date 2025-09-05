@@ -13,6 +13,20 @@ groups:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
+  production-potatovs-fix:
+    software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.30"
+      QG:
+        softwareVersion: "dev_migration-rename-potatovs"
+      PanelPC-API:
+        softwareVersion: "dev_dev"
+      PanelPC-GUI:
+        softwareVersion: "dev_dev"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71.1-hotfix"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.7_SP18"
   production-pre-release:
     software:
       Telemetry-Producer:
