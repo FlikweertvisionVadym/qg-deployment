@@ -246,6 +246,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "v2.4.2-server"
       Calibration-Tool:
-        softwareVersion: "v0.3.14"
+        softwareVersion: "v0.3.15"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
