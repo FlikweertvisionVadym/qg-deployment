@@ -1,8 +1,8 @@
 {{- $group := index .Values.groups .Values.group }}
 {{- $software_type := "PanelPC-API" }}
 {{- $software := index $group.software $software_type }}
-{{- $isQG := eq ($group.type | default "") "QG" }}
-{{- if and $software (or $isQG) }}
+{{- $isDV := eq ($group.type | default "") "DV" }}
+{{- if and $software (or $isDV) }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
@@ -37,7 +37,7 @@ spec:
       - name: regcred
       containers:
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/panelpc-api-divider:{{ $software.softwareVersion }}
         command: ["/bin/bash", "-c"]
         args: 
         - "sleep 10 && exec supervisord -c /home/fvt/QualityGrader/Api/supervisord.conf -n"
