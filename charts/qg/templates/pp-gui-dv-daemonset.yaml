@@ -5,7 +5,7 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "PanelPC-GUI" }}
 {{- $software := $software_type | index $group.software}}
-{{- if and $software (eq ($group.type | default "") "QG") -}}
+{{- if and $software (eq ($group.type | default "") "DV") -}}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
@@ -41,7 +41,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: panelpc-gui
-        image: docker.io/flikweertvision/panelpc-gui:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/panelpc-gui-divider:{{ $software.softwareVersion }}
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
@@ -72,4 +72,3 @@ spec:
           path: /home/fvt/QualityGrader/UI/nuxt
           type: DirectoryOrCreate
 {{- end }}
----
