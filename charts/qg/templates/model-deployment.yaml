@@ -31,8 +31,6 @@ spec:
       containers:
         - name: {{lower $software_type }}-master
           image: docker.io/flikweertvision/model-deployment-master:{{ $software.softwareVersion }}
-          # Do not pull an image that is imported from local Docker registry
-          imagePullPolicy: Never
           env:
             - name: POLLING_INTERVAL_S
               value: "5"
@@ -110,7 +108,6 @@ spec:
       containers:
         - name: {{lower $software_type }}-worker
           image: docker.io/flikweertvision/model-deployment-worker:{{ $software.softwareVersion }}
-          imagePullPolicy: Never
           env:
             - name: POLLING_INTERVAL_S
               value: "5"
