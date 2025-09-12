@@ -127,7 +127,7 @@ groups:
       DV:
         softwareVersion: "dev_DV-new-interface-docker-orin"
       PanelPC-API:
-        softwareVersion: "dev_main"
+        softwareVersion: "dev_1.5_docker"
       PanelPC-GUI:
         softwareVersion: "dev_main"
       Calibration-Tool:
