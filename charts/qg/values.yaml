@@ -2,6 +2,7 @@ groups:
   production:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -19,6 +20,7 @@ groups:
   production-pre-release:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -36,6 +38,7 @@ groups:
   production-empty-plc:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -53,6 +56,7 @@ groups:
   qg-srs-update-transfer:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -70,6 +74,7 @@ groups:
   qg-old-update-transfer:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -87,6 +92,7 @@ groups:
   production_plc:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -104,6 +110,7 @@ groups:
   production_plc_empty:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -121,6 +128,7 @@ groups:
   divider:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       DV:
@@ -136,6 +144,7 @@ groups:
   multi-model:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -153,6 +162,7 @@ groups:
   vs-flipper-test:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -170,6 +180,7 @@ groups:
   service-round-xavier-swap:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -187,6 +198,7 @@ groups:
   hotfix-calibration-service-round:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -204,6 +216,7 @@ groups:
   production-europe:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -221,6 +234,7 @@ groups:
   production-asian-oceania:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -238,6 +252,7 @@ groups:
   production-americas:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -255,6 +270,7 @@ groups:
   added-sensors-test:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -272,6 +288,7 @@ groups:
   added-sensors-test-empty-plc:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:
@@ -289,6 +306,7 @@ groups:
   calibration-tool-test:
     software:
       RidderIQ-API:
+        softwareVersion: v0.0.1
       Model-Deployment:
         softwareVersion: v0.1.1
       Telemetry-Producer:

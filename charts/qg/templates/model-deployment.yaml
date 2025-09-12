@@ -120,11 +120,19 @@ spec:
           volumeMounts:
             - name: model-store
               mountPath: /model-store
+            - name: jetson-release-bin
+              mountPath: /usr/local/bin/jetson_release
+              subPath: jetson_release
+              readOnly: true
       volumes:
         - name: model-store
           hostPath:
             path: /model-store
             type: DirectoryOrCreate
+        - name: jetson-release-bin
+          hostPath:
+            path: /usr/local/bin
+            type: Directory
 ---
 
 apiVersion: v1
