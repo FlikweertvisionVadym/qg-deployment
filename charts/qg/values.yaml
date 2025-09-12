@@ -1,6 +1,9 @@
 groups:
   production:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -15,6 +18,9 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
   production-pre-release:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -29,6 +35,9 @@ groups:
         softwareVersion: "QG_V2.4.7_SP18"
   production-empty-plc:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -43,6 +52,9 @@ groups:
         softwareVersion: "empty"
   qg-srs-update-transfer:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -57,6 +69,9 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
   qg-old-update-transfer:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -71,6 +86,9 @@ groups:
         softwareVersion: "empty"
   production_plc:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -85,6 +103,9 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
   production_plc_empty:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -99,6 +120,9 @@ groups:
         softwareVersion: "empty"
   divider:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       DV:
         softwareVersion: "DV_dev_DV-fixed-button-docker-orin"
       PanelPC-API:
@@ -111,6 +135,9 @@ groups:
         softwareVersion: "empty"
   multi-model:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -125,6 +152,9 @@ groups:
         softwareVersion: "empty"
   vs-flipper-test:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -139,6 +169,9 @@ groups:
         softwareVersion: "empty"
   service-round-xavier-swap:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -153,6 +186,9 @@ groups:
         softwareVersion: "empty"
   hotfix-calibration-service-round:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -167,6 +203,9 @@ groups:
         softwareVersion: "empty"
   production-europe:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -181,6 +220,9 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
   production-asian-oceania:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -195,6 +237,9 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
   production-americas:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -209,6 +254,9 @@ groups:
         softwareVersion: "QG_V2.4.6_SP18"
   added-sensors-test:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -223,6 +271,9 @@ groups:
         softwareVersion: "QG_V2.4.7_SP18"
   added-sensors-test-empty-plc:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -237,6 +288,9 @@ groups:
         softwareVersion: "empty"
   calibration-tool-test:
     software:
+      RidderIQ-API:
+      Model-Deployment:
+        softwareVersion: v0.1.1
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
