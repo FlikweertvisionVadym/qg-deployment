@@ -115,7 +115,7 @@ spec:
             - name: POLLING_INTERVAL_S
               value: "5"
             - name: DOCKER_REGISTRY_URL
-              value: "docker-registry-service:5000/flikweertvision"
+              value: "docker-registry-service:5233/flikweertvision"
             - name: DOCKER_HUB_REGISTRY_URL
               value: "docker.io/flikweertvision"
             - name: PORT

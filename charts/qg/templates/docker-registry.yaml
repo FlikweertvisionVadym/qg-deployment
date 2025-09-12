@@ -90,3 +90,18 @@ spec:
         - { name: client-crt, mountPath: /var/lib/rancher/k3s/server/tls/client-ca.crt, readOnly: true }
         - { name: client-key, mountPath: /var/lib/rancher/k3s/server/tls/client-ca.key, readOnly: true }
         args: ["/etc/docker/registry/config.yml"]
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker-registry-service
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    app: docker-registry
+  ports:
+    - protocol: TCP
+      port: 5233
+      targetPort: 5233
