@@ -1,0 +1,145 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "Model-Deployment" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{lower $software_type }}-master-program-software-daemonset
+  namespace: default
+  labels:
+    app: {{lower $software_type }}-master
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}-master
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}-master
+    spec:
+      serviceAccountName: {{lower $software_type }}-master-sa
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
+                  - key: node-role.kubernetes.io/master
+                    operator: Exists
+      containers:
+        - name: {{lower $software_type }}-master
+          image: docker.io/flikweertvision/model-deployment-master:{{ $software.softwareVersion }}
+          # Do not pull an image that is imported from local Docker registry
+          imagePullPolicy: Never
+          env:
+            - name: POLLING_INTERVAL_S
+              value: "5"
+            - name: RIDDERIQ_API_URL
+              value: "http://ridderiq-api-service:8080"
+            - name: WORKER_SERVICE_NAME
+              value: "{{lower $software_type }}-worker-service"
+            - name: WORKER_SERVICE_NAMESPACE
+              value: "default"
+            - name: WORKER_SERVICE_PORT
+              value: "8080"
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{lower $software_type }}-master-sa
+  namespace: default
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{lower $software_type }}-master-r
+  namespace: default
+rules:
+  - apiGroups: [""]
+    resources: ["services", "endpoints", "pods"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["discovery.k8s.io"]
+    resources: ["endpointslices"]
+    verbs: ["get", "list", "watch"]
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{lower $software_type }}-master-rb
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: {{lower $software_type }}-master-sa
+    namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{lower $software_type }}-master-r
+---
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{lower $software_type }}-worker-program-software-daemonset
+  namespace: default
+  labels:
+    app: {{lower $software_type }}-worker
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}-worker
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}-worker
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: DoesNotExist
+                  - key: node-role.kubernetes.io/master
+                    operator: DoesNotExist
+      containers:
+        - name: {{lower $software_type }}-worker
+          image: docker.io/flikweertvision/model-deployment-worker:{{ $software.softwareVersion }}
+          imagePullPolicy: Never
+          env:
+            - name: POLLING_INTERVAL_S
+              value: "5"
+            - name: DOCKER_REGISTRY_URL
+              value: "docker-registry-service:5000/flikweertvision"
+            - name: DOCKER_HUB_REGISTRY_URL
+              value: "docker.io/flikweertvision"
+            - name: PORT
+              value: "8080"
+          volumeMounts:
+            - name: model-store
+              mountPath: /model-store
+      volumes:
+        - name: model-store
+          hostPath:
+            path: /model-store
+            type: DirectoryOrCreate
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{lower $software_type }}-worker-service
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    app: {{lower $software_type }}-worker
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

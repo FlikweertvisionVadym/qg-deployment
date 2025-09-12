@@ -1,0 +1,72 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "RidderIQ-API" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{lower $software_type }}-program-software-daemonset
+  namespace: default
+  labels:
+    app: {{lower $software_type }}
+spec:
+  selector:
+    matchLabels:
+      app: {{lower $software_type }}
+  template:
+    metadata:
+      labels:
+        app: {{lower $software_type }}
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
+                  - key: node-role.kubernetes.io/master
+                    operator: Exists
+      containers:
+        - name: {{lower $software_type }}
+          image: wiremock/wiremock:3.13.1-alpine
+          ports:
+            - containerPort: 8080
+          command: ["/docker-entrypoint.sh"]
+          args:
+            - --global-response-templating
+            - --disable-gzip
+            - --verbose
+          volumeMounts:
+            - name: files
+              mountPath: /home/wiremock/__files
+              readOnly: true
+            - name: mappings
+              mountPath: /home/wiremock/mappings
+              readOnly: true
+      volumes:
+        - name: files
+          hostPath:
+            path: /home/wiremock/__files
+            type: Directory
+        - name: mappings
+          hostPath:
+            path: /home/wiremock/mappings
+            type: Directory
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{lower $software_type }}-service
+  namespace: default
+  labels:
+    app: {{lower $software_type }}
+spec:
+  selector:
+    app: {{lower $software_type }}
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

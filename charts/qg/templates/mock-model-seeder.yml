@@ -1,0 +1,44 @@
+{{- $group := .Values.group | index .Values.groups }}
+{{- $software_type := "Model-Seeder" }}
+{{- $software := $software_type | index $group.software}}
+{{- if $software }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{lower $software_type }}-job
+  namespace: default
+  labels:
+    app: {{lower $software_type }}
+spec:
+  activeDeadlineSeconds: 60
+  backoffLimit: 4
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
+                  - key: node-role.kubernetes.io/master
+                    operator: Exists
+      activeDeadlineSeconds: 30
+      restartPolicy: "OnFailure"
+      containers:
+        - name: model-seeder
+          image: docker.io/flikweertvision/mock-model-seeder:{{ $software.softwareVersion }}
+          # Do not pull an image that is imported from local Docker registry
+          imagePullPolicy: Never
+          env:
+            - name: DOCKER_REGISTRY_URL
+              value: {{lower $software_type }}-service:5000/flikweertvision
+          volumeMounts:
+            - name: model-deployment-manifest
+              mountPath: /etc/model-deployment-manifest
+              readOnly: true
+      volumes:
+        - name: model-deployment-manifest
+          hostPath:
+            path: /etc/model-deployment-manifest
+            type: Directory
