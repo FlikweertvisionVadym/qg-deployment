@@ -125,11 +125,11 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       DV:
-        softwareVersion: "dev_DV-new-interface-docker-orin"
+        softwareVersion: "v1.3.0-orin"
       PanelPC-API:
-        softwareVersion: "dev_1.5_docker"
+        softwareVersion: "v1.5.0"
       PanelPC-GUI:
-        softwareVersion: "dev_main"
+        softwareVersion: "v2.3.0"
       Calibration-Tool:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
