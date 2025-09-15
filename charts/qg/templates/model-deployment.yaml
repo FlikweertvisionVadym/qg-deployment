@@ -105,25 +105,6 @@ spec:
                     operator: DoesNotExist
                   - key: node-role.kubernetes.io/master
                     operator: DoesNotExist
-      initContainers:
-        - name: {{lower $software_type }}-worker-init-jetson-release
-          # jtop / jetson-stats image provides the `jetson_release` CLI
-          image: docker.io/rbonghi/jetson_stats:4.3.2
-          imagePullPolicy: IfNotPresent
-          command: ["/bin/sh","-c"]
-          args:
-            - |
-              set -e
-              if command -v jetson_release >/dev/null 2>&1; then
-                jetson_release > /jetson-info/jetson_release || true
-              else
-                echo "jetson_release CLI not found in image" > /jetson-info/jetson_release
-              fi
-          volumeMounts:
-            - name: jetson-info
-              mountPath: /jetson-info
-            - name: jtop-sock
-              mountPath: /run/jtop.sock
       containers:
         - name: {{lower $software_type }}-worker
           image: docker.io/flikweertvision/model-deployment-worker:{{ $software.softwareVersion }}
@@ -139,19 +120,23 @@ spec:
           volumeMounts:
             - name: model-store
               mountPath: /model-store
-            - name: jetson-info
-              mountPath: /usr/local/share/jetson
+            - name: jetpack-info
+              mountPath: /etc/nv_tegra_release
+            - name: hardware-info
+              mountPath: /sys/firmware/devicetree/base/model
       volumes:
         - name: model-store
           hostPath:
             path: /model-store
             type: DirectoryOrCreate
-        - name: jtop-sock
+        - name: jetpack-info
           hostPath:
-            path: /run/jtop.sock
-            type: File
-        - name: jetson-info
-          emptyDir: {}
+            path: /etc/nv_tegra_release
+            type: FileOrCreate
+        - name: hardware-info
+          hostPath:
+            path: /sys/firmware/devicetree/base/model
+            type: FileOrCreate
 ---
 
 apiVersion: v1
