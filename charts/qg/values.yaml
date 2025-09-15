@@ -305,10 +305,6 @@ groups:
         softwareVersion: "empty"
   calibration-tool-test:
     software:
-      RidderIQ-API:
-        softwareVersion: v0.0.1
-      Model-Deployment:
-        softwareVersion: v0.1.2
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
