@@ -5,26 +5,26 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       QG:
-        softwareVersion: "v1.8.3-pc-orin"
+        softwareVersion: "v1.8.4-pc-orin"
       PanelPC-API:
-        softwareVersion: "v1.8.2-api"
+        softwareVersion: "v1.8.3-api"
       PanelPC-GUI:
-        softwareVersion: "v2.4.2-server"
+        softwareVersion: "v2.4.3-server"
       Calibration-Tool:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "QG_V2.4.6_SP18"
+        softwareVersion: "QG_V2.4.7_SP18"
   production-pre-release:
     type: "QG"
     software:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       QG:
-        softwareVersion: "dev_v1.8.4_candidate-orin"
+        softwareVersion: "v1.8.4-pc-orin"
       PanelPC-API:
-        softwareVersion: "dev_v1.8.3_candidate"
+        softwareVersion: "v1.8.3-api"
       PanelPC-GUI:
-        softwareVersion: "dev_v2.4.3_candidate"
+        softwareVersion: "v2.4.3-server"
       Calibration-Tool:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
@@ -35,11 +35,11 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       QG:
-        softwareVersion: "dev_v1.8.4_candidate-orin"
+        softwareVersion: "v1.8.4-pc-orin"
       PanelPC-API:
-        softwareVersion: "dev_v1.8.3_candidate"
+        softwareVersion: "v1.8.3-api"
       PanelPC-GUI:
-        softwareVersion: "dev_v2.4.3_candidate"
+        softwareVersion: "v2.4.3-server"
       Calibration-Tool:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
@@ -50,15 +50,15 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       QG:
-        softwareVersion: "v1.8.3-pc-orin"
+        softwareVersion: "v1.8.4-pc-orin"
       PanelPC-API:
-        softwareVersion: "v1.8.2-api"
+        softwareVersion: "v1.8.3-api"
       PanelPC-GUI:
-        softwareVersion: "v2.4.2-server"
+        softwareVersion: "v2.4.3-server"
       Calibration-Tool:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
-        softwareVersion: "QG_V2.4.6_SP18"
+        softwareVersion: "QG_V2.4.7_SP18"
   divider:
     type: "DV"
     software:
