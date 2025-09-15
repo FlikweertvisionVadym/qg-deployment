@@ -9,7 +9,7 @@ metadata:
   name: {{lower $software_type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
@@ -67,6 +67,9 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/version.json
         - name: version-backups
           mountPath: /home/fvt/QualityGrader/Api/version_backups
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
       volumes:
       - name: json-files
         hostPath:
@@ -100,4 +103,8 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/Api/version_backups
           type: DirectoryOrCreate
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}

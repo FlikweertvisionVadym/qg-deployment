@@ -12,7 +12,7 @@ metadata:
   name: {{lower $software_type }}-pp-gui-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
@@ -55,6 +55,9 @@ spec:
           mountPath: /app/.output/
         - name: nuxt-artifacts
           mountPath: /app/.nuxt/
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /
@@ -71,4 +74,9 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/UI/nuxt
           type: DirectoryOrCreate
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}
+---

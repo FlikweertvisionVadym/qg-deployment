@@ -70,7 +70,6 @@ spec:
         - name: timezone-settings
           mountPath: /etc/timezone
           readOnly: true
-
       volumes:
       - name: json-files
         hostPath:
