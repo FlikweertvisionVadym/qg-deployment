@@ -121,9 +121,9 @@ spec:
             - name: model-store
               mountPath: /model-store
             - name: jetpack-info
-              mountPath: /etc/nv_tegra_release
+              mountPath: /host/nv_tegra_release
             - name: hardware-info
-              mountPath: /sys/firmware/devicetree/base/model
+              mountPath: /host/model
       volumes:
         - name: model-store
           hostPath:
