@@ -1,9 +1,12 @@
 {{- $group := .Values.group | index .Values.groups }}
-{{- $machineTypes := list "QG" "DV" }} # Define supported machine types
+{{- $machineTypes := list "QG" "DV" }}
+{{- $isDV := eq (lower (toString (default "" $group.type))) "dv" }}
+{{- $typeSuffix := ternary "-dv" "" $isDV }}
 
 {{- range $machineType := $machineTypes }}
-  {{- if hasKey $group.software $machineType }} # Ensure the software exists before processing
+  {{- if hasKey $group.software $machineType }}
     {{- $software := index $group.software $machineType }}
+    {{- $qgImageName := ternary "quality_grader-divider" "quality_grader" $isDV }}
 ---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
@@ -17,7 +20,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}
+  image: docker.io/flikweertvision/{{ $qgImageName }}:{{ $software.softwareVersion }}
   parallelism: 5
   selector:
     matchLabels:
@@ -34,13 +37,15 @@ spec:
 
 {{- $panelPCAPI := index $group.software "PanelPC-API" | default dict }}
 {{- $panelPCGUI := index $group.software "PanelPC-GUI" | default dict }}
+{{- $ppcApiImage := ternary "panelpc-api-divider" "panelpc-api" $isDV }}
+{{- $ppcGuiImage := ternary "panelpc-gui-divider" "panelpc-gui" $isDV }}
 
 {{- if $panelPCAPI.softwareVersion }}
 ---
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
 metadata:
-  name: pre-pull-image-panelpc-api
+  name: pre-pull-image-panelpc-api{{ $typeSuffix }}
   namespace: default
   annotations:
     argocd.argoproj.io/hook: Sync
@@ -49,7 +54,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/panelpc-api:{{ $panelPCAPI.softwareVersion }}
+  image: docker.io/flikweertvision/{{ $ppcApiImage }}:{{ $panelPCAPI.softwareVersion }}
   parallelism: 5
   selector:
     matchLabels:
@@ -68,7 +73,7 @@ spec:
 apiVersion: apps.kruise.io/v1alpha1
 kind: ImagePullJob
 metadata:
-  name: pre-pull-image-panelpc-gui
+  name: pre-pull-image-panelpc-gui{{ $typeSuffix }}
   namespace: default
   annotations:
     argocd.argoproj.io/hook: Sync
@@ -77,7 +82,7 @@ metadata:
 spec:
   pullSecrets:
   - regcred
-  image: docker.io/flikweertvision/panelpc-gui:{{ $panelPCGUI.softwareVersion }}
+  image: docker.io/flikweertvision/{{ $ppcGuiImage }}:{{ $panelPCGUI.softwareVersion }}
   parallelism: 5
   selector:
     matchLabels:

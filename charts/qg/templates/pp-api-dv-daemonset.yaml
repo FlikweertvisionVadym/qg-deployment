@@ -1,15 +1,15 @@
 {{- $group := index .Values.groups .Values.group }}
 {{- $software_type := "PanelPC-API" }}
 {{- $software := index $group.software $software_type }}
-{{- $isQG := eq ($group.type | default "") "QG" }}
-{{- if and $software (or $isQG) }}
+{{- $isDV := eq ($group.type | default "") "DV" }}
+{{- if and $software (or $isDV) }}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
   name: {{lower $software_type }}-pp-api-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "0"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
@@ -37,7 +37,7 @@ spec:
       - name: regcred
       containers:
       - name: panelpc-interface
-        image: docker.io/flikweertvision/panelpc-api:{{ $software.softwareVersion }}
+        image: docker.io/flikweertvision/panelpc-api-divider:{{ $software.softwareVersion }}
         command: ["/bin/bash", "-c"]
         args: 
         - "sleep 10 && exec supervisord -c /home/fvt/QualityGrader/Api/supervisord.conf -n"
@@ -67,10 +67,6 @@ spec:
           mountPath: /home/fvt/QualityGrader/Api/version.json
         - name: version-backups
           mountPath: /home/fvt/QualityGrader/Api/version_backups
-        - name: timezone-settings
-          mountPath: /etc/timezone
-          readOnly: true
-
       volumes:
       - name: json-files
         hostPath:
@@ -104,8 +100,4 @@ spec:
         hostPath:
           path: /home/fvt/QualityGrader/Api/version_backups
           type: DirectoryOrCreate
-      - name: timezone-settings
-        hostPath:
-          path: /etc/timezone
-          type: FileOrCreate
 {{- end }}
