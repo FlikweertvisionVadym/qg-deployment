@@ -314,6 +314,6 @@ groups:
       PanelPC-GUI:
         softwareVersion: "dev_v2.4.3_candidate"
       Calibration-Tool:
-        softwareVersion: "v0.3.17"
+        softwareVersion: "v0.3.18"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
