@@ -1,14 +1,16 @@
 {{- $group := .Values.group | index .Values.groups }}
 {{- $software_type := "DV" }}
 {{- $software := $software_type | index $group.software}}
-{{- if $software }}
+{{- $plc_softw := "Plc-Tool" }}
+{{- $plc := $plc_softw | index $group.software}}
+{{- if and $software (eq ($group.type | default "") "DV") -}}
 apiVersion: apps.kruise.io/v1alpha1
 kind: DaemonSet  # Changed to DaemonSet
 metadata:
   name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
+  annotations:    
+    argocd.argoproj.io/sync-wave: "1"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
@@ -28,11 +30,25 @@ spec:
         machine-type: {{ $software_type }}  # Use the machine type for labeling
     spec:
       automountServiceAccountToken: false
-      nodeSelector:
-        machine-type: {{ $software_type }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: machine-type
+                    operator: In
+                    values:
+                      - {{ $software_type }}
+                  - key: mode
+                    operator: NotIn
+                    values:
+                      - calibrating
       
       tolerations:
       - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      - key: maintanance-mode
         operator: Exists
         effect: NoSchedule
 
@@ -43,7 +59,7 @@ spec:
       
       containers:
       - name: quality-grader
-        image: docker.io/flikweertvision/quality_grader:{{ $software.softwareVersion }}  # Use the correct image version
+        image: docker.io/flikweertvision/quality_grader-divider:{{ $software.softwareVersion }}  # Use the correct image version
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash", "-c"]
         args: 
@@ -80,7 +96,18 @@ spec:
           mountPath: /home/nvidia/QualityGrader/version.json
         - name: images
           mountPath: /home/nvidia/QualityGrader/images
-      
+        - name: logfiles
+          mountPath: /etc/fvt_logfiles
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
+      initContainers:
+      - name: plc-tool
+        image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
+        volumeMounts:
+        - name: g-device-settings
+          mountPath: /home/nvidia/QualityGrader/G_device_settings.ini
+
       volumes:
       - name: classifier
         hostPath:
@@ -122,4 +149,12 @@ spec:
         hostPath:
           path: /home/nvidia/QualityGrader/images
           type: DirectoryOrCreate
+      - name: logfiles
+        hostPath:
+          path: /etc/fvt_logfiles
+          type: DirectoryOrCreate
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}

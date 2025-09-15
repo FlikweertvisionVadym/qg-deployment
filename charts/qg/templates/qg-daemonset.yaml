@@ -10,7 +10,7 @@ metadata:
   name: {{lower $software_type }}-program-software-daemonset  # Updated name to reflect the DaemonSet type
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
     apps.kruise.io/image-predownload-parallelism: "10"
 spec:
   selector:
@@ -100,7 +100,10 @@ spec:
           mountPath: /home/nvidia/QualityGrader/images
         - name: logfiles
           mountPath: /etc/fvt_logfiles
-      
+        - name: timezone-settings
+          mountPath: /etc/timezone
+          readOnly: true
+
       initContainers:
       - name: plc-tool
         image: docker.io/flikweertvision/plc_deploy_backup:{{ $plc.softwareVersion }}
@@ -157,6 +160,8 @@ spec:
         hostPath:
           path: /etc/fvt_logfiles
           type: DirectoryOrCreate
-      
-    
+      - name: timezone-settings
+        hostPath:
+          path: /etc/timezone
+          type: FileOrCreate
 {{- end }}
