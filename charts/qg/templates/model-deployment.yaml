@@ -132,11 +132,11 @@ spec:
         - name: jetpack-info
           hostPath:
             path: /etc/nv_tegra_release
-            type: FileOrCreate
+            type: File
         - name: hardware-info
           hostPath:
             path: /sys/firmware/devicetree/base/model
-            type: FileOrCreate
+            type: File
 ---
 
 apiVersion: v1
