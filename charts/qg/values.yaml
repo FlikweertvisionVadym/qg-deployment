@@ -4,7 +4,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -22,7 +22,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -40,7 +40,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -58,7 +58,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -76,7 +76,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -94,7 +94,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -112,7 +112,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -130,7 +130,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       DV:
         softwareVersion: "DV_dev_DV-fixed-button-docker-orin"
       PanelPC-API:
@@ -146,7 +146,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -164,7 +164,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -182,7 +182,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -200,7 +200,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -218,7 +218,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -236,7 +236,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -254,7 +254,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -272,7 +272,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -290,7 +290,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
@@ -308,7 +308,7 @@ groups:
       RidderIQ-API:
         softwareVersion: v0.0.1
       Model-Deployment:
-        softwareVersion: v0.1.2
+        softwareVersion: v0.1.3
       Telemetry-Producer:
         softwareVersion: "v0.0.29"
       QG:
