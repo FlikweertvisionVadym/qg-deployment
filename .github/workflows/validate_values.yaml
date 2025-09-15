@@ -1,0 +1,17 @@
+name: Validate values.yaml
+
+on:
+  pull_request:
+    paths: ["charts/qg/values.yaml", "lint/**"]
+  push:
+    branches: [main]
+    paths: ["charts/qg/values.yaml", "lint/**"]
+
+jobs:
+  cue-vet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cue-lang/setup-cue@v1.0.0
+      - name: Validate with CUE
+        run: cue vet charts/qg/values.yaml lint/values.cue
