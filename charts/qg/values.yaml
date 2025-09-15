@@ -110,11 +110,11 @@ groups:
       Telemetry-Producer:
         softwareVersion: "v0.0.30"
       DV:
-        softwareVersion: "dev_DV-new-interface-docker-orin"
+        softwareVersion: "v1.3.0-orin"
       PanelPC-API:
-        softwareVersion: "dev_main"
+        softwareVersion: "v1.5.0"
       PanelPC-GUI:
-        softwareVersion: "dev_main"
+        softwareVersion: "v2.3.0"
       Plc-Tool:
         softwareVersion: "empty"
   vs-flipper-test:
