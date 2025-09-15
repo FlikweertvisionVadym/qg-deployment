@@ -2,7 +2,7 @@ groups:
   production:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -72,7 +72,7 @@ groups:
   production_plc:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -86,7 +86,7 @@ groups:
   production_plc_empty:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -112,7 +112,7 @@ groups:
   vs-flipper-test:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "dev_vs_flipper_tests-orin"
       PanelPC-API:
@@ -126,7 +126,7 @@ groups:
   service-round-xavier-swap:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.7.9-pc-orin"
       PanelPC-API:
@@ -140,7 +140,7 @@ groups:
   hotfix-calibration-service-round:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.7.9-pc-orin"
       PanelPC-API:
@@ -154,7 +154,7 @@ groups:
   production-europe:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -168,7 +168,7 @@ groups:
   production-asian-oceania:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -182,7 +182,7 @@ groups:
   production-americas:
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
