@@ -18,7 +18,7 @@ groups:
     type: "QG"
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "dev_v1.8.4_candidate-orin"
       PanelPC-API:
@@ -33,7 +33,7 @@ groups:
     type: "QG"
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "dev_v1.8.4_candidate-orin"
       PanelPC-API:
@@ -48,7 +48,7 @@ groups:
     type: "QG"
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
@@ -63,7 +63,7 @@ groups:
     type: "QG"
     software:
       Telemetry-Producer:
-        softwareVersion: "v0.0.29"
+        softwareVersion: "v0.0.30"
       QG:
         softwareVersion: "v1.8.3-pc-orin"
       PanelPC-API:
