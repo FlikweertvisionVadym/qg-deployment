@@ -115,8 +115,6 @@ groups:
         softwareVersion: "dev_main"
       PanelPC-GUI:
         softwareVersion: "dev_main"
-      Calibration-Tool:
-        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "empty"
   vs-flipper-test:
