@@ -44,36 +44,6 @@ groups:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "empty"
-  qg-srs-update-transfer:
-    type: "QG"
-    software:
-      Telemetry-Producer:
-        softwareVersion: "v0.0.30"
-      QG:
-        softwareVersion: "v1.8.3-pc-orin"
-      PanelPC-API:
-        softwareVersion: "v1.8.2-api"
-      PanelPC-GUI:
-        softwareVersion: "v2.4.2-server"
-      Calibration-Tool:
-        softwareVersion: "v0.2.71.1-hotfix"
-      Plc-Tool:
-        softwareVersion: "QG_V2.4.6_SP18"
-  qg-old-update-transfer:
-    type: "QG"
-    software:
-      Telemetry-Producer:
-        softwareVersion: "v0.0.30"
-      QG:
-        softwareVersion: "v1.8.3-pc-orin"
-      PanelPC-API:
-        softwareVersion: "v1.8.2-api"
-      PanelPC-GUI:
-        softwareVersion: "v2.4.2-server"
-      Calibration-Tool:
-        softwareVersion: "v0.2.71.1-hotfix"
-      Plc-Tool:
-        softwareVersion: "empty"
   production_plc:
     type: "QG"
     software:
@@ -89,21 +59,6 @@ groups:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "QG_V2.4.6_SP18"
-  production_plc_empty:
-    type: "QG"
-    software:
-      Telemetry-Producer:
-        softwareVersion: "v0.0.30"
-      QG:
-        softwareVersion: "v1.8.3-pc-orin"
-      PanelPC-API:
-        softwareVersion: "v1.8.2-api"
-      PanelPC-GUI:
-        softwareVersion: "v2.4.2-server"
-      Calibration-Tool:
-        softwareVersion: "v0.2.71.1-hotfix"
-      Plc-Tool:
-        softwareVersion: "empty"
   divider:
     type: "DV"
     software:
@@ -145,21 +100,6 @@ groups:
         softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
       Calibration-Tool:
         softwareVersion: "v0.2.71"
-      Plc-Tool:
-        softwareVersion: "empty"
-  hotfix-calibration-service-round:
-    type: "QG"
-    software:
-      Telemetry-Producer:
-        softwareVersion: "v0.0.30"
-      QG:
-        softwareVersion: "v1.7.9-pc-orin"
-      PanelPC-API:
-        softwareVersion: "v1.7.7-api"
-      PanelPC-GUI:
-        softwareVersion: "dev_2.3.0-server_calibration-tool-shortcut"
-      Calibration-Tool:
-        softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "empty"
   production-europe:
