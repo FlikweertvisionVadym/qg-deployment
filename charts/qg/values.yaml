@@ -317,3 +317,17 @@ groups:
         softwareVersion: "v0.3.20"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
+  advanced-images-test:
+    software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.30"
+      QG:
+        softwareVersion: "v1.8.4-pc-orin"
+      PanelPC-API:
+        softwareVersion: "dev_BUG-127-advanced-images"
+      PanelPC-GUI:
+        softwareVersion: "v2.4.3-server"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71.1-hotfix"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.7_SP18"
