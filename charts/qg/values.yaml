@@ -312,7 +312,7 @@ groups:
       PanelPC-API:
         softwareVersion: "dev_v1.8.3_candidate"
       PanelPC-GUI:
-        softwareVersion: "dev_v2.4.3_candidate"
+        softwareVersion: "dev_slim-runtime-origin-aware"
       Calibration-Tool:
         softwareVersion: "v0.3.20"
       Plc-Tool:
