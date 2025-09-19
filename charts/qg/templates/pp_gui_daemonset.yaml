@@ -46,15 +46,11 @@ spec:
         securityContext:
           privileged: true
         env:
-        - name: NUXT_PUBLIC_API_URL
+        - name: NUXT_API_BASE
           value: "http://{{ $panelpc_ip }}:5000"
-        - name: CALIBRATION_TOOL_URL
+        - name: NUXT_PUBLIC_CALIBRATION_TOOL_URL
           value: "http://{{ $panelpc_ip }}:5123"
         volumeMounts:
-        - name: gui-build-artifacts
-          mountPath: /app/.output/
-        - name: nuxt-artifacts
-          mountPath: /app/.nuxt/
         - name: timezone-settings
           mountPath: /etc/timezone
           readOnly: true
@@ -66,14 +62,6 @@ spec:
           periodSeconds: 15
       
       volumes:
-      - name: gui-build-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/build
-          type: DirectoryOrCreate
-      - name: nuxt-artifacts
-        hostPath:
-          path: /home/fvt/QualityGrader/UI/nuxt
-          type: DirectoryOrCreate
       - name: timezone-settings
         hostPath:
           path: /etc/timezone
