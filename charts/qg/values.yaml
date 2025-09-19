@@ -147,3 +147,18 @@ groups:
         softwareVersion: "v0.2.71.1-hotfix"
       Plc-Tool:
         softwareVersion: "QG_V2.4.7_SP18"
+  origin-aware:
+    type: "QG"
+    software:
+      Telemetry-Producer:
+        softwareVersion: "v0.0.30"
+      QG:
+        softwareVersion: "v1.8.3-pc-orin"
+      PanelPC-API:
+        softwareVersion: "v1.8.2-api"
+      PanelPC-GUI:
+        softwareVersion: "dev_slim-runtime-origin-aware"
+      Calibration-Tool:
+        softwareVersion: "v0.2.71.1-hotfix"
+      Plc-Tool:
+        softwareVersion: "QG_V2.4.6_SP18"
